@@ -22,7 +22,7 @@ Notas técnicas: el banco 4 de la ROM está casi lleno, por lo que los gráficos
 No necesita partida nueva. Las curas ya compradas se conservan. Otra semilla del randomizador sigue requiriendo partida nueva, y el randomizador de esta versión solo acepta la ROM 4.3 (cambia la firma de la parte inmutable).
 ## 4.2 — Sprites y sandbox (20 de octubre de 2026)
 
-Tres correcciones. Las pruebas citadas se resumen en [evidencias/Validacion-v4.2.json](evidencias/Validacion-v4.2.json); ninguna equivale a una campaña completa.
+Tres correcciones. Las pruebas citadas (124 comprobaciones) se resumieron en evidencias/Validacion-v4.2.json, que se conserva en la etiqueta 4.2 del historial de Git; ninguna equivale a una campaña completa.
 
 ### 1. Sprite de Tito: cuadrícula nativa y direcciones
 
