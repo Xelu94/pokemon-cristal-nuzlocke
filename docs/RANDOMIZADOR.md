@@ -5,7 +5,7 @@
 ## Uso
 
 1. Abre `herramientas/Randomizador.html` en un navegador moderno.
-2. Selecciona `Pokemon Cristal Nuzlocke.gbc` (v4.2) o una copia generada antes con esta misma herramienta.
+2. Selecciona `Pokemon Cristal Nuzlocke.gbc` (v4.3) o una copia generada antes con esta misma herramienta.
 3. Escribe una semilla o pulsa «Otra semilla».
 4. Pulsa «Generar y descargar ROM». El archivo se llama `Cristal-Nuzlocke-<semilla>.gbc`.
 5. **Empieza una partida nueva**: cambiar de semilla requiere partida nueva y cada guardado pertenece a su aventura.

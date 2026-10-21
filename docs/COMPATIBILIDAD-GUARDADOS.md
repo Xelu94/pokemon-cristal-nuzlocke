@@ -2,7 +2,7 @@
 
 ## Actualizar dentro de esta familia
 
-Las actualizaciones de las versiones de este proyecto (v3 → v4 → v4.1 → v4.2) permiten **continuar el guardado interno del juego** (el `.sav` o la memoria de batería del emulador): no hace falta partida nueva.
+Las actualizaciones de las versiones de este proyecto (v3 → v4 → v4.1 → v4.2 → v4.3) permiten **continuar el guardado interno del juego** (el `.sav` o la memoria de batería del emulador): no hace falta partida nueva.
 
 Procedimiento:
 
@@ -15,7 +15,10 @@ Procedimiento:
 - **Mochila y PC**: la mochila pasa de 20 a 50 montones y el PC de 50 a 20, conservando los 70 espacios combinados. La migración es automática; se comprobó con guardados v3, tanto el principal como el de respaldo.
 - **Movimientos sustituidos**: los Pokémon que conocían uno de los nueve movimientos antiguos pasan a conocer el nuevo en el mismo ID ([tabla](MOVIMIENTOS-SUSTITUIDOS.md)).
 - **Niveles por encima de un nuevo tope**: no se pierden, pero el Pokémon no gana experiencia hasta que el tope lo supere.
-- **Recursos de partida nueva** (99 Master Balls, 999 caramelos raros, objetos equipados): solo se entregan en partidas nuevas. Los guardados existentes conservan las cantidades que tuvieran y lo gastado no se regenera.
+- **Recursos de partida nueva** (99 Master Balls, 99 caramelos raros infinitos, objetos equipados): solo se entregan en partidas nuevas. Los guardados existentes conservan las cantidades y montones que tuvieran y lo gastado no se regenera. Desde la 4.3 usar un caramelo raro no lo consume, así que los montones de un guardado anterior también pasan a ser infinitos.
+- **Tiendas y curas**: los objetos curativos que ya tenías se conservan. Las tiendas dejan de venderlos.
+- **El anciano de CIUDAD CEREZO**: si ya tienes la TARJ. MAPA no ocurre nada; si aún no la tenías, se acerca al volver a entrar en la ciudad.
+- **Flags de evento nuevos**: tres flags en un rango de la tabla de eventos que estaba libre; no alteran los existentes.
 
 ## Qué no puede recuperarse
 

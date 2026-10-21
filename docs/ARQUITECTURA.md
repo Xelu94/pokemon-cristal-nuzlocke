@@ -57,3 +57,13 @@ El inventario ocupa 50 montones y el PC 20 (antes 20 y 50): se conservan los 70 
 ## Qué distingue base y modificación
 
 La base (motor, mapas, gráficos y textos de Pokémon Cristal en español) procede de MicaelAlighieri/pokecristal y pret/pokecrystal. Las modificaciones están agrupadas en `parches/Cambios-fuente.patch`: 63 archivos de `engine/`, 59 de `maps/`, 56 de `data/`, 14 de `tools/`, 9 de `constants/`, 7 de `gfx/`, 2 de `ram/` y los archivos raíz `.gitattributes` y `main.asm`, más `home/trainers.asm`.
+
+## Cambios de la 4.3 con restricciones de memoria
+
+- **Rótulos de la bolsa.** El recuadro negro de la izquierda muestra el bolsillo de objetos con cinco tiles por rótulo (20 tiles, `gfx/pack/pack_categories.png`, generados por `herramientas/fuentes/build_pack_labels.py`). El banco 4 estaba casi lleno y 320 bytes de gráficos lo desbordaban, así que los tiles viven en una sección ROMX propia (`SECTION "Pack category labels"`) y se copian con `FarCopyBytes` a los tiles `$60-$73` de VRAM, libres en esa pantalla. `DrawBagCategoryName` ya no escribe texto en la fila superior: coloca los cinco tiles del rótulo en el recuadro.
+- **Círculo de bolsillos.** Al entrar en ITEMS desde BALLS (izquierda) se aterriza en OTROS y desde MT/MO (derecha) en MEDICINA. El cálculo está en `PackSetCategoryOnEntry` (otro banco, vía `farcall`) para ahorrar bytes en el banco 4; antes la categoría se conservaba y desde MT/MO se volvía a entrar en OTROS.
+- **Caramelos infinitos.** `RareCandyEffect` termina con `ret` en lugar de `jp UseDisposableItem`: el efecto se aplica y la cantidad no cambia.
+- **Nivel blando del primer Ulex.** El área WRAM de `wUlexLocation` y compañía está dimensionada al byte: añadir una variable desplaza la sección alineada siguiente y desborda WRAM0. El nivel 15 se señala con el bit 7 de `wUlexLocation`, que `UlexSelectTeam` activa solo con cero medallas en la Ruta 31 y que `ClampProgressionLevel` consume mientras se lee el equipo; `UlexCommitEncounter` y la rama de combate rechazado lo borran para que ningún combate salvaje posterior se vea afectado.
+- **Escena del anciano.** Dos eventos de coordenada en la entrada de Ciudad Cerezo (filas 6 y 7, columna 36), activos solo en la escena inicial, mueven al anciano hasta el jugador; la visita guiada y sus textos se eliminaron.
+- **Suministros de la Liga.** Tres flags de evento nuevos (`EVENT_GOT_LEAGUE_*`) en un rango libre de la tabla de eventos permiten reanudar la entrega si la mochila estaba llena.
+- **Tiendas.** `data/items/marts.asm` se reescribe sin objetos curativos; los tres casos que quedaban vacíos reciben artículos no curativos. Las máquinas expendedoras (dos mapas) se sustituyen por un texto.

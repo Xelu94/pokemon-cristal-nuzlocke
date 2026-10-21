@@ -8,9 +8,9 @@ El sandbox es una **compilación separada** (`pokecristal_debug` en el Makefile)
 | Descarga pública | Sí (único asset de la Release) | No |
 | Menú Start → SANDBOX | No | Sí |
 | Guardado | El de la aventura | Distinto, para no mezclarlo |
-| SHA-256 de 4.2 | `fc8fd409da5c20f5e7e17f1b0aef34d970f3a61e0fdeb518a41011c966d337f4` | `698d216e4520fcedbba0c367d146057d4c850db2202052f6da99c50acbf799d5` |
+| SHA-256 de 4.3 | `a6a232589e9ff8859bc9307c3593707c753dcaf8b6be65a8ba835faafe949b1e` | `d6a7449506680bdbb215e3aabeb4f6772585516e55eefe07c396f9543cc401f2` |
 
-El hash del sandbox figura en `evidencias/Validacion-v4.2.json` y corresponde a la compilación probada; no se adjunta ninguna ROM sandbox.
+El hash del sandbox figura en `evidencias/Validacion-v4.3.json` y corresponde a la compilación probada; no se adjunta ninguna ROM sandbox.
 
 ## Menú SANDBOX
 

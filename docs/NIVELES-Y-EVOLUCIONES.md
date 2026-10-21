@@ -43,6 +43,10 @@ Rojo exige las dieciséis medallas y tiene seis Pokémon al nivel 95. El equipo 
 
 Los Pokémon que ya superen un nuevo tope no pierden niveles, pero no ganan experiencia por encima de él.
 
+### Excepción: el primer Ulex
+
+El Ulex de la Ruta 31 que se encuentra con cero medallas saca sus tres Pokémon al **nivel 15**. Los demás encuentros con Ulex usan el límite vigente. Ver [MECANICAS.md](MECANICAS.md).
+
 ### Escalado de rivales
 
 Salvajes y entrenadores no bajan del nivel del líder anterior menos tres. Se exceptúan las rutas iniciales 29, 30 y 31 y los encuentros de nivel especial.

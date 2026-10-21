@@ -1,4 +1,4 @@
-# Mecánicas y reglas vigentes (v4.2)
+# Mecánicas y reglas vigentes (v4.3)
 
 Descripción de la ROM normal. Los datos numéricos se contrastaron con la fuente integrada (`engine/pokemon/v2_balance.asm`, `data/moves/moves.asm`, `data/pokemon/evos_attacks.asm`). Cuando una regla depende del emulador o de la semilla, se indica.
 
@@ -50,7 +50,7 @@ Ver [NIVELES-Y-EVOLUCIONES.md](NIVELES-Y-EVOLUCIONES.md) para la tabla completa.
 
 ## Tito Xeluis
 
-- Presente en 22 Centros Pokémon, con nombre, menús, diálogos, retrato de combate y sprite de mapa propios.
+- Presente en 22 Centros Pokémon, con nombre, menús, diálogos, retrato de combate y sprite de mapa propios. Antes de empezar, explica las reglas Nuzlocke en un diálogo inicial.
 - **Intercambio**: uno completado por ciudad antes de derrotarlo. Eliges libremente un Pokémon vivo y ves la especie exacta ofrecida (potencia comparable, mismo nivel) antes de confirmar. Cancelar no consume el intercambio.
 - Servicios gratuitos: consulta de límites de nivel, recordador de movimientos y guía de evoluciones modificadas.
 - **Jefe extra** tras vencer a Rojo: Charizard, Tyranitar, Dragonite, Gengar, Scizor y Mewtwo, todos shiny al nivel 100, con movimientos aleatorios y objetos. Se puede repetir el combate; la muerte permanente sigue aplicándose.
@@ -61,17 +61,19 @@ Ver [NIVELES-Y-EVOLUCIONES.md](NIVELES-Y-EVOLUCIONES.md) para la tabla completa.
 
 - Dieciséis encuentros independientes en las rutas 31, 32, 34, 37, 41, 39, 43, 44, 6, 8, 11, 12, 14, 15, 17 y 25.
 - Se presenta con un disfraz de NPC según la ruta (cazabichos, pescador, chica, joven, marinero, motorista…). Tras su giro se muestra siempre como recluta Rocket.
-- Equipos aleatorios shiny al límite de nivel vigente, de tres, cuatro o cinco Pokémon según la etapa. Hace falta otra medalla entre encuentros y cada ubicación se consume una vez. Puedes volver a una ubicación pendiente tras progresar; en Kanto admite otro orden.
+- Equipos aleatorios shiny al límite de nivel vigente, de tres, cuatro o cinco Pokémon según la etapa. **Excepción:** el primer Ulex (Ruta 31, antes de ninguna medalla) saca sus tres Pokémon al nivel 15 en lugar de 19; los demás encuentros no cambian. Hace falta otra medalla entre encuentros y cada ubicación se consume una vez. Puedes volver a una ubicación pendiente tras progresar; en Kanto admite otro orden.
 - **Victoria sin nuevas muertes**: una MT aleatoria. **Si hay una nueva muerte**, roba otro Pokémon vivo y entrega a ZURULLO, un Rattata de nivel 5 que solo conoce Salpicadura; en ese caso no hay MT.
 - Los combates rechazados no gastan el encuentro. Los resultados reales se registran antes de recargar el mapa.
 
 ## Calidad de vida e inventario
 
-- **MO como herramientas**: requieren la MO en la mochila, la medalla y un Pokémon vivo, sin aprender el ataque. Vuelo se usa desde el mapa exterior del Pokégear hacia ciudades visitadas; Destello, desde el menú de un Pokémon vivo.
-- **Mochila de 50 montones y PC de 20**, conservando los 70 espacios combinados. Bolsillos MEDICINA, BAYAS, COMBATE y OTROS, además de MT/MO, Balls y objetos clave, con navegación izquierda/derecha (el filtro TODOS con Start se retiró).
-- **Partida nueva**: 99 Master Balls, 999 caramelos raros finitos (montones de 99 y de 9) y diez unidades de Banda Focus, Cinta Elegida, Gafas Elegidas, Pañuelo Elegido y Restos. Los recursos gastados no se regeneran al actualizar.
+- **MO como herramientas**: requieren la MO en la mochila, la medalla y un Pokémon vivo, sin aprender el ataque. Vuelo y Destello aparecen como acciones en el submenú de cualquier Pokémon (VUELO y DESTELLO) mientras se tenga la MO; Vuelo también se usa desde el mapa exterior del Pokégear hacia ciudades visitadas.
+- **Mochila de 50 montones y PC de 20**, conservando los 70 espacios combinados. Bolsillos MEDICINA, BAYAS, COMBATE y OTROS, además de MT/MO, Balls y objetos clave. El nombre del bolsillo de objetos se muestra en el recuadro negro de la izquierda y los bolsillos forman un círculo con izquierda/derecha: MEDICINA, BAYAS, COMBATE, OTROS, BALLS, OBJ. CLAVE, MT/MO y de nuevo MEDICINA (el filtro TODOS con Start se retiró).
+- **Partida nueva**: 99 Master Balls, un montón de 99 caramelos raros **infinitos** (usar uno no lo consume; el tope de nivel sigue frenándolos) y diez unidades de Banda Focus, Cinta Elegida, Gafas Elegidas, Pañuelo Elegido y Restos. Los recursos gastados no se regeneran al actualizar.
 - **Objetos equipados**: los elegidos multiplican por 1,5 y bloquean el movimiento hasta cambiar de Pokémon. Restos recupera 1/16 de los PS. Banda Focus (y la variante antigua adaptada) actúa a PS completos ante un golpe directo letal, deja 1 PS y se consume; los ataques múltiples pueden rematar después.
-- **Repelentes** en la primera tienda y renovación al agotarse. La madre y los revividores encontrados entregan MT aleatorias en su bolsillo.
+- **Tiendas sin curas.** Ninguna tienda vende pociones, revivir, antídotos y demás curas de estado, bebidas curativas ni CARAM. FURIA, y las máquinas expendedoras están vacías. Los repelentes siguen en la primera tienda con renovación al agotarse. La madre y los revividores encontrados entregan MT aleatorias en su bolsillo.
+- **Suministros de la Liga.** Con las ocho medallas de Johto, el oficial de la Puerta de la CALLE VICTORIA entrega una sola vez 8 MÁX. POCIÓN, 10 HÍPER POCIÓN y 7 RESTAU. TODO (si la mochila está llena, se completa al volver a hablar con él).
+- **El mapa del Pokégear.** Al entrar por primera vez en CIUDAD CEREZO, el anciano se acerca solo y entrega la TARJ. MAPA; ya no hay visita guiada.
 - **Evoluciones** por intercambio o amistad sustituidas por nivel o piedra ([tabla](NIVELES-Y-EVOLUCIONES.md)).
 
 ## Diferencias entre ROM normal y sandbox

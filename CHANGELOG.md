@@ -2,6 +2,24 @@
 
 Formato por versión. Las versiones anteriores a la 4 no están documentadas en este paquete; solo se sabe que la actualización v3→v4 permite continuar el guardado.
 
+## 4.3 — Mejoras de jugabilidad (21 de octubre de 2026)
+
+Ocho cambios pedidos por el autor tras jugar la 4.2. Se validaron con 13 comprobaciones nuevas más las 124 anteriores (137 en total, [evidencias/Validacion-v4.3.json](evidencias/Validacion-v4.3.json)); no equivalen a una campaña completa.
+
+1. **Vuelo desde el menú del Pokémon.** Con la MO Vuelo en la mochila, la medalla de Tormenta y un Pokémon vivo, aparece VUELO en el submenú del Pokémon (igual que Destello). El vuelo desde el mapa exterior del Pokégear se conserva.
+2. **El anciano de CIUDAD CEREZO entrega el mapa sin hablarle.** Al entrar en la ciudad le sale una exclamación, se acerca, dice que usó la tarjeta «para limpiarme los mocos» y se la da, y desaparece. Se eliminó la visita guiada. Si el jugador le habla, también se la da.
+3. **El primer Ulex (Ruta 31, sin medallas) saca sus Pokémon al nivel 15** en lugar de 19. Solo ese encuentro: los demás Ulex siguen en el límite vigente.
+4. **Las tiendas ya no venden objetos curativos.** Se quitaron pociones, revivir, antídotos y demás curas de estado, bebidas curativas y CARAM. FURIA de las 34 tiendas. Tres tiendas que quedaban vacías (Ciudad Orquídea, el primer mostrador de la planta 2 del Gran Almacén de Ciudad Trigal y el herbolario subterráneo) venden ahora Poké Balls, Superrepelentes, repelentes o Cuerdas Huida. Las máquinas expendedoras de Ciudad Trigal y Ciudad Azulona están vacías.
+5. **Suministros de la Liga.** El oficial de la Puerta de la CALLE VICTORIA, al comprobar las ocho medallas de Johto, entrega una sola vez 8 MÁX. POCIÓN, 10 HÍPER POCIÓN y 7 RESTAU. TODO.
+6. **Diálogo inicial de Tito reescrito.** Sintaxis corregida y reglas Nuzlocke explicadas paso a paso (capturas, excepciones, muerte, fin de la aventura, límite de nivel, intercambios, Ulex).
+7. **99 caramelos raros infinitos.** Una partida nueva empieza con un único montón de 99 que no se consume al usarlo (antes 999 finitos en 11 montones). Libera 10 espacios de la mochila. Los guardados existentes conservan sus montones y todos los caramelos pasan a ser infinitos.
+8. **Mochila más clara.** El tipo de objeto (MEDICINA, BAYAS, COMBATE, OTROS) se muestra ahora en el recuadro negro de la izquierda, en lugar del rótulo «Objetos» y de la línea superior. La navegación es un círculo: derecha desde OTROS pasa a Balls, Obj.Clave y MT/MO, y vuelve a MEDICINA; izquierda desde MEDICINA llega a MT/MO y, al volver desde Balls, se entra en OTROS.
+
+Notas técnicas: el banco 4 de la ROM está casi lleno, por lo que los gráficos de los rótulos viven en una sección propia y el cálculo del punto de entrada de la mochila está fuera de ese banco. No se añadió WRAM; el nivel blando del primer Ulex usa el bit 7 de `wUlexLocation`. Se añadieron tres flags de evento en el rango antes libre.
+
+### Compatibilidad
+
+No necesita partida nueva. Las curas ya compradas se conservan. Otra semilla del randomizador sigue requiriendo partida nueva, y el randomizador de esta versión solo acepta la ROM 4.3 (cambia la firma de la parte inmutable).
 ## 4.2 — Sprites y sandbox (20 de octubre de 2026)
 
 Tres correcciones. Las pruebas citadas se resumen en [evidencias/Validacion-v4.2.json](evidencias/Validacion-v4.2.json); ninguna equivale a una campaña completa.
