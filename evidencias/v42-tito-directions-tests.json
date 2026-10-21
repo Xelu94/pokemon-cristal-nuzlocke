@@ -1,0 +1,49 @@
+{
+  "passed": 4,
+  "tests": [
+    {
+      "pose": "FRENTE",
+      "tile_offsets": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "mirrored": false,
+      "passed": true
+    },
+    {
+      "pose": "ESPALDA",
+      "tile_offsets": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "mirrored": false,
+      "passed": true
+    },
+    {
+      "pose": "IZQUIERDA",
+      "tile_offsets": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "mirrored": false,
+      "passed": true
+    },
+    {
+      "pose": "DERECHA",
+      "tile_offsets": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "mirrored": true,
+      "passed": true
+    }
+  ]
+}

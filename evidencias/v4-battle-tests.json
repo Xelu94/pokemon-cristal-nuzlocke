@@ -1,0 +1,17 @@
+{
+  "passed": 11,
+  "tests": [
+    "768 DV cases: Hidden Power menu returns exact type/power without mutating either battler",
+    "Actual Hidden Power damage command agrees with the pure display calculation",
+    "Traded monsters obey through exact current gym/League cap at all progression stages",
+    "Full damage command: modern and legacy Focus items save only full HP once and consume from both sides",
+    "Capture reload preserves original shiny and nonshiny DVs instead of performing a second shiny roll",
+    "Scripted wild event is shiny independently of ordinary 20 percent roll",
+    "Roaming event initializes shiny once and preserves the stored DVs on later encounters",
+    "Shiny and ordinary DVs survive party deposit, PC withdrawal and direct full-party capture storage",
+    "Nine modern moves cover Bug/Fairy/Dragon/Dark/Steel; Splash and all7 HM identities remain intact",
+    "Battle and detailed move screen render true power, including70-power Hidden Power and status dashes",
+    "Actual stats-screen renderer shows each of four move powers alongside its PP line"
+  ],
+  "rom": "pokecristal.gbc"
+}

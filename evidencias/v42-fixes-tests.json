@@ -1,0 +1,146 @@
+{
+  "passed": 17,
+  "tests": [
+    {
+      "map": "Route11",
+      "disguise": "SPRITE_YOUNGSTER",
+      "disguise_id": 39,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route12",
+      "disguise": "SPRITE_FISHER",
+      "disguise_id": 58,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route14",
+      "disguise": "SPRITE_POKEFAN_M",
+      "disguise_id": 45,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route15",
+      "disguise": "SPRITE_YOUNGSTER",
+      "disguise_id": 39,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route17",
+      "disguise": "SPRITE_BIKER",
+      "disguise_id": 74,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route25",
+      "disguise": "SPRITE_YOUNGSTER",
+      "disguise_id": 39,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route31",
+      "disguise": "SPRITE_BUG_CATCHER",
+      "disguise_id": 37,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route32",
+      "disguise": "SPRITE_FISHER",
+      "disguise_id": 58,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route34",
+      "disguise": "SPRITE_YOUNGSTER",
+      "disguise_id": 39,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route37",
+      "disguise": "SPRITE_LASS",
+      "disguise_id": 40,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route39",
+      "disguise": "SPRITE_SAILOR",
+      "disguise_id": 73,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route41",
+      "disguise": "SPRITE_SWIMMER_GUY",
+      "disguise_id": 49,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route43",
+      "disguise": "SPRITE_SUPER_NERD",
+      "disguise_id": 43,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route44",
+      "disguise": "SPRITE_FISHER",
+      "disguise_id": 58,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route6",
+      "disguise": "SPRITE_POKEFAN_M",
+      "disguise_id": 45,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "map": "Route8",
+      "disguise": "SPRITE_BIKER",
+      "disguise_id": 74,
+      "reveal_id": 53,
+      "tile": 72,
+      "correct_vram": true
+    },
+    {
+      "sandbox_items": true,
+      "quantities": {
+        "20": 10,
+        "42": 10,
+        "43": 10,
+        "25": 20,
+        "18": 10,
+        "14": 10
+      },
+      "tms_added_twice": 14,
+      "returns_to_world": true
+    }
+  ]
+}

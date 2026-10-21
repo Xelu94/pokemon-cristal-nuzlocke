@@ -1,0 +1,114 @@
+{
+  "passed": 27,
+  "tests": [
+    {
+      "name": "ulex starts at real Route31 encounter",
+      "passed": true
+    },
+    {
+      "name": "ulex disguise spin reveals a different actual overworld sprite",
+      "passed": true
+    },
+    {
+      "name": "ulex loads actual three-mon battle at cap19",
+      "passed": true
+    },
+    {
+      "name": "ulex defeats all three real shiny opponents at cap19",
+      "passed": true
+    },
+    {
+      "name": "ulex persists defeated location and badge milestone",
+      "passed": true
+    },
+    {
+      "name": "ulex removes the defeated actor from the map",
+      "passed": true
+    },
+    {
+      "name": "Clean victory awards exactly one real random TM",
+      "passed": true
+    },
+    {
+      "name": "ulex-theft starts at real Route31 encounter",
+      "passed": true
+    },
+    {
+      "name": "ulex-theft disguise spin reveals a different actual overworld sprite",
+      "passed": true
+    },
+    {
+      "name": "ulex-theft loads actual three-mon battle at cap19",
+      "passed": true
+    },
+    {
+      "name": "ulex-theft defeats all three real shiny opponents at cap19",
+      "passed": true
+    },
+    {
+      "name": "ulex-theft persists defeated location and badge milestone",
+      "passed": true
+    },
+    {
+      "name": "ulex-theft removes the defeated actor from the map",
+      "passed": true
+    },
+    {
+      "name": "New death triggers real forced theft script instead of TM",
+      "passed": true
+    },
+    {
+      "name": "Theft retains dead mon and gives level5 ZURULLO with only Splash",
+      "passed": true
+    },
+    {
+      "name": "Ulex rejects actual empty party without opening combat",
+      "passed": true
+    },
+    {
+      "name": "Ulex empty refusal retains both flags and the encounter actor",
+      "passed": true
+    },
+    {
+      "name": "Ulex rejects actual dead party without opening combat",
+      "passed": true
+    },
+    {
+      "name": "Ulex dead refusal retains both flags and the encounter actor",
+      "passed": true
+    },
+    {
+      "name": "Debug start menu opens real eight-action SANDBOX menu",
+      "passed": true
+    },
+    {
+      "name": "Sandbox tools are visibly rendered after the menu fade",
+      "passed": true
+    },
+    {
+      "name": "Closing sandbox restores a working start menu without double-pop",
+      "passed": true
+    },
+    {
+      "name": "Sandbox UI selects five badges at once and recalculates the cap",
+      "passed": true
+    },
+    {
+      "name": "Sandbox UI prepares its real three-shiny test team at43",
+      "passed": true
+    },
+    {
+      "name": "Sandbox travel UI presents41 shortcuts plus the complete-map catalog",
+      "passed": true
+    },
+    {
+      "name": "Travel menu frame preserves input and game-loop state",
+      "passed": true
+    },
+    {
+      "name": "Sandbox UI executes an actual warp to selected Violet center",
+      "passed": true
+    }
+  ],
+  "fixtures": "Player damage999 only; theft branch adds one death at post-battle check; original battle and event scripts run."
+}

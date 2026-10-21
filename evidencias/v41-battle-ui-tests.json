@@ -1,0 +1,30 @@
+{
+  "passed": 4,
+  "tests": [
+    "Actual battle info displays55-power IcyWind",
+    "Selected HiddenPower displays its actual Dark type/power70",
+    "Bayleef executes at least12 full IcyWind animations/speed drops with no reset and CGB state intact",
+    "Actual MasterBall capture with fullparty preserves visible event shiny DVs in PC"
+  ],
+  "counts": {
+    "Start": 1,
+    "_Start": 1,
+    "BattleMenu": 15,
+    "MoveInfoBox": 16,
+    "BattleCommand_SpeedDown": 12,
+    "ScrollingMenu": 5,
+    "_InitScrollingMenu": 5,
+    "_ScrollingMenu": 5,
+    "ScrollingMenuJoyAction": 53,
+    "ScrollingMenuJoyAction.a_button": 1,
+    "PokeBallEffect": 1,
+    "GiveCaptureExperience": 1,
+    "LearnMove": 1,
+    "SendMonIntoBox": 1
+  },
+  "shiny_dvs": [
+    170,
+    170
+  ],
+  "fixture": "Damage limited to1 only to keep target alive for stress; 6 test mons/intro shortcut"
+}

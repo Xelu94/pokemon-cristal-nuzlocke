@@ -1,0 +1,26 @@
+{
+  "passed": 9,
+  "checks": [
+    "Base ROM matches immutable version signature and every mutable range is in bounds",
+    "Same seed is byte-identical; different seeds differ; source buffer remains unchanged",
+    "Previously generated variants are compatible and reseeding them reproduces canonical output",
+    "Every changed byte is whitelisted; cartridge code, caps, HM table and fixed level100 Tito team remain intact",
+    "All species pools obey current evolution thresholds, early strength limits and legendary gating; starters are three distinct unevolved species",
+    "Compiled site whitelist covers the source declarations; every existing wild/trainer level byte is preserved",
+    "50 unique valid TMs and all251x8 balanced trade mappings preserve stage/strength/legend status",
+    "All20 eggs have valid first-stage species, level5 EXP/stats/currentHP0, preserved DVs and four shiny slots",
+    "Global cartridge checksums are correct and invalid size/empty seed are rejected"
+  ],
+  "baseSHA256": "fc8fd409da5c20f5e7e17f1b0aef34d970f3a61e0fdeb518a41011c966d337f4",
+  "generatedSHA256": "f1093f487bfaa70e540148193d304a5b7624e5b68ed2a165f15b0c9718099b19",
+  "differentSeedSHA256": "144843a2166872cee2487b5e861b8ea2246559b248e7dd8d11f69c3a233d8397",
+  "changedBytes": 5797,
+  "starters": [
+    60,
+    102,
+    246
+  ],
+  "groups": 3749,
+  "sites": 3774,
+  "rom": "v4-randomizer-seed-a.gbc"
+}

@@ -1,0 +1,197 @@
+{
+  "passed": 48,
+  "tests": [
+    {
+      "name": "Evolution guide for Kadabra",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Machoke",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Graveler",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Haunter",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Poliwhirl",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Slowpoke",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Onix",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Seadra",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Scyther",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Porygon",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Golbat",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Chansey",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Pichu",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Cleffa",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Igglybuff",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Togepi",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Eevee",
+      "passed": true
+    },
+    {
+      "name": "Evolution guide for Unchanged",
+      "passed": true
+    },
+    {
+      "name": "Complete Tito standing frame data loaded into actual map VRAM",
+      "passed": true
+    },
+    {
+      "name": "Tito has distinct front, back and side artwork",
+      "passed": true
+    },
+    {
+      "name": "Map sprite renders the complete back pose",
+      "passed": true
+    },
+    {
+      "name": "Map sprite renders the complete left pose",
+      "passed": true
+    },
+    {
+      "name": "Map sprite renders the complete right pose",
+      "passed": true
+    },
+    {
+      "name": "Map sprite renders the complete front pose",
+      "passed": true
+    },
+    {
+      "name": "Service prompt visibly identifies TITO XELUIS",
+      "passed": true
+    },
+    {
+      "name": "Trade proposal exists before a Pokémon is removed",
+      "passed": true
+    },
+    {
+      "name": "Declining a proposed exchange preserves the whole party",
+      "passed": true
+    },
+    {
+      "name": "Declining a proposed exchange preserves the city opportunity",
+      "passed": true
+    },
+    {
+      "name": "Confirmed trade delivers exactly the species shown in its proposal",
+      "passed": true
+    },
+    {
+      "name": "Confirmed trade preserves selected level",
+      "passed": true
+    },
+    {
+      "name": "Only a completed trade consumes the city's opportunity",
+      "passed": true
+    },
+    {
+      "name": "Tito trade bypasses the exchange animation",
+      "passed": true
+    },
+    {
+      "name": "Reminder menu has a clean grayscale background False",
+      "passed": true
+    },
+    {
+      "name": "Reminder list hides live map sprites False",
+      "passed": true
+    },
+    {
+      "name": "Original move is learned through actual reminder False",
+      "passed": true
+    },
+    {
+      "name": "Reminder restores map sprite update state False",
+      "passed": true
+    },
+    {
+      "name": "Reminder restores original map palette colors False",
+      "passed": true
+    },
+    {
+      "name": "Reminder menu has a clean grayscale background True",
+      "passed": true
+    },
+    {
+      "name": "Reminder list hides live map sprites True",
+      "passed": true
+    },
+    {
+      "name": "Original move is learned through actual reminder True",
+      "passed": true
+    },
+    {
+      "name": "Reminder restores map sprite update state True",
+      "passed": true
+    },
+    {
+      "name": "Reminder restores original map palette colors True",
+      "passed": true
+    },
+    {
+      "name": "NPC exchange narration names the sent Pokémon before the received Pokémon",
+      "passed": true
+    },
+    {
+      "name": "_NPCTradeCompleteText1 uses the sent Pokémon's durable name buffer",
+      "passed": true
+    },
+    {
+      "name": "_NPCTradeCompleteText2 uses the sent Pokémon's durable name buffer",
+      "passed": true
+    },
+    {
+      "name": "New game introduces Tito's battle portrait before Professor Oak",
+      "passed": true
+    },
+    {
+      "name": "New game reaches the actual Nuzlocke rules text",
+      "passed": true
+    },
+    {
+      "name": "Finishing Tito's rules continues to the original Professor Oak introduction",
+      "passed": true
+    }
+  ]
+}

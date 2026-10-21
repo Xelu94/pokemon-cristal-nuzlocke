@@ -1,0 +1,11 @@
+{
+  "passed": 4,
+  "tests": [
+    "Actual offline browser selection/generation/download matches pure core",
+    "Incompatible ROM rejected before any mutation",
+    "Generated ROM can be reseeded and produces a different adventure",
+    "No network requests or browser script errors"
+  ],
+  "browser": "Microsoft Edge headless",
+  "sha256": "fc8fd409da5c20f5e7e17f1b0aef34d970f3a61e0fdeb518a41011c966d337f4"
+}

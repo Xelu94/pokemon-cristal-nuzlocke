@@ -1,0 +1,11 @@
+{
+  "name": "cristal-nuzlocke-validation",
+  "private": true,
+  "version": "4.2.0",
+  "scripts": {
+    "test:randomizer": "node work/test-v4-randomizer.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
