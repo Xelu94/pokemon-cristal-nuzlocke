@@ -8,7 +8,7 @@ Modificación personal de **Pokémon Cristal** para Game Boy Color con un Nuzloc
 
 ## Descarga y cómo jugar
 
-**ROM normal v4.3:** `Pokemon Cristal Nuzlocke.gbc`. El enlace directo se añade cuando se publica la Release v4.3 (consulta [Releases](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases)).
+**[⬇ Descargar Pokemon Cristal Nuzlocke.gbc (v4.3)](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/download/v4.3/Pokemon.Cristal.Nuzlocke.gbc)** — enlace directo al asset de la [Release v4.3](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.3). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
 
 Versión anterior publicada: [v4.2](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.2).
 
