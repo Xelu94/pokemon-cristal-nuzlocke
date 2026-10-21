@@ -81,7 +81,7 @@ No implementado: habilidades, megaevolución, generaciones tercera/cuarta, recur
 | [`capturas/`](capturas) | Capturas reales |
 | [`publicacion/`](publicacion) | Textos de la Release, descripción y resumen para portfolio |
 
-Cambios por versión: [CHANGELOG.md](CHANGELOG.md). Procedencia: [CREDITOS.md](CREDITOS.md). Licencia: [LICENCIA.md](LICENCIA.md).
+Cambios por versión: [CHANGELOG.md](CHANGELOG.md). Procedencia: [CREDITOS.md](CREDITOS.md). Licencias (MIT para el código propio, CC BY-NC 4.0 para documentación y arte de Tito; sin licencia propia para parche y ROM): [LICENCIA.md](LICENCIA.md).
 
 ## Créditos
 

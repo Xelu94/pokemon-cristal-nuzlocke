@@ -31,4 +31,4 @@ RGBDS, Make/GCC, Python, Pillow, PyBoy, Node.js, Playwright, mGBA y Floating IPS
 
 ## Licencia
 
-Ver [LICENCIA.md](LICENCIA.md): no se ha asignado una licencia global al contenido heredado.
+Ver [LICENCIA.md](LICENCIA.md): licencias por tipo de contenido propio (MIT, CC BY-NC 4.0); no se ha asignado ninguna licencia al contenido heredado.
