@@ -1,6 +1,6 @@
 # Procedencia y créditos
 
-Proyecto personal: **Pokémon Cristal Nuzlocke — Tito Xeluis**. Modificación de aficionado, no oficial.
+Proyecto personal de **Tito Xeluis** (apodo de YouTube del autor; cuenta de GitHub [Xelu94](https://github.com/Xelu94)): **Pokémon Cristal Nuzlocke — Tito Xeluis**. Modificación de aficionado, no oficial.
 
 ## Base existente
 
