@@ -1,0 +1,67 @@
+{
+  "version": "4.3",
+  "fecha": "2026-10-21",
+  "normal_sha256": "a6a232589e9ff8859bc9307c3593707c753dcaf8b6be65a8ba835faafe949b1e",
+  "sandbox_sha256": "d6a7449506680bdbb215e3aabeb4f6772585516e55eefe07c396f9543cc401f2",
+  "passed": 137,
+  "groups": [
+    {
+      "name": "Tito services and maps",
+      "report": "v4-tito-tests.json",
+      "passed": 48
+    },
+    {
+      "name": "Tito rendered directions",
+      "report": "v42-tito-directions-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "All Ulex routes and sandbox Items",
+      "report": "v42-fixes-tests.json",
+      "passed": 17
+    },
+    {
+      "name": "Ulex battles and sandbox UI",
+      "report": "v41-root-ui-tests.json",
+      "passed": 27
+    },
+    {
+      "name": "Battle calculations and storage",
+      "report": "v4-battle-tests.json",
+      "passed": 11
+    },
+    {
+      "name": "Real battle UI and capture",
+      "report": "v41-battle-ui-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "Randomizer core",
+      "report": "v4-randomizer-tests.json",
+      "passed": 9
+    },
+    {
+      "name": "Offline randomizer UI",
+      "report": "v4-randomizer-ui-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "v4.3 changes (Fly, Map Card, marts, League supplies, candies, bag)",
+      "report": "v43-changes-tests.json",
+      "passed": 13
+    }
+  ],
+  "limitaciones": [
+    "No equivale a una campaña completa.",
+    "Se omite la introducción en las pruebas de interfaz; en Ruta 17 se desactiva la gravedad solo en el montaje de prueba.",
+    "Las pruebas de combate de Ulex aumentan el daño para recorrer sus equipos; no evalúan el equilibrio completo.",
+    "Las pruebas del grupo v4.3 comprueban datos y comportamiento en la ROM real, pero no reemplazan jugar una partida completa.",
+    "La escena del anciano se comprueba con llegada por las dos filas de la entrada de Ciudad Cerezo; no se han probado todas las formas de llegar.",
+    "El nivel 15 del primer Ulex lo cubre el grupo Combates de Ulex; no se ha probado el equilibrio resultante.",
+    "La reconstrucción limpia a partir del parche sobre la base dio exactamente los hashes de normal y sandbox indicados."
+  ],
+  "partida_nueva_necesaria": false,
+  "pruebas_actuales": 137,
+  "informes_historicos": "Las 124 comprobaciones de 4.2 y las 306 de versiones anteriores pertenecen a otras compilaciones y no se suman a este recuento.",
+  "parche_sha256": "5a0d232457e55de031a75def8b416d5ebdf0c8d794d74570f7e8b8037b3569a7"
+}

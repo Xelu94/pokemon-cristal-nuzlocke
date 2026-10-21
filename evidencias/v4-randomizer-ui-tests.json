@@ -6,6 +6,6 @@
     "Generated ROM can be reseeded and produces a different adventure",
     "No network requests or browser script errors"
   ],
-  "browser": "Microsoft Edge headless",
-  "sha256": "fc8fd409da5c20f5e7e17f1b0aef34d970f3a61e0fdeb518a41011c966d337f4"
+  "browser": "Playwright Chromium headless",
+  "sha256": "a6a232589e9ff8859bc9307c3593707c753dcaf8b6be65a8ba835faafe949b1e"
 }

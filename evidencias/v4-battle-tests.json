@@ -13,5 +13,5 @@
     "Battle and detailed move screen render true power, including70-power Hidden Power and status dashes",
     "Actual stats-screen renderer shows each of four move powers alongside its PP line"
   ],
-  "rom": "pokecristal.gbc"
+  "rom": "work\\source\\pokecristal.gbc"
 }

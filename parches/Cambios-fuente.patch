@@ -11,10 +11,10 @@ index 12b9534..950053b 100644
  # Declare files that will always have CRLF line endings on checkout.
  *.patch.template text eol=crlf linguist-language=INI
 diff --git a/constants/event_flags.asm b/constants/event_flags.asm
-index 7920521..6aaec5f 100644
+index 7920521..7a02c57 100644
 --- a/constants/event_flags.asm
 +++ b/constants/event_flags.asm
-@@ -268,7 +268,19 @@
+@@ -268,7 +268,23 @@
  	const EVENT_DANA_GAVE_THUNDERSTONE
  	const EVENT_TULLY_GAVE_WATER_STONE
  	const EVENT_TIFFANY_GAVE_PINK_BOW
@@ -31,6 +31,10 @@ index 7920521..6aaec5f 100644
 +	const_skip 16
 +DEF EVENT_ULEX_BADGE_BASE EQU const_value
 +	const_skip 17
++; V4.3: League supplies from the Victory Road Gate officer.
++	const EVENT_GOT_LEAGUE_MAX_POTIONS
++	const EVENT_GOT_LEAGUE_HYPER_POTIONS
++	const EVENT_GOT_LEAGUE_FULL_RESTORES
 +; Unused up to event 599
  
  	const_next 600
@@ -148,10 +152,10 @@ index 1181285..c2547df 100644
  
  ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 diff --git a/constants/trainer_constants.asm b/constants/trainer_constants.asm
-index a56ab82..3060c90 100644
+index a56ab82..cec5de0 100644
 --- a/constants/trainer_constants.asm
 +++ b/constants/trainer_constants.asm
-@@ -703,4 +703,28 @@ DEF KRIS EQU __trainer_class__
+@@ -703,4 +703,30 @@ DEF KRIS EQU __trainer_class__
  	trainerclass MYSTICALMAN ; 43
  	const EUSINE
  
@@ -180,6 +184,8 @@ index a56ab82..3060c90 100644
 +	const ULEX19
 +
  DEF NUM_TRAINER_CLASSES EQU __trainer_class__ - 1
++
++DEF ULEX_ROUTE_31_FIRST_LEVEL EQU 15 ; first Ulex (Route 31, no badges)
 diff --git a/constants/type_constants.asm b/constants/type_constants.asm
 index 49fa661..5edc271 100644
 --- a/constants/type_constants.asm
@@ -57000,40 +57006,43 @@ index e2b6a4e..bcc6884 100644
  TeruSama8Desc:
  	db   "¿?@"
 diff --git a/data/items/marts.asm b/data/items/marts.asm
-index a876268..05f9afb 100644
+index a876268..66e9b9a 100644
 --- a/data/items/marts.asm
 +++ b/data/items/marts.asm
-@@ -38,24 +38,26 @@ Marts:
+@@ -38,77 +38,56 @@ Marts:
  	assert_table_length NUM_MARTS
  
  MartCherrygrove:
 -	db 4 ; # items
-+	db 5 ; # items
- 	db POTION
- 	db ANTIDOTE
- 	db PARLYZ_HEAL
- 	db AWAKENING
+-	db POTION
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+-	db AWAKENING
++	db 1 ; # items
 +	db REPEL
  	db -1 ; end
  
  MartCherrygroveDex:
 -	db 5 ; # items
-+	db 6 ; # items
++	db 2 ; # items
  	db POKE_BALL
- 	db POTION
- 	db ANTIDOTE
- 	db PARLYZ_HEAL
- 	db AWAKENING
+-	db POTION
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+-	db AWAKENING
 +	db REPEL
  	db -1 ; end
  
  MartViolet:
 -	db 10 ; # items
-+	db 11 ; # items
++	db 7 ; # items
  	db POKE_BALL
- 	db POTION
+-	db POTION
  	db ESCAPE_ROPE
-@@ -66,6 +68,7 @@ MartViolet:
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+-	db AWAKENING
+ 	db X_DEFEND
  	db X_ATTACK
  	db X_SPEED
  	db FLOWER_MAIL
@@ -57041,6 +57050,290 @@ index a876268..05f9afb 100644
  	db -1 ; end
  
  MartAzalea:
+-	db 9 ; # items
++	db 5 ; # items
+ 	db CHARCOAL
+ 	db POKE_BALL
+-	db POTION
+-	db SUPER_POTION
+ 	db ESCAPE_ROPE
+ 	db REPEL
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+ 	db FLOWER_MAIL
+ 	db -1 ; end
+ 
+ MartCianwood:
+-	db 5 ; # items
+-	db POTION
+-	db SUPER_POTION
+-	db HYPER_POTION
+-	db FULL_HEAL
+-	db REVIVE
++	db 2 ; # items
++	db GREAT_BALL
++	db SUPER_REPEL
+ 	db -1 ; end
+ 
+ MartGoldenrod2F1:
+-	db 7 ; # items
+-	db POTION
+-	db SUPER_POTION
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+-	db AWAKENING
+-	db BURN_HEAL
+-	db ICE_HEAL
++	db 4 ; # items
++	db POKE_BALL
++	db GREAT_BALL
++	db ESCAPE_ROPE
++	db REPEL
+ 	db -1 ; end
+ 
+ MartGoldenrod2F2:
+-	db 8 ; # items
++	db 6 ; # items
+ 	db POKE_BALL
+ 	db GREAT_BALL
+ 	db ESCAPE_ROPE
+ 	db REPEL
+-	db REVIVE
+-	db FULL_HEAL
+ 	db POKE_DOLL
+ 	db FLOWER_MAIL
+ 	db -1 ; end
+@@ -166,97 +145,58 @@ MartGoldenrod5F4:
+ 	db -1 ; end
+ 
+ MartOlivine:
+-	db 9 ; # items
++	db 3 ; # items
+ 	db GREAT_BALL
+-	db SUPER_POTION
+-	db HYPER_POTION
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+-	db AWAKENING
+-	db ICE_HEAL
+ 	db SUPER_REPEL
+ 	db SURF_MAIL
+ 	db -1 ; end
+ 
+ MartEcruteak:
+-	db 10 ; # items
++	db 2 ; # items
+ 	db POKE_BALL
+ 	db GREAT_BALL
+-	db POTION
+-	db SUPER_POTION
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+-	db AWAKENING
+-	db BURN_HEAL
+-	db ICE_HEAL
+-	db REVIVE
+ 	db -1 ; end
+ 
+ MartMahogany1:
+-	db 4 ; # items
++	db 3 ; # items
+ 	db TINYMUSHROOM
+ 	db SLOWPOKETAIL
+ 	db POKE_BALL
+-	db POTION
+ 	db -1 ; end
+ 
+ MartMahogany2:
+-	db 9 ; # items
+-	db RAGECANDYBAR
++	db 3 ; # items
+ 	db GREAT_BALL
+-	db SUPER_POTION
+-	db HYPER_POTION
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+ 	db SUPER_REPEL
+-	db REVIVE
+ 	db FLOWER_MAIL
+ 	db -1 ; end
+ 
+ MartBlackthorn:
+-	db 9 ; # items
++	db 5 ; # items
+ 	db GREAT_BALL
+ 	db ULTRA_BALL
+-	db HYPER_POTION
+-	db MAX_POTION
+-	db FULL_HEAL
+-	db REVIVE
+ 	db MAX_REPEL
+ 	db X_DEFEND
+ 	db X_ATTACK
+ 	db -1 ; end
+ 
+ MartViridian:
+-	db 9 ; # items
++	db 2 ; # items
+ 	db ULTRA_BALL
+-	db HYPER_POTION
+-	db FULL_HEAL
+-	db REVIVE
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+-	db AWAKENING
+-	db BURN_HEAL
+ 	db FLOWER_MAIL
+ 	db -1 ; end
+ 
+ MartPewter:
+-	db 7 ; # items
++	db 2 ; # items
+ 	db GREAT_BALL
+-	db SUPER_POTION
+ 	db SUPER_REPEL
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+-	db AWAKENING
+-	db BURN_HEAL
+ 	db -1 ; end
+ 
+ MartCerulean:
+-	db 9 ; # items
++	db 7 ; # items
+ 	db GREAT_BALL
+ 	db ULTRA_BALL
+-	db SUPER_POTION
+ 	db SUPER_REPEL
+-	db FULL_HEAL
+ 	db X_DEFEND
+ 	db X_ATTACK
+ 	db DIRE_HIT
+@@ -264,52 +204,29 @@ MartCerulean:
+ 	db -1 ; end
+ 
+ MartLavender:
+-	db 8 ; # items
++	db 2 ; # items
+ 	db GREAT_BALL
+-	db POTION
+-	db SUPER_POTION
+ 	db MAX_REPEL
+-	db ANTIDOTE
+-	db PARLYZ_HEAL
+-	db AWAKENING
+-	db BURN_HEAL
+ 	db -1 ; end
+ 
+ MartVermilion:
+-	db 8 ; # items
++	db 2 ; # items
+ 	db ULTRA_BALL
+-	db SUPER_POTION
+-	db HYPER_POTION
+-	db REVIVE
+-	db PARLYZ_HEAL
+-	db AWAKENING
+-	db BURN_HEAL
+ 	db LITEBLUEMAIL
+ 	db -1 ; end
+ 
+ MartCeladon2F1:
+-	db 7 ; # items
+-	db POTION
+-	db SUPER_POTION
+-	db HYPER_POTION
+-	db MAX_POTION
+-	db REVIVE
++	db 2 ; # items
+ 	db SUPER_REPEL
+ 	db MAX_REPEL
+ 	db -1 ; end
+ 
+ MartCeladon2F2:
+-	db 10 ; # items
++	db 4 ; # items
+ 	db POKE_BALL
+ 	db GREAT_BALL
+ 	db ULTRA_BALL
+ 	db ESCAPE_ROPE
+-	db FULL_HEAL
+-	db ANTIDOTE
+-	db BURN_HEAL
+-	db ICE_HEAL
+-	db AWAKENING
+-	db PARLYZ_HEAL
+ 	db -1 ; end
+ 
+ MartCeladon3F:
+@@ -349,59 +266,42 @@ MartCeladon5F2:
+ 	db -1 ; end
+ 
+ MartFuchsia:
+-	db 7 ; # items
++	db 4 ; # items
+ 	db GREAT_BALL
+ 	db ULTRA_BALL
+-	db SUPER_POTION
+-	db HYPER_POTION
+-	db FULL_HEAL
+ 	db MAX_REPEL
+ 	db FLOWER_MAIL
+ 	db -1 ; end
+ 
+ MartSaffron:
+-	db 8 ; # items
++	db 5 ; # items
+ 	db GREAT_BALL
+ 	db ULTRA_BALL
+-	db HYPER_POTION
+-	db MAX_POTION
+-	db FULL_HEAL
+ 	db X_ATTACK
+ 	db X_DEFEND
+ 	db FLOWER_MAIL
+ 	db -1 ; end
+ 
+ MartMtMoon:
+-	db 6 ; # items
++	db 3 ; # items
+ 	db POKE_DOLL
+-	db FRESH_WATER
+-	db SODA_POP
+-	db LEMONADE
+ 	db REPEL
+ 	db PORTRAITMAIL
+ 	db -1 ; end
+ 
+ MartIndigoPlateau:
+-	db 7 ; # items
++	db 2 ; # items
+ 	db ULTRA_BALL
+ 	db MAX_REPEL
+-	db HYPER_POTION
+-	db MAX_POTION
+-	db FULL_RESTORE
+-	db REVIVE
+-	db FULL_HEAL
+ 	db -1 ; end
+ 
+ MartUnderground:
+-	db 4 ; # items
+-	db ENERGYPOWDER
+-	db ENERGY_ROOT
+-	db HEAL_POWDER
+-	db REVIVAL_HERB
++	db 2 ; # items
++	db ESCAPE_ROPE
++	db REPEL
+ 	db -1 ; end
+ 
+ DefaultMart:
+-	db 2 ; # items
++	db 1 ; # items
+ 	db POKE_BALL
+-	db POTION
+ 	db -1 ; end
 diff --git a/data/items/names.asm b/data/items/names.asm
 index 81e3c7c..73f8041 100644
 --- a/data/items/names.asm
@@ -77697,10 +77990,10 @@ index 8952e40..3683fed 100644
  	ld a, [wCurPartyMon]
 diff --git a/engine/events/tito_xeluis.asm b/engine/events/tito_xeluis.asm
 new file mode 100644
-index 0000000..68b35a1
+index 0000000..2186505
 --- /dev/null
 +++ b/engine/events/tito_xeluis.asm
-@@ -0,0 +1,687 @@
+@@ -0,0 +1,701 @@
 +SECTION "Tito Xeluis services", ROMX
 +
 +TitoXeluisServices::
@@ -78347,42 +78640,56 @@ index 0000000..68b35a1
 +	jp ClearTilemap
 +.Rules
 +	text "TITO XELUIS:"
-+	line "¡Eyyyy siiiii!"
-+	para "Antes de empezar,"
-+	line "éstas son las"
++	line "¡Hola, entrenador!"
++	para "Soy TITO XELUIS."
++	line "Antes de empezar,"
++	cont "te explico las"
 +	cont "reglas NUZLOCKE."
-+	para "Sólo puedes hacer"
-+	line "la primera captura"
-+	cont "de cada zona."
-+	para "Si huyes o cae el"
-+	line "primer encuentro,"
-+	cont "pierdes esa zona."
-+	para "Los eventos son"
-+	line "capturas extra y"
-+	cont "siempre SHINY."
-+	para "Un #MON que cae"
-+	line "queda muerto para"
-+	cont "siempre. Cuídalos."
-+	para "Si no quedan"
-+	line "#MON vivos en"
-+	cont "equipo, PC ni"
-+	cont "GUARDERÍA, pierdes."
-+	para "El próximo líder"
-+	line "marca tu límite"
-+	cont "de nivel."
-+	para "Al alcanzarlo,"
-+	line "no ganarás EXP"
++	para "Solo puedes"
++	line "capturar el primer"
++	cont "#MON salvaje de"
++	cont "cada zona."
++	para "Si huyes, lo"
++	line "debilitas o se"
++	cont "escapa, pierdes la"
++	cont "captura de esa"
++	cont "zona."
++	para "Los regalos, los"
++	line "huevos y los"
++	cont "intercambios son"
++	cont "capturas extra."
++	para "Los #MON de"
++	line "evento siempre son"
++	cont "SHINY y no gastan"
++	cont "la captura."
++	para "Si un #MON cae,"
++	line "muere para siempre"
++	cont "y no vuelve a"
++	cont "luchar."
++	para "Si no te queda"
++	line "ningún #MON"
++	cont "vivo (equipo, PC o"
++	cont "GUARDERÍA), se"
++	cont "acaba la aventura."
++	para "El próximo LÍDER"
++	line "marca tu nivel"
++	cont "máximo. Al llegar"
++	cont "a él no ganas EXP"
 +	cont "hasta vencerle."
-+	para "Una vez por ciudad"
-+	line "puedes cambiar un"
-+	cont "#MON conmigo."
++	para "En los CENTROS"
++	line "#MON puedes"
++	cont "cambiar un #MON"
++	cont "conmigo, una vez"
++	cont "por ciudad."
 +	para "Ojo con ULEX: si"
-+	line "cae uno luchando,"
-+	cont "te robará otro."
-+	para "¡Y si me derrotas,"
-+	line "serán ilimitados!"
-+	para "Buena suerte,"
-+	line "¡nos vemos pronto!"
++	line "pierdes un #MON"
++	cont "luchando contra"
++	cont "él, te robará"
++	cont "otro."
++	para "Si me derrotas,"
++	line "mis intercambios"
++	cont "serán ilimitados."
++	para "¡Mucha suerte!"
 +	done
 +
 +SECTION "Tito Xeluis menu RAM", WRAM0
@@ -78390,10 +78697,10 @@ index 0000000..68b35a1
 +wTitoCurrentCap:: db
 diff --git a/engine/events/ulex.asm b/engine/events/ulex.asm
 new file mode 100644
-index 0000000..805bd55
+index 0000000..26af913
 --- /dev/null
 +++ b/engine/events/ulex.asm
-@@ -0,0 +1,376 @@
+@@ -0,0 +1,394 @@
 +SECTION "Ulex encounters", ROMX
 +
 +; Sixteen independently persistent disguises. A second encounter is locked
@@ -78439,6 +78746,7 @@ index 0000000..805bd55
 +UlexCommitEncounter::
 +; Commit before map reload: a whiteout ends the parent script immediately.
 +; Rejected battles return DRAW and must not consume the encounter.
++	call UlexClearSoftLevel
 +	ld a, [wBattleResult]
 +	and $f
 +	cp DRAW
@@ -78501,9 +78809,25 @@ index 0000000..805bd55
 +.found
 +	ld a, c
 +	ld [wOtherTrainerID], a
++	; Only the Route 31 Ulex met before the first badge has softened levels:
++	; bit 7 of wUlexLocation tells ClampProgressionLevel while his party is read.
++	ld a, [wUlexLocation]
++	and a
++	ret nz
++	ld a, [wUlexBadgeCount]
++	and a
++	ret nz
++	ld a, $80
++	ld [wUlexLocation], a
 +	ret
 +.Caps
 +	db 19, 24, 29, 35, 40, 44, 48, 53, 65, 67, 70, 73, 75, 77, 80, 83, 85, 95, 100
++
++UlexClearSoftLevel::
++	ld a, [wUlexLocation]
++	and $7f
++	ld [wUlexLocation], a
++	ret
 +
 +; Called before generating a trainer mon, so EXP and all stats use the cap.
 +UlexOverrideLevel::
@@ -78701,6 +79025,7 @@ index 0000000..805bd55
 +	closetext
 +	end
 +.Refused
++	callasm UlexClearSoftLevel
 +	end
 +.Spin
 +	turn_head DOWN
@@ -78772,10 +79097,10 @@ index 0000000..805bd55
 +	assert @ - wUnusedMapBuffer <= 24
 diff --git a/engine/events/v4_world.asm b/engine/events/v4_world.asm
 new file mode 100644
-index 0000000..f945985
+index 0000000..ed8a1e8
 --- /dev/null
 +++ b/engine/events/v4_world.asm
-@@ -0,0 +1,483 @@
+@@ -0,0 +1,502 @@
 +PUSHS
 +SECTION "V4 world quality of life", ROMX
 +
@@ -78910,6 +79235,13 @@ index 0000000..f945985
 +
 +; B=input/output level. Preserve C/DE/HL for all trainer record formats.
 +ClampProgressionLevel::
++; The first Route 31 Ulex uses a softened level while his party is read.
++	ld a, [wUlexLocation]
++	bit 7, a
++	jr z, .not_soft
++	ld b, ULEX_ROUTE_31_FIRST_LEVEL
++	ret
++.not_soft
 +; Initial routes retain the original opening levels on later visits.
 +	ld a, [wMapGroup]
 +	cp GROUP_ROUTE_29
@@ -79213,7 +79545,28 @@ index 0000000..f945985
 +	db RED_APRICORN, BLU_APRICORN, YLW_APRICORN, GRN_APRICORN
 +	db WHT_APRICORN, BLK_APRICORN, PNK_APRICORN, 0
 +
++PackSetCategoryOnEntry::
++; The pockets form one circle: MEDICINA, BAYAS, COMBATE, OTROS, BALLS, CLAVE,
++; MT/MO. Coming back from BALLS (left) lands on OTROS and coming from MT/MO
++; (right) lands on MEDICINA. Changing category inside ITEMS keeps the choice.
++	ld a, [wCurPocket]
++	cp BALL_POCKET
++	jr z, .from_balls
++	cp TM_HM_POCKET
++	ret nz
++	ld a, 1
++	jr .store
++.from_balls
++	ld a, 4
++.store
++	ld [wBagCategory], a
++	xor a
++	ld [wItemsPocketCursor], a
++	ld [wItemsPocketScrollPosition], a
++	ret
 +DrawBagCategoryName::
++; The category name is drawn in the black pocket box (replacing "Objetos"),
++; using five pre-drawn label tiles per category starting at tile $60.
 +	ld a, [wCurPocket]
 +	and a
 +	ret nz
@@ -79228,28 +79581,19 @@ index 0000000..f945985
 +	ld [wBagCategory], a
 +.ok
 +	dec a
-+	ld e, a
-+	ld d, 0
-+	ld hl, .Names
-+	add hl, de
-+	add hl, de
-+	ld a, [hli]
-+	ld d, [hl]
-+	ld e, a
-+	hlcoord 0, 0
-+	ld bc, SCREEN_WIDTH
-+	ld a, ' '
-+	call ByteFill
-+	hlcoord 0, 0
-+	call PlaceString
++	ld c, a
++	add a
++	add a
++	add c ; five tiles per label
++	add $60
++	hlcoord 0, 8
++	ld c, 5
++.loop
++	ld [hli], a
++	inc a
++	dec c
++	jr nz, .loop
 +	ret
-+.Names
-+	dw .Health, .Berries, .Battle, .Other
-+.Health db "◀ MEDICINA ▶@"
-+.Berries db "◀ BAYAS ▶@"
-+.Battle db "◀ COMBATE ▶@"
-+.Other db "◀ OTROS ▶@"
-+
 +SECTION UNION "Miscellaneous", WRAM0
 +; Live battle data ends before this tail; menus recreate the map on return.
 +	ds $139 ; fixed tail boundary, asserted against linked battle struct
@@ -79291,7 +79635,7 @@ index 7775273..e5f805f 100644
  	call ClearPalettes
  	call ClearScreen
 diff --git a/engine/items/item_effects.asm b/engine/items/item_effects.asm
-index 021d938..d0dcbdd 100644
+index 021d938..6226783 100644
 --- a/engine/items/item_effects.asm
 +++ b/engine/items/item_effects.asm
 @@ -214,6 +214,12 @@ PokeBallEffect:
@@ -79337,7 +79681,17 @@ index 021d938..d0dcbdd 100644
  	jp nc, NoEffectMessage
  
  	inc a
-@@ -1670,6 +1682,14 @@ UseItem_SelectMon:
+@@ -1328,7 +1340,8 @@ RareCandyEffect:
+ 	ld [wForceEvolution], a
+ 	farcall EvolvePokemon
+ 
+-	jp UseDisposableItem
++	; Rare Candies are not consumed: the stack of 99 is infinite.
++	ret
+ 
+ HealPowderEffect:
+ 	ld b, PARTYMENUACTION_HEALING_ITEM
+@@ -1670,6 +1683,14 @@ UseItem_SelectMon:
  	ret
  
  .not_egg
@@ -79352,7 +79706,7 @@ index 021d938..d0dcbdd 100644
  	and a
  	ret
  
-@@ -1773,6 +1793,8 @@ ReviveHalfHP:
+@@ -1773,6 +1794,8 @@ ReviveHalfHP:
  ReviveFullHP:
  	call LoadHPFromBuffer1
  ContinueRevive:
@@ -79361,7 +79715,7 @@ index 021d938..d0dcbdd 100644
  	ld a, MON_HP
  	call GetPartyParamLocation
  	ld [hl], d
-@@ -1781,6 +1803,8 @@ ContinueRevive:
+@@ -1781,6 +1804,8 @@ ContinueRevive:
  	jp LoadCurHPIntoBuffer3
  
  RestoreHealth:
@@ -79371,10 +79725,18 @@ index 021d938..d0dcbdd 100644
  	call GetPartyParamLocation
  	ld a, [hl]
 diff --git a/engine/items/pack.asm b/engine/items/pack.asm
-index ac4adf2..34f2e70 100644
+index ac4adf2..8bfda4e 100644
 --- a/engine/items/pack.asm
 +++ b/engine/items/pack.asm
-@@ -71,6 +71,7 @@ Pack:
+@@ -62,6 +62,7 @@ Pack:
+ 	ret
+ 
+ .InitItemsPocket:
++	farcall PackSetCategoryOnEntry
+ 	xor a ; ITEM_POCKET
+ 	ld [wCurPocket], a
+ 	call ClearPocketList
+@@ -71,6 +72,7 @@ Pack:
  	ret
  
  .ItemsPocketMenu:
@@ -79382,7 +79744,7 @@ index ac4adf2..34f2e70 100644
  	ld hl, ItemsPocketMenuHeader
  	call CopyMenuHeader
  	ld a, [wItemsPocketCursor]
-@@ -78,10 +79,13 @@ Pack:
+@@ -78,10 +80,13 @@ Pack:
  	ld a, [wItemsPocketScrollPosition]
  	ld [wMenuScrollPosition], a
  	call ScrollingMenu
@@ -79396,7 +79758,15 @@ index ac4adf2..34f2e70 100644
  	ld b, PACKSTATE_INITTMHMPOCKET ; left
  	ld c, PACKSTATE_INITBALLSPOCKET ; right
  	call Pack_InterpretJoypad
-@@ -683,6 +687,7 @@ BattlePack:
+@@ -674,6 +679,7 @@ BattlePack:
+ 	ret
+ 
+ .InitItemsPocket:
++	farcall PackSetCategoryOnEntry
+ 	xor a ; ITEM_POCKET
+ 	ld [wCurPocket], a
+ 	call ClearPocketList
+@@ -683,6 +689,7 @@ BattlePack:
  	ret
  
  .ItemsPocketMenu:
@@ -79404,7 +79774,7 @@ index ac4adf2..34f2e70 100644
  	ld hl, ItemsPocketMenuHeader
  	call CopyMenuHeader
  	ld a, [wItemsPocketCursor]
-@@ -690,10 +695,13 @@ BattlePack:
+@@ -690,10 +697,13 @@ BattlePack:
  	ld a, [wItemsPocketScrollPosition]
  	ld [wMenuScrollPosition], a
  	call ScrollingMenu
@@ -79418,7 +79788,7 @@ index ac4adf2..34f2e70 100644
  	ld b, PACKSTATE_INITTMHMPOCKET ; left
  	ld c, PACKSTATE_INITBALLSPOCKET ; right
  	call Pack_InterpretJoypad
-@@ -900,6 +908,8 @@ TMHMSubmenu:
+@@ -900,6 +910,8 @@ TMHMSubmenu:
  	ret
  
  InitPackBuffers:
@@ -79427,7 +79797,7 @@ index ac4adf2..34f2e70 100644
  	xor a
  	ld [wJumptableIndex], a
  	; pocket id -> jumptable index
-@@ -1327,6 +1337,44 @@ Pack_InterpretJoypad:
+@@ -1327,6 +1339,44 @@ Pack_InterpretJoypad:
  	scf
  	ret
  
@@ -79472,7 +79842,20 @@ index ac4adf2..34f2e70 100644
  Pack_InitGFX:
  	call ClearBGPalettes
  	call ClearTilemap
-@@ -1410,6 +1458,7 @@ DrawPocketName:
+@@ -1337,6 +1387,12 @@ Pack_InitGFX:
+ 	ld bc, $60 tiles
+ 	ld a, BANK(PackMenuGFX)
+ 	call FarCopyBytes
++; Item category labels for the black pocket box (tiles $60-$73).
++	ld hl, PackCategoryLabelsGFX
++	ld de, vTiles2 + $60 tiles
++	ld bc, 20 tiles
++	ld a, BANK(PackCategoryLabelsGFX)
++	call FarCopyBytes
+ ; Background (blue if male, pink if female)
+ 	hlcoord 0, 1
+ 	ld bc, 11 * SCREEN_WIDTH
+@@ -1410,6 +1466,7 @@ DrawPocketName:
  	ld c, a
  	dec c
  	jr nz, .row
@@ -79480,7 +79863,7 @@ index ac4adf2..34f2e70 100644
  	ret
  
  .tilemap: ; 5x12
-@@ -1451,10 +1500,10 @@ ItemsPocketMenuHeader:
+@@ -1451,10 +1508,10 @@ ItemsPocketMenuHeader:
  	db 1 ; default option
  
  .MenuData:
@@ -79493,6 +79876,19 @@ index ac4adf2..34f2e70 100644
  	dba PlaceMenuItemName
  	dba PlaceMenuItemQuantity
  	dba UpdateItemDescription
+@@ -1578,6 +1635,12 @@ YouCantUseItInABattleText: ; unreferenced
+ 	text_far _YouCantUseItInABattleText
+ 	text_end
+ 
++; Own section: bank 4 has no room for 20 more tiles.
++PUSHS
++SECTION "Pack category labels", ROMX
++PackCategoryLabelsGFX:
++INCBIN "gfx/pack/pack_categories.2bpp"
++POPS
+ PackMenuGFX:
+ INCBIN "gfx/pack/pack_menu.2bpp"
+ PackGFX:
 diff --git a/engine/link/link.asm b/engine/link/link.asm
 index fea75fd..da3477c 100644
 --- a/engine/link/link.asm
@@ -79529,29 +79925,21 @@ index fe31d7f..9120b47 100644
  	ld d, a
  	ld a, [wPartyCount]
 diff --git a/engine/menus/intro_menu.asm b/engine/menus/intro_menu.asm
-index 4fc4127..43f17a3 100644
+index 4fc4127..c37a0e7 100644
 --- a/engine/menus/intro_menu.asm
 +++ b/engine/menus/intro_menu.asm
-@@ -149,13 +149,56 @@ _ResetWRAM:
+@@ -149,13 +149,48 @@ _ResetWRAM:
  	call CloseSRAM
  
  	ld hl, wNumItems
 -	call .InitList
-+	; 999 finite Rare Candies, then ten of each modern combat item.
-+	; Eleven candy stacks + five item stacks occupy 16 of 50 bag slots.
-+	ld [hl], 16
++	; One stack of 99 Rare Candies (using one does not consume it), then ten of
++	; each modern combat item: six of the 50 bag slots.
++	ld [hl], 6
 +	inc hl
-+	ld b, 10
-+.rare_candy_stacks
 +	ld [hl], RARE_CANDY
 +	inc hl
 +	ld [hl], MAX_ITEM_STACK
-+	inc hl
-+	dec b
-+	jr nz, .rare_candy_stacks
-+	ld [hl], RARE_CANDY
-+	inc hl
-+	ld [hl], 9
 +	inc hl
 +	ld [hl], ITEM_19 ; FOCUS_SASH
 +	inc hl
@@ -79591,7 +79979,7 @@ index 4fc4127..43f17a3 100644
  
  	ld hl, wNumPCItems
  	call .InitList
-@@ -635,6 +678,7 @@ OakSpeech:
+@@ -635,6 +670,7 @@ OakSpeech:
  
  	ld de, MUSIC_ROUTE_30
  	call PlayMusic
@@ -80231,10 +80619,10 @@ index eb97e7e..89d8329 100644
  	cp BOXMON
  	jr nz, .not_boxmon_2
 diff --git a/engine/pokemon/mon_submenu.asm b/engine/pokemon/mon_submenu.asm
-index b286b9a..a0d17d0 100644
+index b286b9a..729ab37 100644
 --- a/engine/pokemon/mon_submenu.asm
 +++ b/engine/pokemon/mon_submenu.asm
-@@ -118,10 +118,18 @@ GetMonSubmenuItems:
+@@ -118,10 +118,25 @@ GetMonSubmenuItems:
  	call ResetMonSubmenu
  	ld a, [wCurPartySpecies]
  	cp EGG
@@ -80243,18 +80631,25 @@ index b286b9a..a0d17d0 100644
  	ld a, [wLinkMode]
  	and a
  	jr nz, .skip_moves
-+	; Flash remains an explicit action; the other HMs are used by interacting
++	; Flash and Fly are explicit actions: owning the HM is enough, the party
++	; member only provides the animation. The other HMs are used by interacting
 +	; with the terrain, and Fly is also available from the Pokégear map.
 +	ld a, [wTMsHMs + FLASH_TMNUM - 1]
 +	and a
-+	jr z, .learned_moves
++	jr z, .no_flash
 +	ld a, MONMENUITEM_FLASH
++	call AddMonMenuItem
++.no_flash
++	ld a, [wTMsHMs + FLY_TMNUM - 1]
++	and a
++	jr z, .learned_moves
++	ld a, MONMENUITEM_FLY
 +	call AddMonMenuItem
 +.learned_moves
  	ld a, MON_MOVES
  	call GetPartyParamLocation
  	ld d, h
-@@ -133,6 +141,19 @@ GetMonSubmenuItems:
+@@ -133,6 +148,19 @@ GetMonSubmenuItems:
  	ld a, [de]
  	and a
  	jr z, .next
@@ -81173,6 +81568,21 @@ index 0000000..d63687a
 +	pop bc
 +	pop af
 +	ret
+diff --git a/gfx/pack/pack_categories.png b/gfx/pack/pack_categories.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..1ca2d535850ca1635443d7bbd3ef6ffebb974622
+GIT binary patch
+literal 295
+zcmV+?0oeYDP)<h;3K|Lk000e1NJLTq001Ze001Be00000MaE^^0002)Nkl<Zc$~G9
+z3l4)Y3`1?SD{{&m(o=pVu$E1e7OAvQCrzIWcRcYqc5DFTL$U#%Z6O=JY5OiT6#x>T
+zKoFumnKh^qQq02FV4PM$%gx7|61fpV5ATiM2faV_jK|2T+^Wu+VyjiWkL?Gc@`i;E
+z{$W;;N@l@M26iemno6oZV_k8;^gHW<r&sK+;9NLxHhM?=jiV0dg)99{;mRg7WR5VM
+z89?dXa(Z++Gc9YOMUR{TZN`;(kTamtiQ_Qe;Y^M%t>PE4{UTJM!@VCh&;`b|ACHW<
+t;L?v3rC9l~f%Ns#kNr<RAzU6kjTZ?Qb(H+HIh6na002ovPDHLkV1lD4e*ypi
+
+literal 0
+HcmV?d00001
+
 diff --git a/gfx/pics.asm b/gfx/pics.asm
 index 9264e2d..acd373a 100644
 --- a/gfx/pics.asm
@@ -81473,6 +81883,102 @@ index 1a9b74c..ae5bebd 100644
  	object_event  1,  4, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FTwinScript, -1
  	object_event  7,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FCooltrainerMScript, -1
 +	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FTitoXeluis, -1
+diff --git a/maps/CeladonDeptStore6F.asm b/maps/CeladonDeptStore6F.asm
+index 76203be..9b80572 100644
+--- a/maps/CeladonDeptStore6F.asm
++++ b/maps/CeladonDeptStore6F.asm
+@@ -23,77 +23,7 @@ CeladonDeptStore6FYoungsterScript:
+ 	jumptextfaceplayer CeladonDeptStore6FYoungsterText
+ 
+ CeladonDeptStore6FVendingMachine:
+-	opentext
+-	writetext CeladonVendingText
+-.Start:
+-	special PlaceMoneyTopRight
+-	loadmenu .MenuHeader
+-	verticalmenu
+-	closewindow
+-	ifequal 1, .FreshWater
+-	ifequal 2, .SodaPop
+-	ifequal 3, .Lemonade
+-	closetext
+-	end
+-
+-.FreshWater:
+-	checkmoney YOUR_MONEY, CELADONDEPTSTORE6F_FRESH_WATER_PRICE
+-	ifequal HAVE_LESS, .NotEnoughMoney
+-	giveitem FRESH_WATER
+-	iffalse .NotEnoughSpace
+-	takemoney YOUR_MONEY, CELADONDEPTSTORE6F_FRESH_WATER_PRICE
+-	getitemname STRING_BUFFER_3, FRESH_WATER
+-	sjump .VendItem
+-
+-.SodaPop:
+-	checkmoney YOUR_MONEY, CELADONDEPTSTORE6F_SODA_POP_PRICE
+-	ifequal HAVE_LESS, .NotEnoughMoney
+-	giveitem SODA_POP
+-	iffalse .NotEnoughSpace
+-	takemoney YOUR_MONEY, CELADONDEPTSTORE6F_SODA_POP_PRICE
+-	getitemname STRING_BUFFER_3, SODA_POP
+-	sjump .VendItem
+-
+-.Lemonade:
+-	checkmoney YOUR_MONEY, CELADONDEPTSTORE6F_LEMONADE_PRICE
+-	ifequal HAVE_LESS, .NotEnoughMoney
+-	giveitem LEMONADE
+-	iffalse .NotEnoughSpace
+-	takemoney YOUR_MONEY, CELADONDEPTSTORE6F_LEMONADE_PRICE
+-	getitemname STRING_BUFFER_3, LEMONADE
+-	sjump .VendItem
+-
+-.VendItem:
+-	pause 10
+-	playsound SFX_ENTER_DOOR
+-	writetext CeladonClangText
+-	promptbutton
+-	itemnotify
+-	sjump .Start
+-
+-.NotEnoughMoney:
+-	writetext CeladonVendingNoMoneyText
+-	waitbutton
+-	sjump .Start
+-
+-.NotEnoughSpace:
+-	writetext CeladonVendingNoSpaceText
+-	waitbutton
+-	sjump .Start
+-
+-.MenuHeader:
+-	db MENU_BACKUP_TILES ; flags
+-	menu_coords 0, 2, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+-	dw .MenuData
+-	db 1 ; default option
+-
+-.MenuData:
+-	db STATICMENU_CURSOR ; flags
+-	db 4 ; items
+-	db "FRESH WATER  ¥{d:CELADONDEPTSTORE6F_FRESH_WATER_PRICE}@"
+-	db "SODA POP     ¥{d:CELADONDEPTSTORE6F_SODA_POP_PRICE}@"
+-	db "LEMONADE     ¥{d:CELADONDEPTSTORE6F_LEMONADE_PRICE}@"
+-	db "CANCEL@"
++	jumptext CeladonVendingOutOfOrderText
+ 
+ CeladonDeptStore6FDirectory:
+ 	jumptext CeladonDeptStore6FDirectoryText
+@@ -166,3 +96,12 @@ CeladonDeptStore6F_MapEvents:
+ 	def_object_events
+ 	object_event  9,  2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FSuperNerdScript, -1
+ 	object_event 12,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 2, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore6FYoungsterScript, -1
++
++CeladonVendingOutOfOrderText:
++	text "¡Una máquina"
++	line "expendedora!"
++
++	para "Está vacía. En un"
++	line "NUZLOCKE no se"
++	cont "compran curas."
++	done
 diff --git a/maps/CeladonGameCornerPrizeRoom.asm b/maps/CeladonGameCornerPrizeRoom.asm
 index be1d61b..4828b98 100644
 --- a/maps/CeladonGameCornerPrizeRoom.asm
@@ -81559,6 +82065,350 @@ index 2f60c9b..af83e85 100644
  	object_event  8,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FSuperNerdScript, -1
  	object_event  1,  5, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FGymGuideScript, -1
 +	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FTitoXeluis, -1
+diff --git a/maps/CherrygroveCity.asm b/maps/CherrygroveCity.asm
+index 8253dc3..8ebb5e0 100644
+--- a/maps/CherrygroveCity.asm
++++ b/maps/CherrygroveCity.asm
+@@ -24,46 +24,36 @@ CherrygroveCityFlypointCallback:
+ 	endcallback
+ 
+ CherrygroveCityGuideGent:
++; Talking to him also works if the player somehow skips the entrance trigger.
+ 	faceplayer
+-	opentext
+-	writetext GuideGentIntroText
+-	yesorno
+-	iffalse .No
+-	sjump .Yes
+-.Yes:
+-	writetext GuideGentTourText1
+-	waitbutton
+-	closetext
+-	playmusic MUSIC_SHOW_ME_AROUND
+-	follow CHERRYGROVECITY_GRAMPS, PLAYER
+-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement1
+-	opentext
+-	writetext GuideGentPokecenterText
+-	waitbutton
+-	closetext
+-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement2
+-	turnobject PLAYER, UP
+-	opentext
+-	writetext GuideGentMartText
+-	waitbutton
+-	closetext
+-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement3
+-	turnobject PLAYER, UP
+-	opentext
+-	writetext GuideGentRoute30Text
+-	waitbutton
+-	closetext
+-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement4
+-	turnobject PLAYER, LEFT
+-	opentext
+-	writetext GuideGentSeaText
+-	waitbutton
+-	closetext
+-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement5
+-	turnobject PLAYER, UP
+-	pause 60
+-	turnobject CHERRYGROVECITY_GRAMPS, LEFT
+-	turnobject PLAYER, RIGHT
++	checkflag ENGINE_MAP_CARD
++	iftrue GuideGentLeaves
++	scall GuideGentGivesMapCard
++	sjump GuideGentLeaves
++
++; The old man notices the player at the entrance, walks up and hands over the
++; Map Card without being talked to.
++CherrygroveGuideGentMeetNorth:
++	checkflag ENGINE_MAP_CARD
++	iftrue GuideGentDone
++	showemote EMOTE_SHOCK, CHERRYGROVECITY_GRAMPS, 15
++	turnobject CHERRYGROVECITY_GRAMPS, RIGHT
++	applymovement CHERRYGROVECITY_GRAMPS, GuideGentApproachMovement6
++	scall GuideGentGivesMapCard
++	applymovement CHERRYGROVECITY_GRAMPS, GuideGentLeaveMovement6
++	sjump GuideGentLeaves
++
++CherrygroveGuideGentMeetSouth:
++	checkflag ENGINE_MAP_CARD
++	iftrue GuideGentDone
++	showemote EMOTE_SHOCK, CHERRYGROVECITY_GRAMPS, 15
++	turnobject CHERRYGROVECITY_GRAMPS, RIGHT
++	applymovement CHERRYGROVECITY_GRAMPS, GuideGentApproachMovement7
++	scall GuideGentGivesMapCard
++	applymovement CHERRYGROVECITY_GRAMPS, GuideGentLeaveMovement7
++	sjump GuideGentLeaves
++
++GuideGentGivesMapCard:
+ 	opentext
+ 	writetext GuideGentGiftText
+ 	promptbutton
+@@ -71,18 +61,8 @@ CherrygroveCityGuideGent:
+ 	scall .JumpstdReceiveItem
+ 	setflag ENGINE_MAP_CARD
+ 	writetext GotMapCardText
+-	promptbutton
+-	writetext GuideGentPokegearText
+ 	waitbutton
+ 	closetext
+-	stopfollow
+-	special RestartMapMusic
+-	turnobject PLAYER, UP
+-	applymovement CHERRYGROVECITY_GRAMPS, GuideGentMovement6
+-	playsound SFX_ENTER_DOOR
+-	disappear CHERRYGROVECITY_GRAMPS
+-	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+-	waitsfx
+ 	end
+ 
+ .JumpstdReceiveItem:
+@@ -92,10 +72,10 @@ CherrygroveCityGuideGent:
+ .mapcardname
+ 	db "TARJ. MAPA@"
+ 
+-.No:
+-	writetext GuideGentNoText
+-	waitbutton
+-	closetext
++GuideGentLeaves:
++	disappear CHERRYGROVECITY_GRAMPS
++	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
++GuideGentDone:
+ 	end
+ 
+ CherrygroveRivalSceneSouth:
+@@ -235,75 +215,32 @@ CherrygroveCityPokecenterSign:
+ CherrygroveCityMartSign:
+ 	jumpstd MartSignScript
+ 
+-GuideGentMovement1:
+-	step LEFT
+-	step LEFT
+-	step UP
+-	step LEFT
+-	turn_head UP
++GuideGentApproachMovement6:
++	step RIGHT
++	step RIGHT
++	step RIGHT
+ 	step_end
+ 
+-GuideGentMovement2:
+-	step LEFT
+-	step LEFT
+-	step LEFT
+-	step LEFT
+-	step LEFT
+-	step LEFT
+-	turn_head UP
++GuideGentApproachMovement7:
++	step RIGHT
++	step RIGHT
++	step RIGHT
++	step DOWN
++	turn_head RIGHT
+ 	step_end
+ 
+-GuideGentMovement3:
+-	step LEFT
+-	step LEFT
++GuideGentLeaveMovement6:
+ 	step LEFT
+ 	step LEFT
+ 	step LEFT
+-	step LEFT
+-	step LEFT
+-	turn_head UP
+ 	step_end
+ 
+-GuideGentMovement4:
+-	step LEFT
+-	step LEFT
+-	step LEFT
+-	step DOWN
++GuideGentLeaveMovement7:
++	step UP
+ 	step LEFT
+ 	step LEFT
+ 	step LEFT
+-	step DOWN
+-	turn_head LEFT
+ 	step_end
+-
+-GuideGentMovement5:
+-	step DOWN
+-	step DOWN
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step DOWN
+-	step DOWN
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	step RIGHT
+-	turn_head UP
+-	step_end
+-
+-GuideGentMovement6:
+-	step UP
+-	step UP
+-	step_end
+-
+ CherrygroveCity_RivalWalksToYou:
+ 	step LEFT
+ 	step LEFT
+@@ -333,79 +270,13 @@ CherrygroveCity_RivalExitsStageLeft:
+ 	big_step LEFT
+ 	step_end
+ 
+-GuideGentIntroText:
+-	text "Empezaste hace"
+-	line "poco, ¿verdad?"
+-	cont "¡Estoy seguro!"
+-
+-	para "¡Está bien! ¡Todo"
+-	line "el mundo es novato"
+-	cont "alguna vez!"
+-
+-	para "Si quieres, te"
+-	line "puedo enseñar"
+-	cont "algunas cosas."
+-	done
+-
+-GuideGentTourText1:
+-	text "¡De acuerdo!"
+-	line "¡Sígueme!"
+-	done
+-
+-GuideGentPokecenterText:
+-	text "Esto es un CENTRO"
+-	line "#MON."
+-
+-	para "Aquí curan a"
+-	line "tus #MON."
+-
+-	para "Vas a necesitar"
+-	line "mucho de ellos,"
+-
+-	para "así que es mejor"
+-	line "conocerlos bien."
+-	done
+-
+-GuideGentMartText:
+-	text "Esto es una TIENDA"
+-	line "#MON."
+-
+-	para "Hay # BALL para"
+-	line "capturar #MON"
+-
+-	para "salvajes y otras"
+-	line "muchas cosas."
+-	done
+-
+-GuideGentRoute30Text:
+-	text "La RUTA 30 está"
+-	line "por aquí."
+-
+-	para "En ella luchan"
+-	line "los entrenadores"
+-
+-	para "con sus queridos"
+-	line "#MON."
+-	done
+-
+-GuideGentSeaText:
+-	text "Como puedes ver,"
+-	line "esto es el mar."
+-
+-	para "Algunos #MON"
+-	line "sólo viven en el"
+-	cont "agua."
+-	done
+-
+ GuideGentGiftText:
+-	text "Llegamos…"
+-
+-	para "¡Ésta es mi casa!"
+-	line "Gracias por"
+-	cont "tu compañía."
++	text "Toma esto. Lo usé"
++	line "para limpiarme los"
++	cont "mocos, pero creo"
++	cont "que te valdrá."
+ 
+-	para "Déjame que te dé"
+-	line "un pequeño regalo."
++	para "¡Jejejejeje!"
+ 	done
+ 
+ GotMapCardText:
+@@ -413,25 +284,6 @@ GotMapCardText:
+ 	line "de <PLAYER> tiene"
+ 	cont "un MAPA!"
+ 	done
+-
+-GuideGentPokegearText:
+-	text "El #GEAR será"
+-	line "más útil cuando"
+-	cont "añadas TARJETAS."
+-
+-	para "¡Mucha suerte"
+-	line "en tu aventura!"
+-	done
+-
+-GuideGentNoText:
+-	text "Oh… Disfruto"
+-	line "haciéndolo…"
+-
+-	para "Bueno. Vuelve a"
+-	line "verme cuando"
+-	cont "quieras."
+-	done
+-
+ CherrygroveRivalText_Seen:
+ 	text "<……> <……> <……>"
+ 
+@@ -489,15 +341,12 @@ CherrygroveRivalText_YouWon:
+ 	done
+ 
+ CherrygroveTeacherText_NoMapCard:
+-	text "¿Has hablado con"
+-	line "el anciano que"
+-
+-	para "está cerca del"
+-	line "CENTRO #MON?"
++	text "Un anciano te dará"
++	line "un MAPA de JOHTO"
+ 
+-	para "Te dará un MAPA de"
+-	line "JOHTO para tu"
+-	cont "#GEAR."
++	para "para tu #GEAR al"
++	line "entrar en la"
++	cont "ciudad."
+ 	done
+ 
+ CherrygroveTeacherText_HaveMapCard:
+@@ -564,6 +413,8 @@ CherrygroveCity_MapEvents:
+ 	warp_event 31, 11, CHERRYGROVE_EVOLUTION_SPEECH_HOUSE, 1
+ 
+ 	def_coord_events
++	coord_event 36,  6, SCENE_CHERRYGROVECITY_NOOP, CherrygroveGuideGentMeetNorth
++	coord_event 36,  7, SCENE_CHERRYGROVECITY_NOOP, CherrygroveGuideGentMeetSouth
+ 	coord_event 33,  6, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneNorth
+ 	coord_event 33,  7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneSouth
+ 
 diff --git a/maps/CherrygrovePokecenter1F.asm b/maps/CherrygrovePokecenter1F.asm
 index 950dcf1..79cdb59 100644
 --- a/maps/CherrygrovePokecenter1F.asm
@@ -81840,6 +82690,102 @@ index 8d8f46f..b2c79e2 100644
  	object_event  1,  4, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaPokecenter1FCooltrainerFScript, -1
  	object_event  5,  3, SPRITE_JANINE_IMPERSONATOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaPokecenter1FJanineImpersonatorScript, -1
 +	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaPokecenter1FTitoXeluis, -1
+diff --git a/maps/GoldenrodDeptStore6F.asm b/maps/GoldenrodDeptStore6F.asm
+index 2b98fe9..28f1391 100644
+--- a/maps/GoldenrodDeptStore6F.asm
++++ b/maps/GoldenrodDeptStore6F.asm
+@@ -12,77 +12,7 @@ GoldenrodDeptStore6F_MapScripts:
+ 	def_callbacks
+ 
+ GoldenrodVendingMachine:
+-	opentext
+-	writetext GoldenrodVendingText
+-.Start:
+-	special PlaceMoneyTopRight
+-	loadmenu .MenuHeader
+-	verticalmenu
+-	closewindow
+-	ifequal 1, .FreshWater
+-	ifequal 2, .SodaPop
+-	ifequal 3, .Lemonade
+-	closetext
+-	end
+-
+-.FreshWater:
+-	checkmoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_FRESH_WATER_PRICE
+-	ifequal HAVE_LESS, .NotEnoughMoney
+-	giveitem FRESH_WATER
+-	iffalse .NotEnoughSpace
+-	takemoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_FRESH_WATER_PRICE
+-	getitemname STRING_BUFFER_3, FRESH_WATER
+-	sjump .VendItem
+-
+-.SodaPop:
+-	checkmoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_SODA_POP_PRICE
+-	ifequal HAVE_LESS, .NotEnoughMoney
+-	giveitem SODA_POP
+-	iffalse .NotEnoughSpace
+-	takemoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_SODA_POP_PRICE
+-	getitemname STRING_BUFFER_3, SODA_POP
+-	sjump .VendItem
+-
+-.Lemonade:
+-	checkmoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_LEMONADE_PRICE
+-	ifequal HAVE_LESS, .NotEnoughMoney
+-	giveitem LEMONADE
+-	iffalse .NotEnoughSpace
+-	takemoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_LEMONADE_PRICE
+-	getitemname STRING_BUFFER_3, LEMONADE
+-	sjump .VendItem
+-
+-.VendItem:
+-	pause 10
+-	playsound SFX_ENTER_DOOR
+-	writetext GoldenrodClangText
+-	promptbutton
+-	itemnotify
+-	sjump .Start
+-
+-.NotEnoughMoney:
+-	writetext GoldenrodVendingNoMoneyText
+-	waitbutton
+-	sjump .Start
+-
+-.NotEnoughSpace:
+-	writetext GoldenrodVendingNoSpaceText
+-	waitbutton
+-	sjump .Start
+-
+-.MenuHeader:
+-	db MENU_BACKUP_TILES ; flags
+-	menu_coords 0, 2, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+-	dw .MenuData
+-	db 1 ; default option
+-
+-.MenuData:
+-	db STATICMENU_CURSOR ; flags
+-	db 4 ; items
+-	db "AGUA FRESCA  {d:GOLDENRODDEPTSTORE6F_FRESH_WATER_PRICE}¥@"
+-	db "REFRESCO     {d:GOLDENRODDEPTSTORE6F_SODA_POP_PRICE}¥@"
+-	db "LIMONADA     {d:GOLDENRODDEPTSTORE6F_LEMONADE_PRICE}¥@"
+-	db "SALIR@"
++	jumptext GoldenrodVendingOutOfOrderText
+ 
+ GoldenrodDeptStore6FLassScript:
+ 	jumptextfaceplayer GoldenrodDeptStore6FLassText
+@@ -168,3 +98,12 @@ GoldenrodDeptStore6F_MapEvents:
+ 	def_object_events
+ 	object_event 10,  2, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore6FLassScript, -1
+ 	object_event  8,  2, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodDeptStore6FSuperNerdScript, -1
++
++GoldenrodVendingOutOfOrderText:
++	text "¡Una máquina"
++	line "expendedora!"
++
++	para "Está vacía. En un"
++	line "NUZLOCKE no se"
++	cont "compran curas."
++	done
 diff --git a/maps/GoldenrodGameCorner.asm b/maps/GoldenrodGameCorner.asm
 index 60278c8..a77221c 100644
 --- a/maps/GoldenrodGameCorner.asm
@@ -83417,6 +84363,88 @@ index bc8e7c9..7a6bff4 100644
  	object_event  6,  5, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FSailorScript, -1
  	object_event  1,  5, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FBugCatcherScript, -1
 +	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FTitoXeluis, -1
+diff --git a/maps/VictoryRoadGate.asm b/maps/VictoryRoadGate.asm
+index 6661b6a..cf5ae30 100644
+--- a/maps/VictoryRoadGate.asm
++++ b/maps/VictoryRoadGate.asm
+@@ -36,6 +36,41 @@ _VictoryRoadGateBadgeCheckScript:
+ 
+ .AllEightBadges:
+ 	writetext VictoryRoadGateEightBadgesText
++	promptbutton
++	checkevent EVENT_GOT_LEAGUE_FULL_RESTORES
++	iftrue .Pass
++	writetext VictoryRoadGateSuppliesText
++	promptbutton
++	checkevent EVENT_GOT_LEAGUE_MAX_POTIONS
++	iftrue .HyperPotions
++	verbosegiveitem MAX_POTION, 8
++	iffalse .NoRoom
++	setevent EVENT_GOT_LEAGUE_MAX_POTIONS
++.HyperPotions:
++	checkevent EVENT_GOT_LEAGUE_HYPER_POTIONS
++	iftrue .FullRestores
++	verbosegiveitem HYPER_POTION, 10
++	iffalse .NoRoom
++	setevent EVENT_GOT_LEAGUE_HYPER_POTIONS
++.FullRestores:
++	verbosegiveitem FULL_RESTORE, 7
++	iffalse .NoRoom
++	setevent EVENT_GOT_LEAGUE_FULL_RESTORES
++	writetext VictoryRoadGateGoodLuckText
++	waitbutton
++	closetext
++	setscene SCENE_VICTORYROADGATE_NOOP
++	end
++
++.NoRoom:
++	writetext VictoryRoadGateNoRoomText
++	waitbutton
++	closetext
++	setscene SCENE_VICTORYROADGATE_NOOP
++	end
++
++.Pass:
++	writetext VictoryRoadGatePassText
+ 	waitbutton
+ 	closetext
+ 	setscene SCENE_VICTORYROADGATE_NOOP
+@@ -77,6 +112,35 @@ VictoryRoadGateEightBadgesText:
+ 	line "pase, por favor!"
+ 	done
+ 
++VictoryRoadGateSuppliesText:
++	text "En la LIGA no hay"
++	line "tiendas ni margen"
++	cont "de error."
++
++	para "Toma estas curas"
++	line "para aguantar."
++	done
++
++VictoryRoadGateGoodLuckText:
++	text "¡Mucha suerte en"
++	line "la LIGA #MON!"
++	done
++
++VictoryRoadGateNoRoomText:
++	text "Tu MOCHILA está"
++	line "llena. Vuelve a"
++
++	para "hablar conmigo"
++	line "cuando tengas"
++	cont "espacio."
++	done
++
++VictoryRoadGatePassText:
++	text "¡Adelante! ¡Que"
++	line "la suerte te"
++	cont "acompañe!"
++	done
++
+ VictoryRoadGateLeftBlackBeltText:
+ 	text "Este camino lleva"
+ 	line "a MT. PLATEADO."
 diff --git a/maps/VioletPokecenter1F.asm b/maps/VioletPokecenter1F.asm
 index d50debb..d7f799b 100644
 --- a/maps/VioletPokecenter1F.asm
@@ -84090,6 +85118,62 @@ index 0000000..9071693
 +    parser.add_argument("--seed", type=int, default=20261013)
 +    args = parser.parse_args()
 +    Randomizer(args.seed).run()
+diff --git a/tools/build_pack_labels.py b/tools/build_pack_labels.py
+new file mode 100644
+index 0000000..25fe396
+--- /dev/null
++++ b/tools/build_pack_labels.py
+@@ -0,0 +1,50 @@
++"""Draw the four item-category labels of the pack as 2bpp-ready art.
++
++Each label is five tiles wide (40x8) like the native "Objetos" / "Balls" labels:
++black background, two grey edge columns on each side and white lettering in a
++compact 5-pixel-high font. The result is 40x32: label N uses tiles 5N..5N+4.
++Run from the root of the source tree.
++"""
++from pathlib import Path
++from PIL import Image
++
++root = Path.cwd()
++BLACK, GREY, WHITE = 0, 85, 255
++
++GLYPHS = {
++    'A': ['.X.', 'X.X', 'XXX', 'X.X', 'X.X'],
++    'B': ['XX.', 'X.X', 'XX.', 'X.X', 'XX.'],
++    'C': ['.XX', 'X..', 'X..', 'X..', '.XX'],
++    'D': ['XX.', 'X.X', 'X.X', 'X.X', 'XX.'],
++    'E': ['XXX', 'X..', 'XX.', 'X..', 'XXX'],
++    'I': ['XXX', '.X.', '.X.', '.X.', 'XXX'],
++    'M': ['X...X', 'XX.XX', 'X.X.X', 'X...X', 'X...X'],
++    'N': ['X..X', 'XX.X', 'X.XX', 'X..X', 'X..X'],
++    'O': ['.X.', 'X.X', 'X.X', 'X.X', '.X.'],
++    'R': ['XX.', 'X.X', 'XX.', 'X.X', 'X.X'],
++    'S': ['.XX', 'X..', '.X.', '..X', 'XX.'],
++    'T': ['XXX', '.X.', '.X.', '.X.', '.X.'],
++    'Y': ['X.X', 'X.X', '.X.', '.X.', '.X.'],
++}
++LABELS = ['MEDICINA', 'BAYAS', 'COMBATE', 'OTROS']
++TEXT_LEFT, TEXT_WIDTH = 2, 36
++
++image = Image.new('L', (40, 8 * len(LABELS)), BLACK)
++for row, label in enumerate(LABELS):
++    top = row * 8
++    for y in range(8):
++        for x in (0, 1, 38, 39):
++            image.putpixel((x, top + y), GREY)
++    width = sum(len(GLYPHS[c][0]) for c in label) + len(label) - 1
++    assert width <= TEXT_WIDTH, (label, width)
++    x = TEXT_LEFT + (TEXT_WIDTH - width) // 2
++    for char in label:
++        glyph = GLYPHS[char]
++        for gy, bits in enumerate(glyph):
++            for gx, bit in enumerate(bits):
++                if bit == 'X':
++                    image.putpixel((x + gx, top + 1 + gy), WHITE)
++        x += len(glyph[0]) + 1
++
++image.save(root / 'gfx/pack/pack_categories.png')
++print('pack category labels: 4 labels, 20 tiles (40x32)')
 diff --git a/tools/build_tito_sprite.py b/tools/build_tito_sprite.py
 new file mode 100644
 index 0000000..51b099b

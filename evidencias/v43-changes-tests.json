@@ -1,0 +1,57 @@
+{
+  "passed": 13,
+  "tests": [
+    {
+      "name": "new game starts with one Rare Candy stack of 99 and five held items in 6 slots",
+      "passed": true
+    },
+    {
+      "name": "using a Rare Candy raises the level",
+      "passed": true
+    },
+    {
+      "name": "the Rare Candy stack stays at 99 after use",
+      "passed": true
+    },
+    {
+      "name": "the black pocket box shows the category label tiles MEDICINA, BAYAS, COMBATE and OTROS",
+      "passed": true
+    },
+    {
+      "name": "pressing right cycles MEDICINA, BAYAS, COMBATE, OTROS, then the other pockets and back to MEDICINA",
+      "passed": true
+    },
+    {
+      "name": "pressing left from MEDICINA goes TM/HM, KEY ITEMS, BALLS and re-enters ITEMS at OTROS",
+      "passed": true
+    },
+    {
+      "name": "the party submenu offers FLY when the HM is in the bag",
+      "passed": true
+    },
+    {
+      "name": "the party submenu does not offer FLY without the HM",
+      "passed": true
+    },
+    {
+      "name": "row 6: the old man walks up and gives the Map Card on arrival, once",
+      "passed": true
+    },
+    {
+      "name": "row 7: the old man walks up and gives the Map Card on arrival, once",
+      "passed": true
+    },
+    {
+      "name": "no mart sells potions, revives, status heals or healing drinks (34 marts)",
+      "passed": true
+    },
+    {
+      "name": "no mart is left empty",
+      "passed": true
+    },
+    {
+      "name": "the officer hands over 8 Max Potions, 10 Hyper Potions and 7 Full Restores with eight badges",
+      "passed": true
+    }
+  ]
+}

@@ -10,11 +10,11 @@
       "passed": true
     },
     {
-      "name": "ulex loads actual three-mon battle at cap19",
+      "name": "ulex loads actual three-mon battle (first Ulex, level 15)",
       "passed": true
     },
     {
-      "name": "ulex defeats all three real shiny opponents at cap19",
+      "name": "ulex defeats all three real shiny opponents at the softened level 15",
       "passed": true
     },
     {
@@ -38,11 +38,11 @@
       "passed": true
     },
     {
-      "name": "ulex-theft loads actual three-mon battle at cap19",
+      "name": "ulex-theft loads actual three-mon battle (first Ulex, level 15)",
       "passed": true
     },
     {
-      "name": "ulex-theft defeats all three real shiny opponents at cap19",
+      "name": "ulex-theft defeats all three real shiny opponents at the softened level 15",
       "passed": true
     },
     {

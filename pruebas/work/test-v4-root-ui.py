@@ -136,7 +136,7 @@ for steal in [False,True]:
         check(prefix+' disguise spin reveals a different actual overworld sprite',u.revealed==1 and before_var!=after_var)
         u.until('BattleStartMessage')
         u.snap(prefix+'-portrait')
-        check(prefix+' loads actual three-mon battle at cap19',u.read('wOTPartyCount')==3)
+        check(prefix+' loads actual three-mon battle (first Ulex, level 15)',u.read('wOTPartyCount')==3)
         for turn in range(250):
             # A result now commits its flags before map reload (including
             # whiteout). Wait for the actual post-battle reward/theft as well.
@@ -148,8 +148,8 @@ for steal in [False,True]:
         u.p.tick(120)
         u.snap(prefix+'-result')
         print('ULEX', prefix, u.enemies, u.counts, 'flags', u.flag(531), u.flag(547), flush=True)
-        check(prefix+' defeats all three real shiny opponents at cap19',
-              len(u.enemies)==3 and all(e['level']==19 and e['dvs'][0]&15==10
+        check(prefix+' defeats all three real shiny opponents at the softened level 15',
+              len(u.enemies)==3 and all(e['level']==15 and e['dvs'][0]&15==10
               and e['dvs'][0]&0x20 and e['dvs'][1]==0xaa for e in u.enemies.values()))
         check(prefix+' persists defeated location and badge milestone',u.flag(531) and u.flag(547))
         check(prefix+' removes the defeated actor from the map',u.read('wMap3ObjectStructID')==255)
