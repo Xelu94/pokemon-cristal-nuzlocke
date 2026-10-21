@@ -1,0 +1,29 @@
+# ROMs, partidas y artefactos de compilación (la ROM solo se publica como asset de la Release)
+*.gb
+*.gbc
+*.sav
+*.rtc
+*.ss0
+*.ss1
+*.state
+*.o
+*.sym
+*.map
+*.exe
+*.bps
+*.zip
+
+# Entornos y dependencias
+__pycache__/
+.venv/
+node_modules/
+.env
+.env.*
+
+# Salida de las pruebas y fuente reconstruida
+pruebas/work/source/
+pruebas/work/v4-randomizer/
+pruebas/work/*.json
+pruebas/work/*.log
+pruebas/work/*.png
+pruebas/work/*.gbc

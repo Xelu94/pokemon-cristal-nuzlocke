@@ -1,0 +1,3 @@
+parches/*.patch -text
+*.png binary
+*.pixels text eol=lf
