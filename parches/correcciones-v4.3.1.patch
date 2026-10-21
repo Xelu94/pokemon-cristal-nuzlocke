@@ -1,0 +1,29 @@
+diff --git a/maps/CherrygroveCity.asm b/maps/CherrygroveCity.asm
+index 8ebb5e0..9d737df 100644
+--- a/maps/CherrygroveCity.asm
++++ b/maps/CherrygroveCity.asm
+@@ -344,8 +344,8 @@ CherrygroveTeacherText_NoMapCard:
+ 	text "Un anciano te dará"
+ 	line "un MAPA de JOHTO"
+ 
+-	para "para tu #GEAR al"
+-	line "entrar en la"
++	para "para tu #GEAR,"
++	line "al entrar en la"
+ 	cont "ciudad."
+ 	done
+ 
+diff --git a/maps/IlexForest.asm b/maps/IlexForest.asm
+index f413323..01444ff 100644
+--- a/maps/IlexForest.asm
++++ b/maps/IlexForest.asm
+@@ -444,7 +444,8 @@ IlexForestShrineScript:
+ 	jumptext Text_IlexForestShrine
+ .Awakens:
+ 	text "El SANTUARIO"
+-	line "comienza a brillar."
++	line "comienza a"
++	cont "brillar."
+ 	para "¡Algo despierta"
+ 	line "entre los árboles!"
+ 	done

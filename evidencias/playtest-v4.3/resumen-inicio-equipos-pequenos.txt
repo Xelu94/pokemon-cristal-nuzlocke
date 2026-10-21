@@ -1,0 +1,40 @@
+﻿
+cap boss size mode win% stalls
+19 PEGASO 2 random 37% 0
+19 PEGASO 2 strong 70% 0
+19 PEGASO 3 random 70% 0
+19 PEGASO 3 strong 87% 1
+19 PEGASO 4 random 97% 0
+19 PEGASO 4 strong 100% 0
+24 ANTON 2 random 47% 0
+24 ANTON 2 strong 90% 0
+24 ANTON 3 random 73% 0
+24 ANTON 3 strong 93% 0
+24 ANTON 4 random 87% 0
+24 ANTON 4 strong 93% 1
+29 BLANCA 2 random 23% 0
+29 BLANCA 2 strong 37% 0
+29 BLANCA 3 random 67% 0
+29 BLANCA 3 strong 63% 0
+29 BLANCA 4 random 83% 0
+29 BLANCA 4 strong 90% 0
+35 MORTI 2 random 17% 0
+35 MORTI 2 strong 27% 0
+35 MORTI 3 random 40% 0
+35 MORTI 3 strong 57% 0
+35 MORTI 4 random 57% 0
+35 MORTI 4 strong 90% 1
+40 ANIBAL 2 random 33% 0
+40 ANIBAL 2 strong 33% 0
+40 ANIBAL 3 random 53% 0
+40 ANIBAL 3 strong 80% 0
+40 ANIBAL 4 random 77% 0
+40 ANIBAL 4 strong 90% 0
+44 YASMINA 2 random 17% 0
+44 YASMINA 2 strong 27% 0
+44 YASMINA 3 random 47% 0
+44 YASMINA 3 strong 67% 0
+44 YASMINA 4 random 70% 0
+44 YASMINA 4 strong 83% 1
+
+

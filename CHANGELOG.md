@@ -2,6 +2,10 @@
 
 Formato por versión. Las versiones anteriores a la 4 no están documentadas en este paquete; solo se sabe que la actualización v3→v4 permite continuar el guardado.
 
+## 4.3.1 — Correcciones de texto (sin publicar)
+
+Dos líneas de diálogo desbordadas (la profesora de CIUDAD CEREZO y el santuario del Encinar), detectadas por el playtest automatizado. El parche está en [parches/correcciones-v4.3.1.patch](parches/correcciones-v4.3.1.patch) y la compilación pasa las 137 comprobaciones, pero **no se ha creado Release**: la v4.3 publicada no las incluye. Detalle y resultados de equilibrio en [docs/INFORME-PLAYTEST-v4.3.md](docs/INFORME-PLAYTEST-v4.3.md).
+
 ## 4.3 — Mejoras de jugabilidad (21 de octubre de 2026)
 
 Ocho cambios pedidos por el autor tras jugar la 4.2. Se validaron con 13 comprobaciones nuevas más las 124 anteriores (137 en total, [evidencias/Validacion-v4.3.json](evidencias/Validacion-v4.3.json)); no equivalen a una campaña completa.

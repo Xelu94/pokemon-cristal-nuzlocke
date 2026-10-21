@@ -1,0 +1,3874 @@
+[
+ {
+  "map": "OLIVINE_POKECENTER_1F",
+  "group": 1,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_GYM",
+  "group": 1,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_TIMS_HOUSE",
+  "group": 1,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_HOUSE_BETA",
+  "group": 1,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_PUNISHMENT_SPEECH_HOUSE",
+  "group": 1,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_GOOD_ROD_HOUSE",
+  "group": 1,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_CAFE",
+  "group": 1,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_MART",
+  "group": 1,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_38_ECRUTEAK_GATE",
+  "group": 1,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_39_BARN",
+  "group": 1,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_39_FARMHOUSE",
+  "group": 1,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_38",
+  "group": 1,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_39",
+  "group": 1,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_CITY",
+  "group": 1,
+  "num": 14,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "MAHOGANY_RED_GYARADOS_SPEECH_HOUSE",
+  "group": 2,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "MAHOGANY_GYM",
+  "group": 2,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "MAHOGANY_POKECENTER_1F",
+  "group": 2,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_42_ECRUTEAK_GATE",
+  "group": 2,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_42",
+  "group": 2,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_44",
+  "group": 2,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 6,
+  "pc_bad": 0
+ },
+ {
+  "map": "MAHOGANY_TOWN",
+  "group": 2,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "SPROUT_TOWER_1F",
+  "group": 3,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "SPROUT_TOWER_2F",
+  "group": 3,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 7,
+  "pc_bad": 0
+ },
+ {
+  "map": "SPROUT_TOWER_3F",
+  "group": 3,
+  "num": 3,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_1F",
+  "group": 3,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_2F",
+  "group": 3,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 7,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_3F",
+  "group": 3,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 7,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_4F",
+  "group": 3,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_5F",
+  "group": 3,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 7,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_6F",
+  "group": 3,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_7F",
+  "group": 3,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_8F",
+  "group": 3,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_9F",
+  "group": 3,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "BURNED_TOWER_1F",
+  "group": 3,
+  "num": 13,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "BURNED_TOWER_B1F",
+  "group": 3,
+  "num": 14,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "NATIONAL_PARK",
+  "group": 3,
+  "num": 15,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "NATIONAL_PARK_BUG_CONTEST",
+  "group": 3,
+  "num": 16,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "RADIO_TOWER_1F",
+  "group": 3,
+  "num": 17,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "RADIO_TOWER_2F",
+  "group": 3,
+  "num": 18,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "RADIO_TOWER_3F",
+  "group": 3,
+  "num": 19,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "RADIO_TOWER_4F",
+  "group": 3,
+  "num": 20,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "RADIO_TOWER_5F",
+  "group": 3,
+  "num": 21,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_OUTSIDE",
+  "group": 3,
+  "num": 22,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_HO_OH_CHAMBER",
+  "group": 3,
+  "num": 23,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_KABUTO_CHAMBER",
+  "group": 3,
+  "num": 24,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_OMANYTE_CHAMBER",
+  "group": 3,
+  "num": 25,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_AERODACTYL_CHAMBER",
+  "group": 3,
+  "num": 26,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_INNER_CHAMBER",
+  "group": 3,
+  "num": 27,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_RESEARCH_CENTER",
+  "group": 3,
+  "num": 28,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_HO_OH_ITEM_ROOM",
+  "group": 3,
+  "num": 29,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_KABUTO_ITEM_ROOM",
+  "group": 3,
+  "num": 30,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_OMANYTE_ITEM_ROOM",
+  "group": 3,
+  "num": 31,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_AERODACTYL_ITEM_ROOM",
+  "group": 3,
+  "num": 32,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_HO_OH_WORD_ROOM",
+  "group": 3,
+  "num": 33,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_KABUTO_WORD_ROOM",
+  "group": 3,
+  "num": 34,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_OMANYTE_WORD_ROOM",
+  "group": 3,
+  "num": 35,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "RUINS_OF_ALPH_AERODACTYL_WORD_ROOM",
+  "group": 3,
+  "num": 36,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "UNION_CAVE_1F",
+  "group": 3,
+  "num": 37,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 7,
+  "pc_bad": 0
+ },
+ {
+  "map": "UNION_CAVE_B1F",
+  "group": 3,
+  "num": 38,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "UNION_CAVE_B2F",
+  "group": 3,
+  "num": 39,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "SLOWPOKE_WELL_B1F",
+  "group": 3,
+  "num": 40,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "SLOWPOKE_WELL_B2F",
+  "group": 3,
+  "num": 41,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_LIGHTHOUSE_1F",
+  "group": 3,
+  "num": 42,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 1,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_LIGHTHOUSE_2F",
+  "group": 3,
+  "num": 43,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_LIGHTHOUSE_3F",
+  "group": 3,
+  "num": 44,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_LIGHTHOUSE_4F",
+  "group": 3,
+  "num": 45,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_LIGHTHOUSE_5F",
+  "group": 3,
+  "num": 46,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_LIGHTHOUSE_6F",
+  "group": 3,
+  "num": 47,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "MAHOGANY_MART_1F",
+  "group": 3,
+  "num": 48,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "TEAM_ROCKET_BASE_B1F",
+  "group": 3,
+  "num": 49,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 19,
+  "pc_bad": 0
+ },
+ {
+  "map": "TEAM_ROCKET_BASE_B2F",
+  "group": 3,
+  "num": 50,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "TEAM_ROCKET_BASE_B3F",
+  "group": 3,
+  "num": 51,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ILEX_FOREST",
+  "group": 3,
+  "num": 52,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_UNDERGROUND",
+  "group": 3,
+  "num": 53,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES",
+  "group": 3,
+  "num": 54,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_DEPT_STORE_B1F",
+  "group": 3,
+  "num": 55,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_UNDERGROUND_WAREHOUSE",
+  "group": 3,
+  "num": 56,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOUNT_MORTAR_1F_OUTSIDE",
+  "group": 3,
+  "num": 57,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 7,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOUNT_MORTAR_1F_INSIDE",
+  "group": 3,
+  "num": 58,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 5,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOUNT_MORTAR_2F_INSIDE",
+  "group": 3,
+  "num": 59,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOUNT_MORTAR_B1F",
+  "group": 3,
+  "num": 60,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 1,
+  "pc_bad": 0
+ },
+ {
+  "map": "ICE_PATH_1F",
+  "group": 3,
+  "num": 61,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "ICE_PATH_B1F",
+  "group": 3,
+  "num": 62,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 7,
+  "pc_bad": 0
+ },
+ {
+  "map": "ICE_PATH_B2F_MAHOGANY_SIDE",
+  "group": 3,
+  "num": 63,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "ICE_PATH_B2F_BLACKTHORN_SIDE",
+  "group": 3,
+  "num": 64,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "ICE_PATH_B3F",
+  "group": 3,
+  "num": 65,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "WHIRL_ISLAND_NW",
+  "group": 3,
+  "num": 66,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 4,
+  "pc_bad": 0
+ },
+ {
+  "map": "WHIRL_ISLAND_NE",
+  "group": 3,
+  "num": 67,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "WHIRL_ISLAND_SW",
+  "group": 3,
+  "num": 68,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 4,
+  "pc_bad": 0
+ },
+ {
+  "map": "WHIRL_ISLAND_CAVE",
+  "group": 3,
+  "num": 69,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 3,
+  "pc_bad": 0
+ },
+ {
+  "map": "WHIRL_ISLAND_SE",
+  "group": 3,
+  "num": 70,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 3,
+  "pc_bad": 0
+ },
+ {
+  "map": "WHIRL_ISLAND_B1F",
+  "group": 3,
+  "num": 71,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 3,
+  "pc_bad": 0
+ },
+ {
+  "map": "WHIRL_ISLAND_B2F",
+  "group": 3,
+  "num": 72,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 3,
+  "pc_bad": 0
+ },
+ {
+  "map": "WHIRL_ISLAND_LUGIA_CHAMBER",
+  "group": 3,
+  "num": 73,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 3,
+  "pc_bad": 0
+ },
+ {
+  "map": "SILVER_CAVE_ROOM_1",
+  "group": 3,
+  "num": 74,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "SILVER_CAVE_ROOM_2",
+  "group": 3,
+  "num": 75,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "SILVER_CAVE_ROOM_3",
+  "group": 3,
+  "num": 76,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "SILVER_CAVE_ITEM_ROOMS",
+  "group": 3,
+  "num": 77,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "DARK_CAVE_VIOLET_ENTRANCE",
+  "group": 3,
+  "num": 78,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 2,
+  "pc_bad": 0
+ },
+ {
+  "map": "DARK_CAVE_BLACKTHORN_ENTRANCE",
+  "group": 3,
+  "num": 79,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "DRAGONS_DEN_1F",
+  "group": 3,
+  "num": 80,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "DRAGONS_DEN_B1F",
+  "group": 3,
+  "num": 81,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "DRAGON_SHRINE",
+  "group": 3,
+  "num": 82,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "TOHJO_FALLS",
+  "group": 3,
+  "num": 83,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "DIGLETTS_CAVE",
+  "group": 3,
+  "num": 84,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOUNT_MOON",
+  "group": 3,
+  "num": 85,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 7,
+  "pc_bad": 0
+ },
+ {
+  "map": "UNDERGROUND_PATH",
+  "group": 3,
+  "num": 86,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROCK_TUNNEL_1F",
+  "group": 3,
+  "num": 87,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 3,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROCK_TUNNEL_B1F",
+  "group": 3,
+  "num": 88,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 3,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFARI_ZONE_FUCHSIA_GATE_BETA",
+  "group": 3,
+  "num": 89,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFARI_ZONE_BETA",
+  "group": 3,
+  "num": 90,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "VICTORY_ROAD",
+  "group": 3,
+  "num": 91,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "ECRUTEAK_TIN_TOWER_ENTRANCE",
+  "group": 4,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "WISE_TRIOS_ROOM",
+  "group": 4,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "ECRUTEAK_POKECENTER_1F",
+  "group": 4,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ECRUTEAK_LUGIA_SPEECH_HOUSE",
+  "group": 4,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "DANCE_THEATER",
+  "group": 4,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ECRUTEAK_MART",
+  "group": 4,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ECRUTEAK_GYM",
+  "group": 4,
+  "num": 7,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ECRUTEAK_ITEMFINDER_HOUSE",
+  "group": 4,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "ECRUTEAK_CITY",
+  "group": 4,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "BLACKTHORN_GYM_1F",
+  "group": 5,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "BLACKTHORN_GYM_2F",
+  "group": 5,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "BLACKTHORN_DRAGON_SPEECH_HOUSE",
+  "group": 5,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "BLACKTHORN_EMYS_HOUSE",
+  "group": 5,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "BLACKTHORN_MART",
+  "group": 5,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "BLACKTHORN_POKECENTER_1F",
+  "group": 5,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 6,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOVE_DELETERS_HOUSE",
+  "group": 5,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_45",
+  "group": 5,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 4,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_46",
+  "group": 5,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "BLACKTHORN_CITY",
+  "group": 5,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "CINNABAR_POKECENTER_1F",
+  "group": 6,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "CINNABAR_POKECENTER_2F_BETA",
+  "group": 6,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_19_FUCHSIA_GATE",
+  "group": 6,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "SEAFOAM_GYM",
+  "group": 6,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_19",
+  "group": 6,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_20",
+  "group": 6,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_21",
+  "group": 6,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "CINNABAR_ISLAND",
+  "group": 6,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "CERULEAN_GYM_BADGE_SPEECH_HOUSE",
+  "group": 7,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "CERULEAN_POLICE_STATION",
+  "group": 7,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "CERULEAN_TRADE_SPEECH_HOUSE",
+  "group": 7,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "CERULEAN_POKECENTER_1F",
+  "group": 7,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "CERULEAN_POKECENTER_2F_BETA",
+  "group": 7,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "CERULEAN_GYM",
+  "group": 7,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "CERULEAN_MART",
+  "group": 7,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_10_POKECENTER_1F",
+  "group": 7,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_10_POKECENTER_2F_BETA",
+  "group": 7,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "POWER_PLANT",
+  "group": 7,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "BILLS_HOUSE",
+  "group": 7,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_4",
+  "group": 7,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_9",
+  "group": 7,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_10_NORTH",
+  "group": 7,
+  "num": 14,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_24",
+  "group": 7,
+  "num": 15,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_25",
+  "group": 7,
+  "num": 16,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "CERULEAN_CITY",
+  "group": 7,
+  "num": 17,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "AZALEA_POKECENTER_1F",
+  "group": 8,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "CHARCOAL_KILN",
+  "group": 8,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "AZALEA_MART",
+  "group": 8,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "KURTS_HOUSE",
+  "group": 8,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "AZALEA_GYM",
+  "group": 8,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_33",
+  "group": 8,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "AZALEA_TOWN",
+  "group": 8,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAKE_OF_RAGE_HIDDEN_POWER_HOUSE",
+  "group": 9,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAKE_OF_RAGE_MAGIKARP_HOUSE",
+  "group": 9,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_43_MAHOGANY_GATE",
+  "group": 9,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_43_GATE",
+  "group": 9,
+  "num": 4,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_43",
+  "group": 9,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAKE_OF_RAGE",
+  "group": 9,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_32",
+  "group": 10,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_35",
+  "group": 10,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_36",
+  "group": 10,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_37",
+  "group": 10,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIOLET_CITY",
+  "group": 10,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIOLET_MART",
+  "group": 10,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 20,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIOLET_GYM",
+  "group": 10,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "EARLS_POKEMON_ACADEMY",
+  "group": 10,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIOLET_NICKNAME_SPEECH_HOUSE",
+  "group": 10,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIOLET_POKECENTER_1F",
+  "group": 10,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIOLET_KYLES_HOUSE",
+  "group": 10,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_32_RUINS_OF_ALPH_GATE",
+  "group": 10,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_32_POKECENTER_1F",
+  "group": 10,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_35_GOLDENROD_GATE",
+  "group": 10,
+  "num": 14,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_35_NATIONAL_PARK_GATE",
+  "group": 10,
+  "num": 15,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_36_RUINS_OF_ALPH_GATE",
+  "group": 10,
+  "num": 16,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_36_NATIONAL_PARK_GATE",
+  "group": 10,
+  "num": 17,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_34",
+  "group": 11,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_CITY",
+  "group": 11,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_GYM",
+  "group": 11,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_BIKE_SHOP",
+  "group": 11,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_HAPPINESS_RATER",
+  "group": 11,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 5,
+  "pc_bad": 0
+ },
+ {
+  "map": "BILLS_FAMILYS_HOUSE",
+  "group": 11,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_MAGNET_TRAIN_STATION",
+  "group": 11,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_FLOWER_SHOP",
+  "group": 11,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_PP_SPEECH_HOUSE",
+  "group": 11,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_NAME_RATER",
+  "group": 11,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_DEPT_STORE_1F",
+  "group": 11,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_DEPT_STORE_2F",
+  "group": 11,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_DEPT_STORE_3F",
+  "group": 11,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_DEPT_STORE_4F",
+  "group": 11,
+  "num": 14,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_DEPT_STORE_5F",
+  "group": 11,
+  "num": 15,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_DEPT_STORE_6F",
+  "group": 11,
+  "num": 16,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_DEPT_STORE_ELEVATOR",
+  "group": 11,
+  "num": 17,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 1,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_DEPT_STORE_ROOF",
+  "group": 11,
+  "num": 18,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_GAME_CORNER",
+  "group": 11,
+  "num": 19,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "GOLDENROD_POKECENTER_1F",
+  "group": 11,
+  "num": 20,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "POKECOM_CENTER_ADMIN_OFFICE_MOBILE",
+  "group": 11,
+  "num": 21,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "ILEX_FOREST_AZALEA_GATE",
+  "group": 11,
+  "num": 22,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_34_ILEX_FOREST_GATE",
+  "group": 11,
+  "num": 23,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "DAY_CARE",
+  "group": 11,
+  "num": 24,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_6",
+  "group": 12,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_11",
+  "group": 12,
+  "num": 2,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_CITY",
+  "group": 12,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_FISHING_SPEECH_HOUSE",
+  "group": 12,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_POKECENTER_1F",
+  "group": 12,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_POKECENTER_2F_BETA",
+  "group": 12,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 5,
+  "pc_bad": 0
+ },
+ {
+  "map": "POKEMON_FAN_CLUB",
+  "group": 12,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_MAGNET_TRAIN_SPEECH_HOUSE",
+  "group": 12,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_MART",
+  "group": 12,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 21,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_DIGLETTS_CAVE_SPEECH_HOUSE",
+  "group": 12,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_GYM",
+  "group": 12,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_6_SAFFRON_GATE",
+  "group": 12,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_6_UNDERGROUND_PATH_ENTRANCE",
+  "group": 12,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_1",
+  "group": 13,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "PALLET_TOWN",
+  "group": 13,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "REDS_HOUSE_1F",
+  "group": 13,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "REDS_HOUSE_2F",
+  "group": 13,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "BLUES_HOUSE",
+  "group": 13,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "OAKS_LAB",
+  "group": 13,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_3",
+  "group": 14,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "PEWTER_CITY",
+  "group": 14,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "PEWTER_NIDORAN_SPEECH_HOUSE",
+  "group": 14,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "PEWTER_GYM",
+  "group": 14,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "PEWTER_MART",
+  "group": 14,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 20,
+  "pc_bad": 0
+ },
+ {
+  "map": "PEWTER_POKECENTER_1F",
+  "group": 14,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "PEWTER_POKECENTER_2F_BETA",
+  "group": 14,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "PEWTER_SNOOZE_SPEECH_HOUSE",
+  "group": 14,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 1,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_PORT",
+  "group": 15,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_PORT",
+  "group": 15,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "FAST_SHIP_1F",
+  "group": 15,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "FAST_SHIP_CABINS_NNW_NNE_NE",
+  "group": 15,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "FAST_SHIP_CABINS_SW_SSW_NW",
+  "group": 15,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN",
+  "group": 15,
+  "num": 6,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "FAST_SHIP_B1F",
+  "group": 15,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "OLIVINE_PORT_PASSAGE",
+  "group": 15,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "VERMILION_PORT_PASSAGE",
+  "group": 15,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOUNT_MOON_SQUARE",
+  "group": 15,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOUNT_MOON_GIFT_SHOP",
+  "group": 15,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIN_TOWER_ROOF",
+  "group": 15,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 6,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_23",
+  "group": 16,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "INDIGO_PLATEAU_POKECENTER_1F",
+  "group": 16,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "WILLS_ROOM",
+  "group": 16,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "KOGAS_ROOM",
+  "group": 16,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "BRUNOS_ROOM",
+  "group": 16,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "KARENS_ROOM",
+  "group": 16,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "LANCES_ROOM",
+  "group": 16,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "HALL_OF_FAME",
+  "group": 16,
+  "num": 8,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_13",
+  "group": 17,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_14",
+  "group": 17,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_15",
+  "group": 17,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_18",
+  "group": 17,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 19,
+  "pc_bad": 0
+ },
+ {
+  "map": "FUCHSIA_CITY",
+  "group": 17,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 19,
+  "pc_bad": 0
+ },
+ {
+  "map": "FUCHSIA_MART",
+  "group": 17,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFARI_ZONE_MAIN_OFFICE",
+  "group": 17,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "FUCHSIA_GYM",
+  "group": 17,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "BILLS_OLDER_SISTERS_HOUSE",
+  "group": 17,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "FUCHSIA_POKECENTER_1F",
+  "group": 17,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 1,
+  "pc_bad": 0
+ },
+ {
+  "map": "FUCHSIA_POKECENTER_2F_BETA",
+  "group": 17,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFARI_ZONE_WARDENS_HOME",
+  "group": 17,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_15_FUCHSIA_GATE",
+  "group": 17,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_8",
+  "group": 18,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_12",
+  "group": 18,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_10_SOUTH",
+  "group": 18,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAVENDER_TOWN",
+  "group": 18,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAVENDER_POKECENTER_1F",
+  "group": 18,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAVENDER_POKECENTER_2F_BETA",
+  "group": 18,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "MR_FUJIS_HOUSE",
+  "group": 18,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAVENDER_SPEECH_HOUSE",
+  "group": 18,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAVENDER_NAME_RATER",
+  "group": 18,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAVENDER_MART",
+  "group": 18,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "SOUL_HOUSE",
+  "group": 18,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "LAV_RADIO_TOWER_1F",
+  "group": 18,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_8_SAFFRON_GATE",
+  "group": 18,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_12_SUPER_ROD_HOUSE",
+  "group": 18,
+  "num": 14,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_28",
+  "group": 19,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "SILVER_CAVE_OUTSIDE",
+  "group": 19,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "SILVER_CAVE_POKECENTER_1F",
+  "group": 19,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_28_STEEL_WING_HOUSE",
+  "group": 19,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "POKECENTER_2F",
+  "group": 20,
+  "num": 1,
+  "error": "HANG (45 s timeout)"
+ },
+ {
+  "map": "TRADE_CENTER",
+  "group": 20,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "COLOSSEUM",
+  "group": 20,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "TIME_CAPSULE",
+  "group": 20,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOBILE_TRADE_ROOM",
+  "group": 20,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "MOBILE_BATTLE_ROOM",
+  "group": 20,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_7",
+  "group": 21,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_16",
+  "group": 21,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_17",
+  "group": 21,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_CITY",
+  "group": 21,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_DEPT_STORE_1F",
+  "group": 21,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_DEPT_STORE_2F",
+  "group": 21,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_DEPT_STORE_3F",
+  "group": 21,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 19,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_DEPT_STORE_4F",
+  "group": 21,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_DEPT_STORE_5F",
+  "group": 21,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_DEPT_STORE_6F",
+  "group": 21,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_DEPT_STORE_ELEVATOR",
+  "group": 21,
+  "num": 11,
+  "error": "HANG (45 s timeout)"
+ },
+ {
+  "map": "CELADON_MANSION_1F",
+  "group": 21,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_MANSION_2F",
+  "group": 21,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_MANSION_3F",
+  "group": 21,
+  "num": 14,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_MANSION_ROOF",
+  "group": 21,
+  "num": 15,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_MANSION_ROOF_HOUSE",
+  "group": 21,
+  "num": 16,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_POKECENTER_1F",
+  "group": 21,
+  "num": 17,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_POKECENTER_2F_BETA",
+  "group": 21,
+  "num": 18,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 8,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_GAME_CORNER",
+  "group": 21,
+  "num": 19,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_GAME_CORNER_PRIZE_ROOM",
+  "group": 21,
+  "num": 20,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_GYM",
+  "group": 21,
+  "num": 21,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "CELADON_CAFE",
+  "group": 21,
+  "num": 22,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_16_FUCHSIA_SPEECH_HOUSE",
+  "group": 21,
+  "num": 23,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_16_GATE",
+  "group": 21,
+  "num": 24,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 19,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_7_SAFFRON_GATE",
+  "group": 21,
+  "num": 25,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_17_ROUTE_18_GATE",
+  "group": 21,
+  "num": 26,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_40",
+  "group": 22,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_41",
+  "group": 22,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "CIANWOOD_CITY",
+  "group": 22,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "MANIAS_HOUSE",
+  "group": 22,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "CIANWOOD_GYM",
+  "group": 22,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "CIANWOOD_POKECENTER_1F",
+  "group": 22,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "CIANWOOD_PHARMACY",
+  "group": 22,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "CIANWOOD_PHOTO_STUDIO",
+  "group": 22,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "CIANWOOD_LUGIA_SPEECH_HOUSE",
+  "group": 22,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "POKE_SEERS_HOUSE",
+  "group": 22,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "BATTLE_TOWER_1F",
+  "group": 22,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "BATTLE_TOWER_BATTLE_ROOM",
+  "group": 22,
+  "num": 12,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "BATTLE_TOWER_ELEVATOR",
+  "group": 22,
+  "num": 13,
+  "loaded": false,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "BATTLE_TOWER_HALLWAY",
+  "group": 22,
+  "num": 14,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_40_BATTLE_TOWER_GATE",
+  "group": 22,
+  "num": 15,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "BATTLE_TOWER_OUTSIDE",
+  "group": 22,
+  "num": 16,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 18,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_2",
+  "group": 23,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_22",
+  "group": 23,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIRIDIAN_CITY",
+  "group": 23,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIRIDIAN_GYM",
+  "group": 23,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIRIDIAN_NICKNAME_SPEECH_HOUSE",
+  "group": 23,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "TRAINER_HOUSE_1F",
+  "group": 23,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "TRAINER_HOUSE_B1F",
+  "group": 23,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIRIDIAN_MART",
+  "group": 23,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIRIDIAN_POKECENTER_1F",
+  "group": 23,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "VIRIDIAN_POKECENTER_2F_BETA",
+  "group": 23,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_2_NUGGET_HOUSE",
+  "group": 23,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_2_GATE",
+  "group": 23,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "VICTORY_ROAD_GATE",
+  "group": 23,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_26",
+  "group": 24,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_27",
+  "group": 24,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_29",
+  "group": 24,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "NEW_BARK_TOWN",
+  "group": 24,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ELMS_LAB",
+  "group": 24,
+  "num": 5,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "PLAYERS_HOUSE_1F",
+  "group": 24,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "PLAYERS_HOUSE_2F",
+  "group": 24,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "PLAYERS_NEIGHBORS_HOUSE",
+  "group": 24,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "ELMS_HOUSE",
+  "group": 24,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_26_HEAL_HOUSE",
+  "group": 24,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 9,
+  "pc_bad": 0
+ },
+ {
+  "map": "DAY_OF_WEEK_SIBLINGS_HOUSE",
+  "group": 24,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_27_SANDSTORM_HOUSE",
+  "group": 24,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_29_ROUTE_46_GATE",
+  "group": 24,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_5",
+  "group": 25,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 16,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFFRON_CITY",
+  "group": 25,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "FIGHTING_DOJO",
+  "group": 25,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFFRON_GYM",
+  "group": 25,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFFRON_MART",
+  "group": 25,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFFRON_POKECENTER_1F",
+  "group": 25,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFFRON_POKECENTER_2F_BETA",
+  "group": 25,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 10,
+  "pc_bad": 0
+ },
+ {
+  "map": "MR_PSYCHICS_HOUSE",
+  "group": 25,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "SAFFRON_MAGNET_TRAIN_STATION",
+  "group": 25,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 19,
+  "pc_bad": 0
+ },
+ {
+  "map": "SILPH_CO_1F",
+  "group": 25,
+  "num": 10,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 19,
+  "pc_bad": 0
+ },
+ {
+  "map": "COPYCATS_HOUSE_1F",
+  "group": 25,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 11,
+  "pc_bad": 0
+ },
+ {
+  "map": "COPYCATS_HOUSE_2F",
+  "group": 25,
+  "num": 12,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 12,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_5_UNDERGROUND_PATH_ENTRANCE",
+  "group": 25,
+  "num": 13,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 7,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_5_SAFFRON_GATE",
+  "group": 25,
+  "num": 14,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_5_CLEANSE_TAG_HOUSE",
+  "group": 25,
+  "num": 15,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_30",
+  "group": 26,
+  "num": 1,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_31",
+  "group": 26,
+  "num": 2,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 1,
+  "pc_bad": 0
+ },
+ {
+  "map": "CHERRYGROVE_CITY",
+  "group": 26,
+  "num": 3,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "CHERRYGROVE_MART",
+  "group": 26,
+  "num": 4,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "CHERRYGROVE_POKECENTER_1F",
+  "group": 26,
+  "num": 5,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 14,
+  "pc_bad": 0
+ },
+ {
+  "map": "CHERRYGROVE_GYM_SPEECH_HOUSE",
+  "group": 26,
+  "num": 6,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": false,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "GUIDE_GENTS_HOUSE",
+  "group": 26,
+  "num": 7,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 13,
+  "pc_bad": 0
+ },
+ {
+  "map": "CHERRYGROVE_EVOLUTION_SPEECH_HOUSE",
+  "group": 26,
+  "num": 8,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_30_BERRY_HOUSE",
+  "group": 26,
+  "num": 9,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 15,
+  "pc_bad": 0
+ },
+ {
+  "map": "MR_POKEMONS_HOUSE",
+  "group": 26,
+  "num": 10,
+  "loaded": true,
+  "moved": false,
+  "still_in_map": true,
+  "colors": 17,
+  "pc_bad": 0
+ },
+ {
+  "map": "ROUTE_31_VIOLET_GATE",
+  "group": 26,
+  "num": 11,
+  "loaded": true,
+  "moved": true,
+  "still_in_map": true,
+  "colors": 12,
+  "pc_bad": 0
+ }
+]

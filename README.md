@@ -83,12 +83,12 @@ No implementado: habilidades, megaevolución, generaciones tercera/cuarta, recur
 | [`parches/`](parches) | `Cambios-fuente.patch`: modificaciones del código fuente sobre la base española |
 | [`recursos/`](recursos) | Sprites y paleta de Tito Xeluis |
 | [`herramientas/`](herramientas) | Randomizador portable y sus fuentes, generador del sprite |
-| [`pruebas/`](pruebas) | Scripts de validación portables |
+| [`pruebas/`](pruebas) | Scripts de validación portables y herramientas de [playtest automatizado](pruebas/simulacion) |
 | [`evidencias/`](evidencias) | Informes JSON de las pruebas de 4.3 |
 | [`capturas/`](capturas) | Capturas reales |
 | [`publicacion/`](publicacion) | Textos de la Release, descripción y resumen para portfolio |
 
-Cambios por versión: [CHANGELOG.md](CHANGELOG.md). Procedencia: [CREDITOS.md](CREDITOS.md). Licencias (MIT para el código propio, CC BY-NC 4.0 para documentación y arte de Tito; sin licencia propia para parche y ROM): [LICENCIA.md](LICENCIA.md).
+Informe de playtest y equilibrio: [docs/INFORME-PLAYTEST-v4.3.md](docs/INFORME-PLAYTEST-v4.3.md). Cambios por versión: [CHANGELOG.md](CHANGELOG.md). Procedencia: [CREDITOS.md](CREDITOS.md). Licencias (MIT para el código propio, CC BY-NC 4.0 para documentación y arte de Tito; sin licencia propia para parche y ROM): [LICENCIA.md](LICENCIA.md).
 
 ## Créditos
 
