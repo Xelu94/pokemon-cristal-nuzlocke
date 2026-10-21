@@ -2,14 +2,13 @@
 
 Modificación personal de **Pokémon Cristal** para Game Boy Color con un Nuzlocke integrado en el motor, combate modernizado, aleatorización por niveles y personajes propios. Versión **4.2**.
 
-> *English summary:* a personal ROM hack of Pokémon Crystal (Game Boy Color, SM83 assembly) built on the Spanish source tree of [MicaelAlighieri/pokecristal](https://github.com/MicaelAlighieri/pokecristal) and the [pret/pokecrystal](https://github.com/pret/pokecrystal) disassembly. It adds built-in Nuzlocke rules, per-move physical/special split, a Fairy type, level caps, a custom NPC (Tito Xeluis), a roaming thief (Ulex), a sandbox build for testing and an offline seed-based randomizer. It is **not** a game written from scratch and **not** an official Pokémon product. Spanish only. Download the single `.gbc` from [Releases](../../releases) and open it in a Game Boy Color emulator.
+> *English summary:* a personal ROM hack of Pokémon Crystal (Game Boy Color, SM83 assembly) built on the Spanish source tree of [MicaelAlighieri/pokecristal](https://github.com/MicaelAlighieri/pokecristal) and the [pret/pokecrystal](https://github.com/pret/pokecrystal) disassembly. It adds built-in Nuzlocke rules, per-move physical/special split, a Fairy type, level caps, a custom NPC (Tito Xeluis), a roaming thief (Ulex), a sandbox build for testing and an offline seed-based randomizer. It is **not** a game written from scratch and **not** an official Pokémon product. Spanish only. Download the single `.gbc` from [Releases](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.2) and open it in a Game Boy Color emulator.
 
 ![Selección de ataques con potencia, tipo, categoría y PP](capturas/combate-panel.png)
 
 ## Descarga y cómo jugar
 
-<!-- ENLACE-ROM: se sustituye por el enlace directo al asset cuando la Release esté creada y verificada -->
-**ROM normal v4.2:** `Pokemon Cristal Nuzlocke.gbc` — enlace directo pendiente de la publicación de la Release (consulta [Releases](../../releases)).
+**[⬇ Descargar Pokemon Cristal Nuzlocke.gbc (v4.2)](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/download/v4.2/Pokemon.Cristal.Nuzlocke.gbc)** — enlace directo al asset de la [Release v4.2](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.2). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
 
 | | |
 |---|---|
