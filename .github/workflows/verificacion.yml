@@ -1,0 +1,80 @@
+name: Verificación
+
+# Comprobaciones ligeras que no necesitan compilar la ROM:
+#  - sintaxis de las herramientas y pruebas (Python y JavaScript) y validez de las evidencias;
+#  - la ROM de la Release enlazada en el README coincide con el SHA-256 publicado;
+#  - el Randomizador.html del repositorio funciona con esa ROM.
+# La compilación completa y las pruebas con emulador siguen siendo manuales: docs/COMPILACION-Y-PRUEBAS.md.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  herramientas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Sintaxis de Python
+        run: python -m compileall -q herramientas/fuentes pruebas
+      - name: Evidencias en JSON válido
+        run: |
+          python - <<'EOF'
+          import json, pathlib, sys
+          bad = []
+          for path in pathlib.Path('evidencias').rglob('*.json'):
+              try:
+                  json.loads(path.read_text(encoding='utf-8'))
+              except ValueError as error:
+                  bad.append((str(path), str(error)))
+          print(f'{len(list(pathlib.Path("evidencias").rglob("*.json")))} ficheros JSON revisados')
+          sys.exit(1 if bad else 0)
+          EOF
+      - name: Sintaxis de JavaScript
+        run: |
+          node --check herramientas/fuentes/portable_randomizer.js
+          for script in pruebas/work/*.cjs pruebas/ci/*.cjs; do node --check "$script"; done
+      - name: Sintaxis del script incrustado en Randomizador.html
+        run: |
+          node -e "
+          const html = require('fs').readFileSync('herramientas/Randomizador.html', 'utf8');
+          const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]);
+          if (scripts.length < 2) throw new Error('faltan scripts');
+          scripts.forEach(s => new Function(s));
+          console.log(scripts.length + ' scripts incrustados correctos');
+          "
+
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Descargar la ROM de la Release enlazada en el README
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag=$(grep -oP 'releases/download/\Kv[0-9.]+(?=/)' README.md | head -n 1)
+          expected=$(grep -oP 'SHA-256 \| `\K[0-9a-f]{64}' README.md | head -n 1)
+          test -n "$tag" && test -n "$expected"
+          echo "Release $tag, SHA-256 esperado $expected"
+          mkdir rom
+          gh release download "$tag" --repo "$GITHUB_REPOSITORY" --pattern '*.gbc' --dir rom
+          test "$(ls rom | wc -l)" = 1
+          actual=$(sha256sum rom/*.gbc | cut -d' ' -f1)
+          echo "SHA-256 descargado $actual"
+          test "$actual" = "$expected"
+          mv rom/*.gbc rom/cristal.gbc
+      - name: Probar el randomizador con esa ROM
+        run: node pruebas/ci/verificar-randomizador.cjs herramientas/Randomizador.html rom/cristal.gbc
