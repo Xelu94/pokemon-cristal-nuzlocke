@@ -1,6 +1,6 @@
 # Procedencia y créditos
 
-Proyecto personal de **Tito Xeluis** (apodo de YouTube del autor; cuenta de GitHub [Xelu94](https://github.com/Xelu94)): **Pokémon Cristal Nuzlocke — Tito Xeluis**. Modificación de aficionado, no oficial.
+Proyecto personal de **Tito Xeluis** (apodo de YouTube del autor; cuenta de GitHub [Xelu94](https://github.com/Xelu94)): **Radical Cristal — Tito Xeluis** (antes «Pokémon Cristal Nuzlocke»). Modificación de aficionado, no oficial.
 
 ## Base existente
 
@@ -19,11 +19,15 @@ Distinguido de la base, el trabajo propio de este proyecto incluye:
 - Tito Xeluis (NPC, servicios, intercambios, jefe extra) y Ulex el Ladrón.
 - Mochila y PC reorganizados, MO como herramientas, objetos equipados.
 - Sandbox de pruebas y el conjunto de pruebas portables.
-- Portada personalizada «Pokémon Cristal Nuzlocke» y la marca «©2026 Tito Xeluis inc.», que identifica **este proyecto**, no la base ni los titulares de Pokémon.
+- Portada personalizada «Radical Cristal» y la marca «©2026 Tito Xeluis inc.», que identifica **este proyecto**, no la base ni los titulares de Pokémon.
 
 ## Recursos gráficos de Tito
 
 Referencias personales aportadas por el autor, apoyo de generación de imágenes y adaptación al formato y paleta del motor. Detalle en [docs/RECURSOS-TITO.md](docs/RECURSOS-TITO.md). No se importaron recursos de Prism.
+
+## Sprite de Dark Lugia
+
+El sprite frontal de Dark Lugia es arte de aficionado hecho por un tercero y publicado en DeviantArt; el autor del proyecto lo aportó como vídeo animado para usarlo en este juego. **No se conoce el nombre del artista** y no se ha comprobado su licencia. Si el artista o sus representantes piden retirarlo, se sustituirá por otro gráfico (basta cambiar `gfx/pokemon/dark_lugia/front.png`). El archivo se redujo a 56×56 píxeles y cuatro colores; no se distribuye el vídeo original.
 
 ## Herramientas
 

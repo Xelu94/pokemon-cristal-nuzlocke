@@ -13,7 +13,7 @@ const normalized=Object.fromEntries(Object.entries(ids).map(([k,v])=>[k.replace(
 const parents={},children={};
 const evotext=fs.readFileSync(path.join(root,'data/pokemon/evos_attacks.asm'),'utf8');
 for(const m of evotext.matchAll(/^(\w+)EvosAttacks:\n([\s\S]*?)(?=^\w+EvosAttacks:|$\s*(?![\s\S]))/gm)){
- const parent=normalized[m[1].toUpperCase()];
+ const parent=normalized[m[1].toUpperCase()];if(parent===undefined)continue;
  for(const evo of m[2].matchAll(/^\s*db (EVOLVE_\w+), ([^\n;]+)/gm)){
   const parts=evo[2].split(',').map(s=>s.trim()),child=ids[parts.at(-1)];
   const bound=['EVOLVE_LEVEL','EVOLVE_STAT'].includes(evo[1])?+parts[0]:0;

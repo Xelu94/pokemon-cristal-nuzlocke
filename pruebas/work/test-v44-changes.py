@@ -96,6 +96,16 @@ rom_icons = bytes(g.rom[b * 16384 + p_ - 16384: b * 16384 + p_ - 16384 + 48])
 vram = bytes(g.p.memory[0, 0x9000 + 89 * 16 + i] for i in range(48))
 check('the move panel shows a physical, a special and a status icon in its category column',
       icons == [89, 90, 91] and vram == rom_icons)
+# The icons borrow the experience bar tiles: once the move is used the bar must be restored.
+g.press('a', 60, hold=4)
+for _ in range(60):
+    g.press('a', 30, hold=4)
+    g.p.tick(10)
+exp_bank, exp_ptr = g.symbols['ExpBarGFX']
+exp_offset = exp_bank * 16384 + exp_ptr - 16384 + 4 * 16
+rom_bar = bytes(g.rom[exp_offset:exp_offset + 48])
+vram_now = bytes(g.p.memory[0, 0x9000 + 89 * 16 + i] for i in range(48))
+check('after a turn the experience bar tiles are restored in VRAM', vram_now == rom_bar and vram_now != rom_icons)
 g.close()
 
 # --- Pocket labels (captures)

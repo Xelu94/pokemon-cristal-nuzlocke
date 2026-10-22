@@ -1,0 +1,57 @@
+{
+  "passed": 13,
+  "tests": [
+    {
+      "name": "exactly Focus Sash, Choice Band, Choice Specs, Choice Scarf and Leftovers are infinite",
+      "passed": true
+    },
+    {
+      "name": "giving an infinite item to a Pokemon leaves the bag stack at 10",
+      "passed": true
+    },
+    {
+      "name": "a normal item is still consumed when given",
+      "passed": true
+    },
+    {
+      "name": "taking an infinite item back does not grow the stack",
+      "passed": true
+    },
+    {
+      "name": "taking an infinite item back creates the stack when the bag lacks it",
+      "passed": true
+    },
+    {
+      "name": "160 hatchings give a non-legendary first-stage species with shiny DVs and the level-5 experience",
+      "passed": true
+    },
+    {
+      "name": "300 Super League picks are fully evolved, at least 450 base total and never Dark Lugia",
+      "passed": true
+    },
+    {
+      "name": "the regular AZUL party keeps its authored species",
+      "passed": true
+    },
+    {
+      "name": "the Super League picker never repeats a Pokemon already on the enemy team",
+      "passed": true
+    },
+    {
+      "name": "a 120-cycle egg is clamped to 10 by its first step",
+      "passed": true
+    },
+    {
+      "name": "an egg with 10 steps left needs nine more",
+      "passed": true
+    },
+    {
+      "name": "an egg with one step left is ready to hatch",
+      "passed": true
+    },
+    {
+      "name": "the happiness of a Pokemon that is not an egg is untouched",
+      "passed": true
+    }
+  ]
+}

@@ -4,14 +4,15 @@ El sandbox es una **compilación separada** (`pokecristal_debug` en el Makefile)
 
 | | ROM normal | Sandbox |
 |---|---|---|
-| Archivo de compilación | `pokecristal.gbc` (publicada como `Pokemon Cristal Nuzlocke.gbc`) | `pokecristal_debug.gbc` |
+| Archivo de compilación | `pokecristal.gbc` (publicada como `Radical Cristal.gbc`) | `pokecristal_debug.gbc` |
 | Descarga pública | Sí (único asset de la Release) | No |
 | Menú Start → SANDBOX | No | Sí |
 | Guardado | El de la aventura | Distinto, para no mezclarlo |
 | SHA-256 de 4.3 | `a6a232589e9ff8859bc9307c3593707c753dcaf8b6be65a8ba835faafe949b1e` | `d6a7449506680bdbb215e3aabeb4f6772585516e55eefe07c396f9543cc401f2` |
 | SHA-256 de 4.4 | `b4cff3b076988a780d6570653d677b7fecab1cbb4fdfcc6dde8cda5a22c1e3ef` | `f77fb27ec0e2365985be7cc7d6045fde364a9e3e6ad484e2a1df5aab74b3706e` |
+| SHA-256 de 5.0 | `86052da1d0db6fbdeb0a3a87c784e7c8032395fe54523f6127fc7179736ad089` | `a41a4c28dd574e6b0e0e00188482e156652249bae093e30c8edc92b964299556` |
 
-El hash del sandbox figura en `evidencias/Validacion-v4.3.json` (4.3) y `evidencias/Validacion-v4.4.json` (4.4) y corresponde a la compilación probada; no se adjunta ninguna ROM sandbox.
+El hash del sandbox figura en `evidencias/Validacion-v4.3.json` (4.3), `evidencias/Validacion-v4.4.json` (4.4) y `evidencias/Validacion-v5.0.json` (5.0). El catálogo de destinos incluye desde la 5.0 los seis mapas de la Superliga (394 destinos) y corresponde a la compilación probada; no se adjunta ninguna ROM sandbox.
 
 ## Menú SANDBOX
 

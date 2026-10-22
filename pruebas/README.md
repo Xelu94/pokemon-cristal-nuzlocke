@@ -1,6 +1,6 @@
 # Pruebas portables
 
-Scripts de validación de la versión 4.4. Conservan la estructura relativa que esperan: se ejecutan **desde esta carpeta** y buscan la fuente compilada en `work/source`.
+Scripts de validación de la versión 5.0. Conservan la estructura relativa que esperan: se ejecutan **desde esta carpeta** y buscan la fuente compilada en `work/source`.
 
 Preparación y comandos completos: [docs/COMPILACION-Y-PRUEBAS.md](../docs/COMPILACION-Y-PRUEBAS.md).
 
@@ -8,7 +8,7 @@ Preparación y comandos completos: [docs/COMPILACION-Y-PRUEBAS.md](../docs/COMPI
 python -m pip install -r requirements.txt
 npm install
 npx playwright install chromium
-python work/validate-v44-release.py
+python work/validate-v50-release.py
 ```
 
 Requisitos previos: la fuente integrada y compilada (`work/source/pokecristal.gbc`, `pokecristal_debug.gbc` y sus `.sym`) y los archivos del randomizador exportados. Las ROM no están en el repositorio.
@@ -24,7 +24,10 @@ Requisitos previos: la fuente integrada y compilada (`work/source/pokecristal.gb
 | `work/test-v4-randomizer.cjs` | Núcleo del randomizador | 9 |
 | `work/test-v4-randomizer-ui.cjs` | Randomizador en navegador | 4 |
 | `work/test-v43-changes.py` | Cambios de la 4.3 (Vuelo, anciano del mapa, tiendas, Liga, caramelos, bolsa) | 13 |
-| `work/test-v44-changes.py` | Cambios de la 4.4 (tope en estado, iconos de ataque, respiración de Tito) | 3 |
+| `work/test-v44-changes.py` | Cambios de la 4.4 (tope en estado, iconos de ataque, barra de experiencia, respiración de Tito) | 4 |
+| `work/test-v45-routines.py` | Rutinas de la 5.0 con el arnés de CPU (objetos infinitos, eclosión, selector de la Superliga, huevos de 10 pasos) | 13 |
+| `work/test-v45-story.py` | Historia y mundo de la 5.0 con el emulador (aviso de Ulex, Joy, Elm, otro protagonista, Superliga, datos) | 19 |
+| `work/story_helper.py` | Ayudante: banderas de evento, mochila, equipo y lectura estable de memoria | |
 | `ci/verificar-randomizador.cjs` | Usado por la integración continua: randomizador contra una ROM dada | 4–5 |
 
 `work/cpu_harness.py` es el montaje común para ejecutar rutinas reales de la ROM con PyBoy; `work/test-v2-tito-ui.py` es la base de las pruebas de interfaz. `PLAYWRIGHT_CHANNEL` permite usar un navegador ya instalado y `NODE_BINARY` otra ruta de Node.

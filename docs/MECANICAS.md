@@ -1,4 +1,4 @@
-# Mecánicas y reglas vigentes (v4.4)
+# Mecánicas y reglas vigentes (v5.0)
 
 Descripción de la ROM normal. Los datos numéricos se contrastaron con la fuente integrada (`engine/pokemon/v2_balance.asm`, `data/moves/moves.asm`, `data/pokemon/evos_attacks.asm`). Cuando una regla depende del emulador o de la semilla, se indica.
 
@@ -65,6 +65,15 @@ Ver [NIVELES-Y-EVOLUCIONES.md](NIVELES-Y-EVOLUCIONES.md) para la tabla completa.
 - Equipos aleatorios shiny al límite de nivel vigente, de tres, cuatro o cinco Pokémon según la etapa. **Excepción:** el primer Ulex (Ruta 31, antes de ninguna medalla) saca sus tres Pokémon al nivel 15 en lugar de 19; los demás encuentros no cambian. Hace falta otra medalla entre encuentros y cada ubicación se consume una vez. Puedes volver a una ubicación pendiente tras progresar; en Kanto admite otro orden.
 - **Victoria sin nuevas muertes**: una MT aleatoria. **Si hay una nueva muerte**, roba otro Pokémon vivo y entrega a ZURULLO, un Rattata de nivel 5 que solo conoce Salpicadura; en ese caso no hay MT.
 - Los combates rechazados no gastan el encuentro. Los resultados reales se registran antes de recargar el mapa.
+
+## Historia y mundo (v5.0)
+
+- **Aviso de Ulex.** El NPC de la Ruta 29 que enseñaba a capturar avisa ahora de que ULEX anda por la CUEVA OSCURA y recomienda el nivel 15.
+- **Duelo de Elm, otro protagonista y Superliga:** ver [SUPERLIGA-Y-RIVAL.md](SUPERLIGA-Y-RIVAL.md).
+- **Huevos.** Eclosionan a los 10 pasos en un Pokémon aleatorio shiny de su primera etapa (sin legendarios).
+- **Enfermeras Joy** (rutas 13, 14, 25, 26, 27 y 46), **piedras evolutivas** en el Centro Pokémon de Trigal, **BAYA DORADA** en los árboles de bonguri y **MÁX. POCIÓN** en lugar de cualquier Ball del mapa o de regalo (la Master Ball se mantiene).
+- **Objetos de combate infinitos y precio 0.** Banda Focus, Cinta Elegida, Gafas Elegidas, Pañuelo Elegido y Restos de la partida nueva no se consumen al equipar o devolver; ellos, los caramelos raros y la Master Ball se venden por 0.
+- **Dark Lugia:** especie 252, no capturable; se entrega a nivel 100 al vencer a Tito por primera vez.
 
 ## Calidad de vida e inventario
 

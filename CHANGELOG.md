@@ -2,6 +2,51 @@
 
 Formato por versión. Las versiones anteriores a la 4 no están documentadas en este paquete; solo se sabe que la actualización v3→v4 permite continuar el guardado.
 
+## 5.0 — Radical Cristal (22 de octubre de 2026)
+
+El juego pasa a llamarse **Radical Cristal** (pantalla de título, Randomizador, README y la Release). Es la versión con más contenido nuevo desde la 4.0: un cambio en la historia (el otro protagonista y el duelo de Elm), una liga extra, un Pokémon nuevo y varios arreglos. Detalle de las partes nuevas en [docs/SUPERLIGA-Y-RIVAL.md](docs/SUPERLIGA-Y-RIVAL.md). **173 comprobaciones agrupadas** ([evidencias/Validacion-v5.0.json](evidencias/Validacion-v5.0.json)): las 140 de la 4.4, 1 nueva de la barra de experiencia y 32 de esta versión.
+
+**Mundo y objetos**
+
+1. **El NPC del tutorial de captura avisa de Ulex.** En lugar de enseñar a capturar, te cuenta que han visto a ULEX más allá de la CUEVA OSCURA, que es un ladrón peligroso y que subas tus Pokémon al nivel 15 antes de llegar (coincide con el nivel del primer Ulex). Ya no hay combate de tutorial.
+2. **Bonguri → Baya dorada.** Los siete árboles de bonguri dan BAYA DORADA.
+3. **Balls → Máx. Poción.** Las 32 Balls colocadas en mapas (en el suelo, ocultas y regalos de NPC, incluidas las cinco Poké Balls del ayudante de Elm y los regalos de Kurt y Wilton) dan MÁX. POCIÓN. La Master Ball se mantiene. Las tiendas siguen vendiendo Balls.
+4. **Enfermeras Joy** en las rutas sin Centro Pokémon cerca: 13, 14, 25, 26, 27 y 46. Curan al equipo (sin muertos). **No hay en la Ruta 17**: es la ciclovía de bajada forzada y no se puede frenar ni girar hacia arriba, así que una enfermera no sería alcanzable.
+5. **Objetos de combate infinitos.** Banda Focus, Cinta Elegida, Gafas Elegidas, Pañuelo Elegido y Restos de la partida nueva conservan sus 10 unidades pero no se gastan al equiparlos (devolverlos tampoco aumenta la pila). Ellos, los caramelos raros y la Master Ball **valen 0** en las tiendas.
+6. **Huevos:** eclosionan a los **10 pasos** y siempre dan un **Pokémon aleatorio shiny de su primera etapa** (sin legendarios ni Dark Lugia); conservan los cuatro movimientos aleatorios con los que se generaron.
+7. **Piedras evolutivas** a la venta en el CENTRO POKÉMON de CIUDAD TRIGAL (Piedra Fuego, Agua, Trueno, Hoja, Lunar y Solar).
+8. **Título:** «RADICAL CRISTAL» sobre el logo (`tools/build_title_branding.py`).
+
+**Errores corregidos**
+
+9. **Animación de andar del rival (y de otros PNJ).** En CIUDAD CEREZO (y en 22 mapas más) algunos PNJ que caminan se dibujaban con los fotogramas de pie, porque la lista de gráficos exteriores del grupo tenía más sprites de los que caben con fotogramas de andar. Ahora los sprites de los objetos del propio mapa se cargan primero (`AddOutdoorSprites`). Comprobado en los 394 mapas (`pruebas/simulacion`): ninguno queda con un PNJ andando sin fotogramas.
+10. **Barra de experiencia.** Los iconos de categoría de la 4.4 reutilizaban tiles de la barra; al abrir el panel de ataques, la barra mostraba esos símbolos en su extremo. Ahora se restauran al volver a dibujar la barra (`RestoreExpBarTiles`).
+
+**Historia**
+
+11. **Duelo con Elm.** Al darte la Master Ball (y en cada visita posterior hasta que lo hagas), Elm te ofrece un combate con los niveles de DÉBORA; sin muertes. Si ganas te regala un FERALIGATR, un MEGANIUM y un TYPHLOSION shiny al nivel 53 (una vez).
+12. **El otro protagonista (GOLD si eres chica, CRISTAL si eres chico).** Emboscadas tras las tres escenas en que Plata solo habla (Pueblo Primavera, Torre Bellsprout, Guarida Dragón): combate, cura a tu equipo, te da una MÁX. POCIÓN y se va. Combate final al entrar al Centro Pokémon de la Meseta Añil con un huevo de recuerdo; después vive en la casa de los vecinos de Pueblo Primavera con un RATTATA y cambia un ZURULLO de Ulex por un Pokémon aleatorio de tercera etapa.
+13. **Superliga.** Se abre al vencer a Tito (por su menú MÁS → SUPERLIGA o hablando con el entrenador de la Meseta). Cuatro retadores al nivel 100 con equipos aleatorios fuertes (Azul, Lance, Rojo, Ulex sin robo) y Tito como campeón (Mew, Celebi, Lugia, Ho-Oh, Dragonite, Mewtwo). Sin muertes, 99 RESTAU. TODO al entrar; si caes, los pierdes y hay que vencer otra vez a Tito; si ganas, un CHARIZARD shiny nivel 100 con una carta. Seis mapas nuevos con los gráficos de la Liga.
+14. **Dark Lugia** (nº 252, Siniestro/Volador, PS 106, Atq 130, Def 90, Vel 110, At. Esp. 154, Def. Esp. 90). No es capturable: se entrega a nivel 100 la primera vez que vences a Tito. Su sprite frontal es el arte de aficionado de Dark Lugia que aportó el autor (originario de DeviantArt, autor sin identificar; ver [CREDITOS.md](CREDITOS.md)), convertido a 4 colores con tres fotogramas de animación; la imagen trasera es la de Lugia con la paleta oscura.
+
+**Límites y cosas que no se han hecho**
+
+- Dark Lugia usa solo tres fotogramas de animación (el límite de tiles de la animación de Lugia es estricto) y su imagen trasera es la de Lugia recoloreada; su grito es el de Lugia con otro tono.
+- El combate del campeón de la Superliga no se juega entero en las pruebas (equipos de leyendas con Recuperación); se comprueba su flujo de recompensa con un atajo y el resto de la sala con el combate de Azul.
+- El huevo de Elm (Togepi) también eclosiona en un Pokémon aleatorio: la rama de la historia que reconoce a TOGEPI puede no darse.
+- Los textos del juego son los acordados con el autor; no se han revisado todas las líneas del juego original (solo las nuevas se auditaron por anchura).
+
+ROM de esta versión (reconstruida desde la base española aplicando el parche con RGBDS 1.0.0):
+
+| | SHA-256 |
+|---|---|
+| ROM normal (`Radical Cristal.gbc`) | `86052da1d0db6fbdeb0a3a87c784e7c8032395fe54523f6127fc7179736ad089` |
+| Sandbox | `a41a4c28dd574e6b0e0e00188482e156652249bae093e30c8edc92b964299556` |
+
+### Compatibilidad
+
+No necesita partida nueva respecto a la 4.4: las nuevas banderas de evento usan bits que estaban libres y la tabla de especies llega a la 252, que no cambia el tamaño de los registros del Pokédex. Los objetos de combate y la Master Ball siguen siendo los que ya tuvieras. El randomizador de esta versión solo acepta la ROM 5.0 (cambia la firma de la parte inmutable). Un guardado con una Poké Ball sin recoger la verá convertida en Máx. Poción.
+
 ## 4.4 — Interfaz y herramientas (22 de octubre de 2026)
 
 Cinco mejoras de interfaz y herramientas propuestas en el [informe de playtest](docs/INFORME-PLAYTEST-v4.3.md) y aprobadas por el autor, más dos correcciones de texto. La compilación pasa 140 comprobaciones agrupadas ([evidencias/Validacion-v4.4.json](evidencias/Validacion-v4.4.json)): las 137 anteriores y 3 nuevas.
@@ -12,7 +57,7 @@ Cinco mejoras de interfaz y herramientas propuestas en el [informe de playtest](
 4. **Tito respira.** En los Centros Pokémon, Tito alterna dos fotogramas cada pocos segundos (hombros y cabeza un píxel más bajos). Usa el fotograma alterno que la hoja ya tenía, un nuevo movimiento de sprite (`SPRITEMOVEDATA_STANDING_IDLE`) y la acción `OBJECT_ACTION_IDLE`; no consume VRAM ni WRAM adicionales.
 5. **Randomizador con vista previa.** Tras generar, la página muestra los iniciales, los equipos de los 22 líderes, Alto Mando y rivales principales (nombres de especie) y las 50 MT de la semilla. Solo muestra nombres; no hay sprites.
 6. **Dos líneas desbordadas** (la profesora de CIUDAD CEREZO y el santuario del Encinar) detectadas por el playtest. Antes estaban sueltas en `parches/correcciones-v4.3.1.patch`; ahora están integradas en `Cambios-fuente.patch`.
-7. **Integración continua real** en [`.github/workflows/verificacion.yml`](.github/workflows/verificacion.yml): sintaxis de herramientas y pruebas, descarga de la ROM de la Release enlazada en el README, comprobación de su SHA-256 y prueba del randomizador con esa ROM. Todavía no hay una ejecución real registrada: se comprobará tras el primer `push`.
+7. **Integración continua preparada** (`.github/workflows/verificacion.yml`, aún sin subir por falta del permiso `workflow` del token; el script que usa está en [`pruebas/ci`](pruebas/ci)): sintaxis de herramientas y pruebas, descarga de la ROM de la Release enlazada en el README, comprobación de su SHA-256 y prueba del randomizador con esa ROM. Todavía no hay una ejecución real registrada: se comprobará tras el primer `push`.
 
 ROM publicada (reconstruida desde la base española aplicando el parche y compilando con RGBDS 1.0.0):
 

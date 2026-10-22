@@ -6,7 +6,7 @@
       "disguise": "SPRITE_YOUNGSTER",
       "disguise_id": 39,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -14,7 +14,7 @@
       "disguise": "SPRITE_FISHER",
       "disguise_id": 58,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -22,7 +22,7 @@
       "disguise": "SPRITE_POKEFAN_M",
       "disguise_id": 45,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -30,7 +30,7 @@
       "disguise": "SPRITE_YOUNGSTER",
       "disguise_id": 39,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -38,7 +38,7 @@
       "disguise": "SPRITE_BIKER",
       "disguise_id": 74,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -46,7 +46,7 @@
       "disguise": "SPRITE_YOUNGSTER",
       "disguise_id": 39,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 36,
       "correct_vram": true
     },
     {
@@ -54,7 +54,7 @@
       "disguise": "SPRITE_BUG_CATCHER",
       "disguise_id": 37,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 36,
       "correct_vram": true
     },
     {
@@ -62,7 +62,7 @@
       "disguise": "SPRITE_FISHER",
       "disguise_id": 58,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -70,7 +70,7 @@
       "disguise": "SPRITE_YOUNGSTER",
       "disguise_id": 39,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -78,7 +78,7 @@
       "disguise": "SPRITE_LASS",
       "disguise_id": 40,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -86,7 +86,7 @@
       "disguise": "SPRITE_SAILOR",
       "disguise_id": 73,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -94,7 +94,7 @@
       "disguise": "SPRITE_SWIMMER_GUY",
       "disguise_id": 49,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -102,7 +102,7 @@
       "disguise": "SPRITE_SUPER_NERD",
       "disguise_id": 43,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -110,7 +110,7 @@
       "disguise": "SPRITE_FISHER",
       "disguise_id": 58,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {
@@ -118,7 +118,7 @@
       "disguise": "SPRITE_POKEFAN_M",
       "disguise_id": 45,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 24,
       "correct_vram": true
     },
     {
@@ -126,7 +126,7 @@
       "disguise": "SPRITE_BIKER",
       "disguise_id": 74,
       "reveal_id": 53,
-      "tile": 72,
+      "tile": 12,
       "correct_vram": true
     },
     {

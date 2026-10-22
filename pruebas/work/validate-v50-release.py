@@ -1,4 +1,4 @@
-"""Run the integration tests and retain their output for this exact ROM (v4.4)."""
+"""Run the integration tests and retain their output for this exact ROM (v5.0)."""
 from pathlib import Path
 import subprocess,sys,os,json,hashlib,shutil
 
@@ -19,14 +19,16 @@ groups=[('Tito services and maps','test-v4-tito.py',True,'v4-tito-tests.json',48
         ('Randomizer core','test-v4-randomizer.cjs',False,'v4-randomizer-tests.json',9),
         ('Offline randomizer UI','test-v4-randomizer-ui.cjs',False,'v4-randomizer-ui-tests.json',4),
         ('v4.3 changes (Fly, Map Card, marts, League supplies, candies, bag)','test-v43-changes.py',False,'v43-changes-tests.json',13),
-        ('v4.4 interface (level cap, move icons, Tito idle)','test-v44-changes.py',False,'v44-changes-tests.json',3)]
+        ('v4.4 interface (level cap, move icons, exp bar, Tito idle)','test-v44-changes.py',False,'v44-changes-tests.json',4),
+        ('v5.0 routines (infinite items, hatching, Super League picker, 10-step eggs)','test-v45-routines.py',False,'v45-routines-tests.json',13),
+        ('v5.0 story and world (Ulex warning, Joy, Elm, other protagonist, Super League, data)','test-v45-story.py',False,'v45-story-tests.json',19)]
 reports=[]
 for title,script,rom_arg,report,expected in groups:
     executable=str(node) if script.endswith('.cjs') else sys.executable
     args=[executable,str(work/script)]
     if rom_arg:args.append('work/source/pokecristal.gbc')
-    process=subprocess.run(args,cwd=root,env=env,capture_output=True,text=True,encoding='utf8',errors='replace',timeout=170)
-    (work/('v44-'+Path(script).stem+'.log')).write_text(process.stdout+'\n'+process.stderr,encoding='utf8')
+    process=subprocess.run(args,cwd=root,env=env,capture_output=True,text=True,encoding='utf8',errors='replace',timeout=1500)
+    (work/('v50-'+Path(script).stem+'.log')).write_text(process.stdout+'\n'+process.stderr,encoding='utf8')
     if process.returncode:
         print(process.stdout,process.stderr);raise SystemExit(process.returncode)
     result=json.loads((work/report).read_text(encoding='utf8'))
@@ -34,10 +36,11 @@ for title,script,rom_arg,report,expected in groups:
     reports.append({'name':title,'report':report,'passed':expected})
     print('PASS',title,expected,flush=True)
 digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
-summary={'version':'4.4','fecha':'2026-10-22','normal_sha256':digest(work/'source/pokecristal.gbc'),
+summary={'version':'5.0','fecha':'2026-10-22','normal_sha256':digest(work/'source/pokecristal.gbc'),
          'sandbox_sha256':digest(work/'source/pokecristal_debug.gbc'),'passed':sum(g['passed'] for g in reports),
          'groups':reports,'limitaciones':['No equivale a una campaña completa.',
          'Se omite la introducción en las pruebas de interfaz; en Ruta 17 se desactiva la gravedad solo en el montaje de prueba.',
-         'Las pruebas de combate de Ulex aumentan el daño para recorrer sus equipos; no evalúan el equilibrio completo.']}
-(work/'v44-validation.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='utf8')
+         'Las pruebas de combate de Ulex aumentan el daño para recorrer sus equipos; no evalúan el equilibrio completo.',
+         'Los combates de las pruebas de la v5.0 (Elm, emboscadas, Meseta Añil, sala de Azul) se juegan con un Mewtwo de estadísticas infladas; el combate contra el campeón de la Superliga no se juega entero: se comprueba su recompensa con un atajo.']}
+(work/'v50-validation.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='utf8')
 print(json.dumps(summary,ensure_ascii=False,indent=2))

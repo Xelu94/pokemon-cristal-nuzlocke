@@ -1,29 +1,31 @@
-# Pokémon Cristal Nuzlocke — Tito Xeluis
+# Radical Cristal — Tito Xeluis
 
-Modificación personal de **Pokémon Cristal** para Game Boy Color con un Nuzlocke integrado en el motor, combate modernizado, aleatorización por niveles y personajes propios. Versión **4.4**. Autor: **Tito Xeluis** (apodo de YouTube; [@Xelu94](https://github.com/Xelu94) en GitHub). El NPC Tito Xeluis del juego lleva el nombre del autor.
+Modificación personal de **Pokémon Cristal** (antes «Cristal Nuzlocke») para Game Boy Color con un Nuzlocke integrado en el motor, combate modernizado, aleatorización por niveles, una liga extra y personajes propios. Versión **5.0**. Autor: **Tito Xeluis** (apodo de YouTube; [@Xelu94](https://github.com/Xelu94) en GitHub). El NPC Tito Xeluis del juego lleva el nombre del autor.
 
-> *English summary:* a personal ROM hack of Pokémon Crystal (Game Boy Color, SM83 assembly) built on the Spanish source tree of [MicaelAlighieri/pokecristal](https://github.com/MicaelAlighieri/pokecristal) and the [pret/pokecrystal](https://github.com/pret/pokecrystal) disassembly. It adds built-in Nuzlocke rules, per-move physical/special split, a Fairy type, level caps, a custom NPC (Tito Xeluis), a roaming thief (Ulex), a sandbox build for testing and an offline seed-based randomizer. It is **not** a game written from scratch and **not** an official Pokémon product. Spanish only. Download the single `.gbc` from [Releases](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases) and open it in a Game Boy Color emulator.
+> *English summary:* **Radical Cristal** is a personal ROM hack of Pokémon Crystal (Game Boy Color, SM83 assembly) built on the Spanish source tree of [MicaelAlighieri/pokecristal](https://github.com/MicaelAlighieri/pokecristal) and the [pret/pokecrystal](https://github.com/pret/pokecrystal) disassembly. It adds built-in Nuzlocke rules, per-move physical/special split, a Fairy type, level caps, a custom NPC (Tito Xeluis), a roaming thief (Ulex), the other protagonist as a rival, a 5-fight Super League at level 100, a new Dark Lugia, a sandbox build for testing and an offline seed-based randomizer. It is **not** a game written from scratch and **not** an official Pokémon product. Spanish only. Download the single `.gbc` from [Releases](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases) and open it in a Game Boy Color emulator.
+
+![Pantalla de título de Radical Cristal](capturas/titulo-radical-cristal.png)
 
 ![Selección de ataques con potencia, tipo, categoría y PP](capturas/combate-panel.png)
 
 ## Descarga y cómo jugar
 
-**[⬇ Descargar Pokemon Cristal Nuzlocke.gbc (v4.4)](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/download/v4.4/Pokemon.Cristal.Nuzlocke.gbc)** — enlace directo al asset de la [Release v4.4](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.4). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
+**[⬇ Descargar Radical Cristal.gbc (v5.0)](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/download/v5.0/Radical.Cristal.gbc)** — enlace directo al asset de la [Release v5.0](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v5.0). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
 
-Versiones anteriores publicadas: [v4.3](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.3) y [v4.2](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.2).
+Versiones anteriores publicadas: [v4.4](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.4), [v4.3](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.3) y [v4.2](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.2).
 
 | | |
 |---|---|
-| Archivo | `Pokemon Cristal Nuzlocke.gbc` (2 MiB) |
-| Versión | 4.4 |
-| SHA-256 | `b4cff3b076988a780d6570653d677b7fecab1cbb4fdfcc6dde8cda5a22c1e3ef` |
+| Archivo | `Radical Cristal.gbc` (2 MiB) |
+| Versión | 5.0 |
+| SHA-256 | `86052da1d0db6fbdeb0a3a87c784e7c8032395fe54523f6127fc7179736ad089` |
 1. Descarga el único archivo `.gbc` de la Release. No hay ZIP, parches ni instalador: no necesitas una ROM base ni aplicar nada.
 2. Ábrelo con un emulador compatible con Game Boy Color (por ejemplo mGBA). El emulador se obtiene por separado y no forma parte de este proyecto.
 3. Guarda dentro del juego. Las actualizaciones de esta familia continúan el guardado interno (`.sav`); no uses estados rápidos de otra compilación. Detalles en [compatibilidad de guardados](docs/COMPATIBILIDAD-GUARDADOS.md).
 
 El modo de velocidad ×2 depende de las opciones del emulador de cada jugador; no es una aceleración añadida al motor.
 
-Comprueba la descarga (PowerShell): `Get-FileHash "Pokemon Cristal Nuzlocke.gbc" -Algorithm SHA256`.
+Comprueba la descarga (PowerShell): `Get-FileHash "Radical Cristal.gbc" -Algorithm SHA256`.
 
 ## Qué aporta al jugador
 
@@ -36,7 +38,8 @@ Comprueba la descarga (PowerShell): `Get-FileHash "Pokemon Cristal Nuzlocke.gbc"
 - **Sin curas en las tiendas.** Ninguna tienda vende pociones, revivir ni curas de estado; en la LIGA, el oficial de la CALLE VICTORIA entrega una vez 8 MÁX. POCIÓN, 10 HÍPER POCIÓN y 7 RESTAU. TODO.
 - **Tito Xeluis** en 22 Centros Pokémon: intercambios, recordador de movimientos, guía de evoluciones y un jefe extra tras vencer a Rojo.
 - **Ulex el Ladrón**: 16 encuentros disfrazados en rutas de Johto y Kanto.
-- **Sandbox** (compilación aparte, no se distribuye como descarga): viajes, medallas, equipo y objetos para probar.
+- **Superliga y otro protagonista**: una liga extra tras vencer a Tito y un rival nuevo (GOLD o CRISTAL) con tres emboscadas, un combate final y un canje.
+- **Sandbox** (compilación aparte, no se distribuye como descarga): viajes, medallas, equipo y objetos para probar; incluye los mapas de la Superliga.
 
 ![Bolsa con el tipo de objeto en el recuadro negro](capturas/bolsa-medicina.png) ![Menú del Pokémon con VUELO](capturas/menu-vuelo.png)
 ![Reglas Nuzlocke explicadas por Tito](capturas/tito-reglas.png) ![El anciano entrega el mapa](capturas/anciano-mapa.png)
@@ -60,12 +63,26 @@ El proyecto evoluciona una base existente de ensamblador SM83 con límites estri
 
 ![Randomizador sin conexión](capturas/randomizador.png)
 
-### Novedades de la versión 4.4
+### Novedades de la versión 5.0
 
-Cinco mejoras de interfaz y herramientas: tope de nivel en la pantalla de estado, iconos de categoría en el panel de ataques, rótulos en toda la mochila, animación de reposo de Tito y vista previa de la semilla en el randomizador. Detalle en el [CHANGELOG](CHANGELOG.md).
+- **Superliga** al vencer a Tito: cuatro retadores y un campeón al nivel 100, sin muertes, con 99 RESTAU. TODO y la carta final ([detalle y diálogos](docs/SUPERLIGA-Y-RIVAL.md)).
+- **El otro protagonista** (GOLD o CRISTAL) te embosca tras las escenas en que Plata solo habla, te da un último combate en la Meseta Añil y vive después en Pueblo Primavera.
+- **Duelo con Elm** y tres starters shiny.
+- **Dark Lugia** (Siniestro/Volador, estadísticas ofensivas) al vencer por primera vez a Tito.
+- **Enfermeras Joy** en las rutas lejos de un Centro Pokémon, **piedras evolutivas** en Trigal, **bayas doradas** en vez de bonguri, **Máx. Poción** en lugar de Balls y huevos que eclosionan en 10 pasos en un shiny aleatorio.
+- El aviso sobre Ulex en lugar del tutorial de captura, objetos de combate infinitos, y los arreglos de la animación de andar y de la barra de experiencia.
+
+![Duelo con Elm](capturas/duelo-elm.png)
+![El otro protagonista](capturas/otro-protagonista.png)
+![Superliga](capturas/superliga.png)
+![Dark Lugia](capturas/dark-lugia.png)
+![Enfermera Joy en una ruta](capturas/enfermera-joy.png)
+
+Novedades de la 4.4: tope de nivel en la pantalla de estado, iconos de categoría en el panel de ataques, rótulos en toda la mochila, Tito respira y vista previa de la semilla en el randomizador.
 
 ![Tope de nivel](capturas/estadisticas-tope.png) ![Iconos de categoría](capturas/iconos-categoria-ataque.png)
 ![Rótulos de la mochila](capturas/bolsa-rotulos.png) ![Tito respira](capturas/tito-reposo.png)
+
 
 ## Tecnología
 
@@ -75,24 +92,23 @@ No es una aplicación React, Electron, Unity ni Godot, y no usa servidor, base d
 
 ## Estado y validación
 
-La versión 4.4 pasó **140 comprobaciones agrupadas**: 124 de los componentes ya existentes (servicios y mapas de Tito 48, orientaciones renderizadas 4, rutas de Ulex y Objetos 17, combates de Ulex y menú sandbox 27, cálculos de combate y almacenamiento 11, interfaz real de combate y captura 4, núcleo del randomizador 9, navegador sin conexión 4), 13 de la 4.3 (Vuelo, anciano del mapa, tiendas, suministros de la Liga, caramelos y bolsa) y 3 nuevas de la 4.4 (tope en estado, iconos de ataque y respiración de Tito). Es un recuento de comprobaciones, **no un porcentaje de cobertura**; algunas agrupan muchos casos (Poder Oculto se contrasta con 768 combinaciones de DVs). Las comprobaciones de informes de versiones anteriores no se suman.
+La versión 5.0 pasó **173 comprobaciones agrupadas**: 124 de los componentes ya existentes (servicios y mapas de Tito 48, orientaciones renderizadas 4, rutas de Ulex y Objetos 17, combates de Ulex y menú sandbox 27, cálculos de combate y almacenamiento 11, interfaz real de combate y captura 4, núcleo del randomizador 9, navegador sin conexión 4), 13 de la 4.3 (Vuelo, anciano del mapa, tiendas, suministros de la Liga, caramelos y bolsa), 4 de la 4.4 (tope en estado, iconos de ataque, barra de experiencia y respiración de Tito) y 32 de la 5.0 (objetos infinitos, huevos, selector de la Superliga, aviso de Ulex, Joy, Elm, el otro protagonista, la Superliga y los datos). Es un recuento de comprobaciones, **no un porcentaje de cobertura**; algunas agrupan muchos casos (Poder Oculto se contrasta con 768 combinaciones de DVs). Las comprobaciones de informes de versiones anteriores no se suman.
 
 La reconstrucción también está comprobada: aplicar el parche a la base española y compilar con RGBDS 1.0.0 produce exactamente los SHA-256 de la ROM normal y de la compilación sandbox de los informes.
 
-Límites reales: los montajes omiten la introducción; algunos combates aumentan el daño para recorrer los equipos; en Ruta 17 se desactiva la gravedad solo en la prueba. No se ha completado una campaña entera ni queda demostrado el equilibrio global. El fallo móvil original de Viento Hielo no se reprodujo con el mismo emulador y guardado del usuario. La integración continua ([`verificacion.yml`](.github/workflows/verificacion.yml)) solo comprueba sintaxis, la ROM de la Release y el randomizador; la compilación completa y las pruebas con emulador son locales. Informe: [evidencias/Validacion-v4.4.json](evidencias/Validacion-v4.4.json).
+Límites reales: los montajes omiten la introducción; algunos combates aumentan el daño para recorrer los equipos; en Ruta 17 se desactiva la gravedad solo en la prueba. No se ha completado una campaña entera ni queda demostrado el equilibrio global. El fallo móvil original de Viento Hielo no se reprodujo con el mismo emulador y guardado del usuario. La integración continua está preparada (script en [`pruebas/ci`](pruebas/ci)) pero su flujo de GitHub Actions todavía no se ha podido subir (el token usado no tiene el permiso `workflow`); hoy todo se ejecuta en local. Informe: [evidencias/Validacion-v5.0.json](evidencias/Validacion-v5.0.json).
 No implementado: habilidades, megaevolución, generaciones tercera/cuarta, recursos de Prism.
 
 ## Contenido del repositorio
 
 | Carpeta | Contenido |
 |---|---|
-| [`docs/`](docs) | Mecánicas, arquitectura, compilación y pruebas, compatibilidad, movimientos, niveles, sandbox, randomizador, recursos |
+| [`docs/`](docs) | Mecánicas, Superliga y rival, arquitectura, compilación y pruebas, compatibilidad, movimientos, niveles, sandbox, randomizador, recursos |
 | [`parches/`](parches) | `Cambios-fuente.patch`: modificaciones del código fuente sobre la base española |
 | [`recursos/`](recursos) | Sprites y paleta de Tito Xeluis |
 | [`herramientas/`](herramientas) | Randomizador portable y sus fuentes, generador del sprite |
 | [`pruebas/`](pruebas) | Scripts de validación portables, herramientas de [playtest automatizado](pruebas/simulacion) y scripts de [integración continua](pruebas/ci) |
-| [`.github/workflows/`](.github/workflows) | Flujo de GitHub Actions de verificación |
-| [`evidencias/`](evidencias) | Informes JSON de las pruebas (4.3 y 4.4) |
+| [`evidencias/`](evidencias) | Informes JSON de las pruebas (4.3, 4.4 y 5.0) |
 | [`capturas/`](capturas) | Capturas reales |
 | [`publicacion/`](publicacion) | Textos de la Release, descripción y resumen para portfolio |
 

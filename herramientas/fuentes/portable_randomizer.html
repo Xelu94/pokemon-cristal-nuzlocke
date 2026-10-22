@@ -1,8 +1,8 @@
-<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Randomizador de Cristal Nuzlocke</title>
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Randomizador de Radical Cristal</title>
 <style>body{font:17px system-ui;color:#e6efff;background:#0d1424;max-width:780px;margin:60px auto;padding:0 24px;line-height:1.6}h1{line-height:1.15;font-size:36px}label{display:block;margin-top:25px;font-weight:700}input{display:block;width:100%;box-sizing:border-box;padding:13px;background:#18243a;border:1px solid #53729e;border-radius:8px;color:inherit;font:inherit}button{padding:13px 20px;margin:22px 10px 0 0;border:0;border-radius:8px;background:#91d5ff;color:#111d30;font:700 16px system-ui;cursor:pointer}button:disabled{opacity:.5}#status{white-space:pre-wrap;border-top:1px solid #405675;padding-top:20px}small{color:#b5c7e0}h2{font-size:22px;margin:30px 0 8px}table{border-collapse:collapse;width:100%;font-size:15px}td,th{border-top:1px solid #405675;padding:6px 8px;text-align:left;vertical-align:top}th{color:#91d5ff}code{color:#91d5ff}</style>
-<h1>Una aventura diferente<br>con tus mismas reglas</h1><p>Pokémon Cristal Nuzlocke · Tito Xeluis · versión 4</p>
+<h1>Una aventura diferente<br>con tus mismas reglas</h1><p>Radical Cristal · Tito Xeluis · versión 5</p>
 <p>Genera otra distribución de Pokémon y MTs conservando los niveles, la dificultad, los eventos, las MOs y todas las reglas. Los movimientos de los Pokémon siguen siendo aleatorios durante el juego. El equipo final de Tito permanece fijo.</p>
-<label for="rom">1. Selecciona la ROM de esta versión</label><input id="rom" type="file" accept=".gbc,.gb"><small>Usa «Pokemon Cristal Nuzlocke.gbc», o una copia generada con este randomizador.</small>
+<label for="rom">1. Selecciona la ROM de esta versión</label><input id="rom" type="file" accept=".gbc,.gb"><small>Usa «Radical Cristal.gbc», o una copia generada con este randomizador.</small>
 <label for="seed">2. Escribe una semilla</label><input id="seed" maxlength="80"><small>La misma ROM y semilla producen la misma distribución. Comparte la semilla para compartir el reto.</small>
 <button id="new">Otra semilla</button><button id="generate">Generar y descargar ROM</button>
 <p>Empieza una partida nueva al cambiar de semilla. Los guardados pertenecen a su aventura; las ROMs generadas llevan la semilla en el nombre.</p>
@@ -32,7 +32,7 @@ document.querySelector('#generate').onclick=async function(){
   const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',masked)),x=>x.toString(16).padStart(2,'0')).join('');
   if(digest!==manifest.immutableSHA256)throw Error('Esta ROM no es compatible con el randomizador v4. Usa la ROM incluida junto a esta herramienta.');
   const result=CristalRandomizer.randomize(bytes,manifest,seed.value.trim());
-  const name='Cristal-Nuzlocke-'+seed.value.replace(/[^a-zA-Z0-9_-]/g,'_').slice(0,50)+'.gbc';
+  const name='Radical-Cristal-'+seed.value.replace(/[^a-zA-Z0-9_-]/g,'_').slice(0,50)+'.gbc';
   const url=URL.createObjectURL(new Blob([result.bytes],{type:'application/octet-stream'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);
   showPreview(result);
   status.textContent='ROM generada: '+name+'\nSemilla: '+result.seed+'\n'+result.sites+' referencias de Pokémon y 50 MTs aleatorizadas.\nAbre el archivo descargado en el emulador y comienza una partida nueva.';

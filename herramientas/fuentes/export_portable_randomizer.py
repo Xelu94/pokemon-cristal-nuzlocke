@@ -17,7 +17,8 @@ rand=Randomizer(20261019)
 evos=(ROOT/'data/pokemon/evos_attacks.asm').read_text(encoding='utf8')
 normal={re.sub('[^A-Z0-9]','',mon):mon for mon in rand.species}
 for name,body in re.findall(r'^(\w+)EvosAttacks:\n(.*?)(?=^\w+EvosAttacks:|\Z)',evos,re.M|re.S):
- parent=normal[name.upper()]
+ parent=normal.get(name.upper())
+ if parent is None:continue # Dark Lugia is not part of the randomized species
  for threshold,child in re.findall(r'^\s*db EVOLVE_(?:LEVEL|STAT), (\d+), (?:[^\n,]+, )?([A-Z][A-Z0-9_]+)\s*$',body,re.M):
   if child in rand.ids:rand.parents[child]=(parent,int(threshold))
 for mon in rand.species:
@@ -73,7 +74,8 @@ for line in (ROOT/'data/trainers/parties.asm').read_text(encoding='utf8').splitl
   current=m[1] if m[1] in LEADER_GROUPS else None;continue
  m=re.match(r'\s*db "([^@]+)@", TRAINERTYPE',line)
  if m and current:
-  leaders[current]={'name':m[1],'keys':[]};continue
+  if current not in leaders:leaders[current]={'name':m[1],'keys':[]} # extra parties of the same group (Super League) are not randomized
+  continue
  m=re.match(r'^\.(__RZ\d+):',line)
  if m and current:leaders[current]['keys'].append(m[1])
 manifest['leaders']=[leaders[g] for g in LEADER_GROUPS if g in leaders]

@@ -1,0 +1,81 @@
+{
+  "passed": 19,
+  "tests": [
+    {
+      "name": "no tree gives an apricorn any more",
+      "passed": true
+    },
+    {
+      "name": "no map places or gives any ball other than the Master Ball",
+      "passed": true
+    },
+    {
+      "name": "Master Ball, Rare Candy and the five starting combat items are worth 0",
+      "passed": true
+    },
+    {
+      "name": "the Goldenrod stone vendor sells all six evolution stones",
+      "passed": true
+    },
+    {
+      "name": "Dark Lugia is Dark/Flying with Hp 106, Atk 130, Def 90, Spd 110, SpA 154 and SpD 90",
+      "passed": true
+    },
+    {
+      "name": "walking past the tutorial NPC makes him warn about Ulex and the level 15 rule",
+      "passed": true
+    },
+    {
+      "name": "the nurse on Route 13 heals the party",
+      "passed": true
+    },
+    {
+      "name": "the rival sprite is loaded in a walking-capable slot in Cherrygrove",
+      "passed": true
+    },
+    {
+      "name": "beating Elm gives Feraligatr, Meganium and Typhlosion, all shiny",
+      "passed": true
+    },
+    {
+      "name": "the duel is exhibition: nothing died and the flags are clear",
+      "passed": true
+    },
+    {
+      "name": "after the rival leaves New Bark Town the other protagonist battles, heals the party and hands over a Max Potion",
+      "passed": true
+    },
+    {
+      "name": "in Sprout Tower the other protagonist appears after the rival and gives a Max Potion",
+      "passed": true
+    },
+    {
+      "name": "the Indigo Plateau fight ends with an egg in the party and the other protagonist gone for good",
+      "passed": true
+    },
+    {
+      "name": "at home she trades a Zurullo for a random third-stage Pokemon at the level cap minus five",
+      "passed": true
+    },
+    {
+      "name": "the Super League official hands over 99 Full Restores and opens the door",
+      "passed": true
+    },
+    {
+      "name": "the lobby door leads to Azul's room",
+      "passed": true
+    },
+    {
+      "name": "beating Azul in the Super League opens his door and leaves no one dead",
+      "passed": true
+    },
+    {
+      "name": "losing in the Super League returns to the Pokemon Center, takes the Full Restores, keeps the Pokemon and locks the league",
+      "passed": true
+    },
+    {
+      "name": "the Super League champion hands over a shiny level-100 Charizard holding a letter",
+      "passed": true
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "passed": 3,
+  "passed": 4,
   "tests": [
     {
       "name": "the stats page prints TOPE and the level cap (24 with one badge) on its bottom row",
@@ -7,6 +7,10 @@
     },
     {
       "name": "the move panel shows a physical, a special and a status icon in its category column",
+      "passed": true
+    },
+    {
+      "name": "after a turn the experience bar tiles are restored in VRAM",
       "passed": true
     },
     {

@@ -11,16 +11,16 @@
     "All20 eggs have valid first-stage species, level5 EXP/stats/currentHP0, preserved DVs and four shiny slots",
     "Global cartridge checksums are correct and invalid size/empty seed are rejected"
   ],
-  "baseSHA256": "b4cff3b076988a780d6570653d677b7fecab1cbb4fdfcc6dde8cda5a22c1e3ef",
-  "generatedSHA256": "46763031f381e6817761aa6b3745d5e85c9dae1c11de43fe986cf1edbe3d14fd",
-  "differentSeedSHA256": "40d7a89a227c4634934432bb46ed682757c44727ec0e796c68498ef7365f76f9",
-  "changedBytes": 5797,
+  "baseSHA256": "86052da1d0db6fbdeb0a3a87c784e7c8032395fe54523f6127fc7179736ad089",
+  "generatedSHA256": "7208ec73d07858058b0e5f4e9492e1061d5be2c3a72d93b61227b86b246990e7",
+  "differentSeedSHA256": "9e914bded3b75fb9a6a6dd2cedc51eec89e2552e7002a38a6eba846eb4451fb3",
+  "changedBytes": 5830,
   "starters": [
     60,
     102,
     246
   ],
-  "groups": 3749,
-  "sites": 3774,
+  "groups": 3746,
+  "sites": 3771,
   "rom": "v4-randomizer-seed-a.gbc"
 }
