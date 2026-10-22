@@ -1,5 +1,5 @@
 <!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Randomizador de Cristal Nuzlocke</title>
-<style>body{font:17px system-ui;color:#e6efff;background:#0d1424;max-width:780px;margin:60px auto;padding:0 24px;line-height:1.6}h1{line-height:1.15;font-size:36px}label{display:block;margin-top:25px;font-weight:700}input{display:block;width:100%;box-sizing:border-box;padding:13px;background:#18243a;border:1px solid #53729e;border-radius:8px;color:inherit;font:inherit}button{padding:13px 20px;margin:22px 10px 0 0;border:0;border-radius:8px;background:#91d5ff;color:#111d30;font:700 16px system-ui;cursor:pointer}button:disabled{opacity:.5}#status{white-space:pre-wrap;border-top:1px solid #405675;padding-top:20px}small{color:#b5c7e0}</style>
+<style>body{font:17px system-ui;color:#e6efff;background:#0d1424;max-width:780px;margin:60px auto;padding:0 24px;line-height:1.6}h1{line-height:1.15;font-size:36px}label{display:block;margin-top:25px;font-weight:700}input{display:block;width:100%;box-sizing:border-box;padding:13px;background:#18243a;border:1px solid #53729e;border-radius:8px;color:inherit;font:inherit}button{padding:13px 20px;margin:22px 10px 0 0;border:0;border-radius:8px;background:#91d5ff;color:#111d30;font:700 16px system-ui;cursor:pointer}button:disabled{opacity:.5}#status{white-space:pre-wrap;border-top:1px solid #405675;padding-top:20px}small{color:#b5c7e0}h2{font-size:22px;margin:30px 0 8px}table{border-collapse:collapse;width:100%;font-size:15px}td,th{border-top:1px solid #405675;padding:6px 8px;text-align:left;vertical-align:top}th{color:#91d5ff}code{color:#91d5ff}</style>
 <h1>Una aventura diferente<br>con tus mismas reglas</h1><p>Pokémon Cristal Nuzlocke · Tito Xeluis · versión 4</p>
 <p>Genera otra distribución de Pokémon y MTs conservando los niveles, la dificultad, los eventos, las MOs y todas las reglas. Los movimientos de los Pokémon siguen siendo aleatorios durante el juego. El equipo final de Tito permanece fijo.</p>
 <label for="rom">1. Selecciona la ROM de esta versión</label><input id="rom" type="file" accept=".gbc,.gb"><small>Usa «Pokemon Cristal Nuzlocke.gbc», o una copia generada con este randomizador.</small>
@@ -7,11 +7,20 @@
 <button id="new">Otra semilla</button><button id="generate">Generar y descargar ROM</button>
 <p>Empieza una partida nueva al cambiar de semilla. Los guardados pertenecen a su aventura; las ROMs generadas llevan la semilla en el nombre.</p>
 <p id="status">Todo funciona en tu navegador. La ROM se procesa en este equipo.</p>
+<div id="preview" hidden><h2>Vista previa de esta semilla</h2><div id="previewBody"></div></div>
 <script>/*__CORE__*/</script><script>
 const manifest=/*__MANIFEST__*/;
 const seed=document.querySelector('#seed'),status=document.querySelector('#status');
 function fresh(){const a=new Uint32Array(2);crypto.getRandomValues(a);seed.value=Array.from(a,n=>n.toString(16).padStart(8,'0')).join('');}
 document.querySelector('#new').onclick=fresh;fresh();
+function showPreview(r){
+ const sp=id=>manifest.speciesNames[id-1]||('#'+id),mv=id=>manifest.moveNames[id-1]||('#'+id);
+ const row=(a,b)=>'<tr><th>'+a+'</th><td>'+b+'</td></tr>';
+ let html='<table>'+row('Iniciales',r.starters.map(sp).join(', '));
+ for(const l of manifest.leaders)html+=row(l.name,l.keys.map(k=>sp(r.chosen[k]||0)).join(', '));
+ html+=row('MT01–MT50',r.tms.map(mv).join(', '))+'</table><small>Solo cambian las especies y las MT; niveles, MO y reglas se conservan.</small>';
+ document.querySelector('#previewBody').innerHTML=html;document.querySelector('#preview').hidden=false;
+}
 document.querySelector('#generate').onclick=async function(){
  this.disabled=true;
  try{
@@ -25,6 +34,7 @@ document.querySelector('#generate').onclick=async function(){
   const result=CristalRandomizer.randomize(bytes,manifest,seed.value.trim());
   const name='Cristal-Nuzlocke-'+seed.value.replace(/[^a-zA-Z0-9_-]/g,'_').slice(0,50)+'.gbc';
   const url=URL.createObjectURL(new Blob([result.bytes],{type:'application/octet-stream'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);
+  showPreview(result);
   status.textContent='ROM generada: '+name+'\nSemilla: '+result.seed+'\n'+result.sites+' referencias de Pokémon y 50 MTs aleatorizadas.\nAbre el archivo descargado en el emulador y comienza una partida nueva.';
  }catch(e){status.textContent=e.message;}finally{this.disabled=false;}
 };

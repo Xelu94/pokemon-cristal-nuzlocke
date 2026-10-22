@@ -56,7 +56,7 @@ El inventario ocupa 50 montones y el PC 20 (antes 20 y 50): se conservan los 70 
 
 ## Qué distingue base y modificación
 
-La base (motor, mapas, gráficos y textos de Pokémon Cristal en español) procede de MicaelAlighieri/pokecristal y pret/pokecrystal. Las modificaciones están agrupadas en `parches/Cambios-fuente.patch`: 63 archivos de `engine/`, 59 de `maps/`, 56 de `data/`, 14 de `tools/`, 9 de `constants/`, 7 de `gfx/`, 2 de `ram/` y los archivos raíz `.gitattributes` y `main.asm`, más `home/trainers.asm`.
+La base (motor, mapas, gráficos y textos de Pokémon Cristal en español) procede de MicaelAlighieri/pokecristal y pret/pokecrystal. Las modificaciones están agrupadas en `parches/Cambios-fuente.patch`: 65 archivos de `engine/`, 63 de `maps/`, 57 de `data/`, 16 de `tools/`, 11 de `constants/`, 10 de `gfx/`, 2 de `ram/`, 1 de `home/` y los archivos raíz `.gitattributes` y `main.asm` (227 en total).
 
 ## Cambios de la 4.3 con restricciones de memoria
 
@@ -67,3 +67,11 @@ La base (motor, mapas, gráficos y textos de Pokémon Cristal en español) proce
 - **Escena del anciano.** Dos eventos de coordenada en la entrada de Ciudad Cerezo (filas 6 y 7, columna 36), activos solo en la escena inicial, mueven al anciano hasta el jugador; la visita guiada y sus textos se eliminaron.
 - **Suministros de la Liga.** Tres flags de evento nuevos (`EVENT_GOT_LEAGUE_*`) en un rango libre de la tabla de eventos permiten reanudar la entrega si la mochila estaba llena.
 - **Tiendas.** `data/items/marts.asm` se reescribe sin objetos curativos; los tres casos que quedaban vacíos reciben artículos no curativos. Las máquinas expendedoras (dos mapas) se sustituyen por un texto.
+
+## Cambios de la 4.4
+
+- **Tope de nivel en la pantalla de estado.** `LoadPinkPage` termina imprimiendo «TOPE» en la fila 17 y el nivel con `PrintLevel`. `GetCurrentLevelCap` devuelve el límite en `b`; como `PrintLevel` lee `wTempMonLevel`, se guarda ese byte, se sustituye por el límite y se restaura. No se añade WRAM.
+- **Iconos de categoría de ataque.** Tres tiles 2bpp (`gfx/battle/move_categories.png`, generados por `herramientas/fuentes/build_move_icons.py`) en una sección ROMX propia (`SECTION "Move category icons"`), porque el banco del combate (`Battle Core`) está casi lleno. `DrawMoveCategoryIcon` se llama con `farcall` al final del dibujo del recuadro de información del movimiento: lee los dos bits altos del tipo del movimiento (la categoría), copia los tres tiles al identificador de fondo 89 (`MOVE_CATEGORY_ICON_TILE`, libre en la pantalla de combate) con `Get2bpp` y coloca el índice correspondiente en la columna de la categoría.
+- **Rótulos nativos de la mochila.** `build_pack_labels.py` redibuja en `gfx/pack/pack_menu.png` los tres rótulos originales (OBJ.CLAVE, MT/MO y BALLS) con la misma tipografía de cinco píxeles que los cuatro propios. Es arte, no código: ocupan los mismos tiles que antes.
+- **Animación de reposo.** Nuevo movimiento de sprite `SPRITEMOVEDATA_STANDING_IDLE` (función `MovementFunction_StandingIdle`, acción `OBJECT_ACTION_IDLE`) con la rutina `SetFacingIdle`, que fija el fotograma «paso 0» de la dirección actual y, durante 16 de cada 128 cuadros (según `hVBlankCounter`), el «paso 1». La hoja de Tito (16×96) ya tenía una segunda mitad de fotogramas alternos; `build_tito_sprite.py` la genera ahora como la misma pose con cabeza y tronco un píxel más abajo. Los 22 Tito de los Centros Pokémon usan el nuevo movimiento. Sin VRAM ni WRAM nuevas: los sprites de pie y de paso ya se cargan en dos copias de tiles (`$3c` y `$bc`), por lo que las pruebas aceptan Tito en cualquiera de las dos copias.
+- **Vista previa del randomizador.** El exportador añade al manifiesto `speciesNames`, `moveNames`, `leaders` (22 grupos de entrenador, con las claves `.__RZ` de sus ranuras de `parties.asm`) y `starterKeys`; `randomize` devuelve ahora `chosen` con las elecciones por clave. Es solo lectura y no cambia los bytes generados.

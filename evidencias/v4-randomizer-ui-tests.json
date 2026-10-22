@@ -1,11 +1,11 @@
 {
   "passed": 4,
   "tests": [
-    "Actual offline browser selection/generation/download matches pure core",
+    "Actual offline browser selection/generation/download matches pure core and shows the seed preview",
     "Incompatible ROM rejected before any mutation",
     "Generated ROM can be reseeded and produces a different adventure",
     "No network requests or browser script errors"
   ],
   "browser": "Playwright Chromium headless",
-  "sha256": "a6a232589e9ff8859bc9307c3593707c753dcaf8b6be65a8ba835faafe949b1e"
+  "sha256": "b4cff3b076988a780d6570653d677b7fecab1cbb4fdfcc6dde8cda5a22c1e3ef"
 }

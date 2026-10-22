@@ -1,6 +1,6 @@
 # Pokémon Cristal Nuzlocke — Tito Xeluis
 
-Modificación personal de **Pokémon Cristal** para Game Boy Color con un Nuzlocke integrado en el motor, combate modernizado, aleatorización por niveles y personajes propios. Versión **4.3**. Autor: **Tito Xeluis** (apodo de YouTube; [@Xelu94](https://github.com/Xelu94) en GitHub). El NPC Tito Xeluis del juego lleva el nombre del autor.
+Modificación personal de **Pokémon Cristal** para Game Boy Color con un Nuzlocke integrado en el motor, combate modernizado, aleatorización por niveles y personajes propios. Versión **4.4**. Autor: **Tito Xeluis** (apodo de YouTube; [@Xelu94](https://github.com/Xelu94) en GitHub). El NPC Tito Xeluis del juego lleva el nombre del autor.
 
 > *English summary:* a personal ROM hack of Pokémon Crystal (Game Boy Color, SM83 assembly) built on the Spanish source tree of [MicaelAlighieri/pokecristal](https://github.com/MicaelAlighieri/pokecristal) and the [pret/pokecrystal](https://github.com/pret/pokecrystal) disassembly. It adds built-in Nuzlocke rules, per-move physical/special split, a Fairy type, level caps, a custom NPC (Tito Xeluis), a roaming thief (Ulex), a sandbox build for testing and an offline seed-based randomizer. It is **not** a game written from scratch and **not** an official Pokémon product. Spanish only. Download the single `.gbc` from [Releases](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases) and open it in a Game Boy Color emulator.
 
@@ -8,15 +8,15 @@ Modificación personal de **Pokémon Cristal** para Game Boy Color con un Nuzloc
 
 ## Descarga y cómo jugar
 
-**[⬇ Descargar Pokemon Cristal Nuzlocke.gbc (v4.3)](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/download/v4.3/Pokemon.Cristal.Nuzlocke.gbc)** — enlace directo al asset de la [Release v4.3](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.3). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
+**[⬇ Descargar Pokemon Cristal Nuzlocke.gbc (v4.4)](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/download/v4.4/Pokemon.Cristal.Nuzlocke.gbc)** — enlace directo al asset de la [Release v4.4](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.4). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
 
-Versión anterior publicada: [v4.2](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.2).
+Versiones anteriores publicadas: [v4.3](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.3) y [v4.2](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.2).
 
 | | |
 |---|---|
 | Archivo | `Pokemon Cristal Nuzlocke.gbc` (2 MiB) |
-| Versión | 4.3 |
-| SHA-256 | `a6a232589e9ff8859bc9307c3593707c753dcaf8b6be65a8ba835faafe949b1e` |
+| Versión | 4.4 |
+| SHA-256 | `b4cff3b076988a780d6570653d677b7fecab1cbb4fdfcc6dde8cda5a22c1e3ef` |
 1. Descarga el único archivo `.gbc` de la Release. No hay ZIP, parches ni instalador: no necesitas una ROM base ni aplicar nada.
 2. Ábrelo con un emulador compatible con Game Boy Color (por ejemplo mGBA). El emulador se obtiene por separado y no forma parte de este proyecto.
 3. Guarda dentro del juego. Las actualizaciones de esta familia continúan el guardado interno (`.sav`); no uses estados rápidos de otra compilación. Detalles en [compatibilidad de guardados](docs/COMPATIBILIDAD-GUARDADOS.md).
@@ -60,6 +60,13 @@ El proyecto evoluciona una base existente de ensamblador SM83 con límites estri
 
 ![Randomizador sin conexión](capturas/randomizador.png)
 
+### Novedades de la versión 4.4
+
+Cinco mejoras de interfaz y herramientas: tope de nivel en la pantalla de estado, iconos de categoría en el panel de ataques, rótulos en toda la mochila, animación de reposo de Tito y vista previa de la semilla en el randomizador. Detalle en el [CHANGELOG](CHANGELOG.md).
+
+![Tope de nivel](capturas/estadisticas-tope.png) ![Iconos de categoría](capturas/iconos-categoria-ataque.png)
+![Rótulos de la mochila](capturas/bolsa-rotulos.png) ![Tito respira](capturas/tito-reposo.png)
+
 ## Tecnología
 
 Ensamblador LR35902/SM83 · RGBDS 1.0.0 (rgbasm, rgblink, rgbfix, rgbgfx) · Make y utilidades C/GCC · Python y Pillow (recursos, manifiestos, hashes) · PyBoy 2.8.1 (pruebas) · HTML, CSS y JavaScript sin framework · Node.js · Playwright · parche de fuente (git diff) y reconstrucción verificada byte a byte (SHA-256 de las compilaciones; parches BPS solo en versiones anteriores, con SHA-1 de la ROM de referencia).
@@ -68,11 +75,11 @@ No es una aplicación React, Electron, Unity ni Godot, y no usa servidor, base d
 
 ## Estado y validación
 
-La versión 4.3 pasó **137 comprobaciones agrupadas**: 124 de los componentes ya existentes (servicios y mapas de Tito 48, orientaciones renderizadas 4, rutas de Ulex y Objetos 17, combates de Ulex y menú sandbox 27, cálculos de combate y almacenamiento 11, interfaz real de combate y captura 4, núcleo del randomizador 9, navegador sin conexión 4) y 13 nuevas de esta versión (Vuelo, anciano del mapa, tiendas, suministros de la Liga, caramelos y bolsa). Es un recuento de comprobaciones, **no un porcentaje de cobertura**; algunas agrupan muchos casos (Poder Oculto se contrasta con 768 combinaciones de DVs). Las comprobaciones de informes de versiones anteriores no se suman.
+La versión 4.4 pasó **140 comprobaciones agrupadas**: 124 de los componentes ya existentes (servicios y mapas de Tito 48, orientaciones renderizadas 4, rutas de Ulex y Objetos 17, combates de Ulex y menú sandbox 27, cálculos de combate y almacenamiento 11, interfaz real de combate y captura 4, núcleo del randomizador 9, navegador sin conexión 4), 13 de la 4.3 (Vuelo, anciano del mapa, tiendas, suministros de la Liga, caramelos y bolsa) y 3 nuevas de la 4.4 (tope en estado, iconos de ataque y respiración de Tito). Es un recuento de comprobaciones, **no un porcentaje de cobertura**; algunas agrupan muchos casos (Poder Oculto se contrasta con 768 combinaciones de DVs). Las comprobaciones de informes de versiones anteriores no se suman.
 
 La reconstrucción también está comprobada: aplicar el parche a la base española y compilar con RGBDS 1.0.0 produce exactamente los SHA-256 de la ROM normal y de la compilación sandbox de los informes.
 
-Límites reales: los montajes omiten la introducción; algunos combates aumentan el daño para recorrer los equipos; en Ruta 17 se desactiva la gravedad solo en la prueba. No se ha completado una campaña entera ni queda demostrado el equilibrio global. El fallo móvil original de Viento Hielo no se reprodujo con el mismo emulador y guardado del usuario. No hay integración continua en este repositorio todavía. Informe: [evidencias/Validacion-v4.3.json](evidencias/Validacion-v4.3.json).
+Límites reales: los montajes omiten la introducción; algunos combates aumentan el daño para recorrer los equipos; en Ruta 17 se desactiva la gravedad solo en la prueba. No se ha completado una campaña entera ni queda demostrado el equilibrio global. El fallo móvil original de Viento Hielo no se reprodujo con el mismo emulador y guardado del usuario. La integración continua ([`verificacion.yml`](.github/workflows/verificacion.yml)) solo comprueba sintaxis, la ROM de la Release y el randomizador; la compilación completa y las pruebas con emulador son locales. Informe: [evidencias/Validacion-v4.4.json](evidencias/Validacion-v4.4.json).
 No implementado: habilidades, megaevolución, generaciones tercera/cuarta, recursos de Prism.
 
 ## Contenido del repositorio
@@ -83,8 +90,9 @@ No implementado: habilidades, megaevolución, generaciones tercera/cuarta, recur
 | [`parches/`](parches) | `Cambios-fuente.patch`: modificaciones del código fuente sobre la base española |
 | [`recursos/`](recursos) | Sprites y paleta de Tito Xeluis |
 | [`herramientas/`](herramientas) | Randomizador portable y sus fuentes, generador del sprite |
-| [`pruebas/`](pruebas) | Scripts de validación portables y herramientas de [playtest automatizado](pruebas/simulacion) |
-| [`evidencias/`](evidencias) | Informes JSON de las pruebas de 4.3 |
+| [`pruebas/`](pruebas) | Scripts de validación portables, herramientas de [playtest automatizado](pruebas/simulacion) y scripts de [integración continua](pruebas/ci) |
+| [`.github/workflows/`](.github/workflows) | Flujo de GitHub Actions de verificación |
+| [`evidencias/`](evidencias) | Informes JSON de las pruebas (4.3 y 4.4) |
 | [`capturas/`](capturas) | Capturas reales |
 | [`publicacion/`](publicacion) | Textos de la Release, descripción y resumen para portfolio |
 

@@ -25,9 +25,17 @@ assert all(len(rows) == 16 for rows in frames.values())
 
 shades = {'.': 255, 'y': 170, 'r': 85, '#': 0}
 image = Image.new('L', (16, 96), 255)
-for index, rows in enumerate(list(frames.values()) * 2):
+def breathe(rows):
+    new = list(rows)
+    for y in range(11, 0, -1):
+        new[y] = rows[y - 1]
+    new[0] = '.' * 16
+    return new
+
+
+for index, rows in enumerate(list(frames.values()) + [breathe(r) for r in frames.values()]):
     for y, row in enumerate(rows):
         for x, char in enumerate(row):
             image.putpixel((x, index * 16 + y), shades[char])
 image.save(root / 'gfx/sprites/tito_xeluis.png')
-print('Tito native artwork: front/back/LEFT + three safe alternate frames (16x96).')
+print('Tito native artwork: front/back/LEFT + three idle frames (head and torso one pixel lower), 16x96.')

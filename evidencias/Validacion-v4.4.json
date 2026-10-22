@@ -1,0 +1,64 @@
+{
+  "version": "4.4",
+  "fecha": "2026-10-22",
+  "normal_sha256": "b4cff3b076988a780d6570653d677b7fecab1cbb4fdfcc6dde8cda5a22c1e3ef",
+  "sandbox_sha256": "f77fb27ec0e2365985be7cc7d6045fde364a9e3e6ad484e2a1df5aab74b3706e",
+  "passed": 140,
+  "groups": [
+    {
+      "name": "Tito services and maps",
+      "report": "v4-tito-tests.json",
+      "passed": 48
+    },
+    {
+      "name": "Tito rendered directions",
+      "report": "v42-tito-directions-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "All Ulex routes and sandbox Items",
+      "report": "v42-fixes-tests.json",
+      "passed": 17
+    },
+    {
+      "name": "Ulex battles and sandbox UI",
+      "report": "v41-root-ui-tests.json",
+      "passed": 27
+    },
+    {
+      "name": "Battle calculations and storage",
+      "report": "v4-battle-tests.json",
+      "passed": 11
+    },
+    {
+      "name": "Real battle UI and capture",
+      "report": "v41-battle-ui-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "Randomizer core",
+      "report": "v4-randomizer-tests.json",
+      "passed": 9
+    },
+    {
+      "name": "Offline randomizer UI",
+      "report": "v4-randomizer-ui-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "v4.3 changes (Fly, Map Card, marts, League supplies, candies, bag)",
+      "report": "v43-changes-tests.json",
+      "passed": 13
+    },
+    {
+      "name": "v4.4 interface (level cap, move icons, Tito idle)",
+      "report": "v44-changes-tests.json",
+      "passed": 3
+    }
+  ],
+  "limitaciones": [
+    "No equivale a una campaña completa.",
+    "Se omite la introducción en las pruebas de interfaz; en Ruta 17 se desactiva la gravedad solo en el montaje de prueba.",
+    "Las pruebas de combate de Ulex aumentan el daño para recorrer sus equipos; no evalúan el equilibrio completo."
+  ]
+}

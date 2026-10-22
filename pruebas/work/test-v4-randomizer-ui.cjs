@@ -16,6 +16,9 @@ const manifest=JSON.parse(fs.readFileSync('work/v4-randomizer/manifest.json'));
   const bytes=fs.readFileSync('work/source/pokecristal.gbc'),actual=fs.readFileSync('work/v4-randomizer-ui-test.gbc');
   if(!actual.equals(Buffer.from(core.randomize(bytes,manifest,'aventura-2026').bytes)))throw Error('Browser and core output differ');
   if(!await page.locator('#status').textContent().then(t=>t.includes('ROM generada')))throw Error('No success status');
+  const preview=await page.locator('#previewBody').textContent(),expected=core.randomize(bytes,manifest,'aventura-2026');
+  if(!await page.locator('#preview').isVisible()||!preview.includes('Iniciales')||!preview.includes('PEGASO')||!preview.includes('MT01'))throw Error('Preview missing');
+  if(!expected.starters.every(id=>preview.includes(manifest.speciesNames[id-1])))throw Error('Preview starters differ from the generated ROM');
   await page.screenshot({path:'work/v4-randomizer-screen.png',fullPage:true});
   const invalid=Buffer.from(bytes);invalid[0x100]^=1;
   await page.locator('#rom').setInputFiles({name:'incorrecta.gbc',mimeType:'application/octet-stream',buffer:invalid});
@@ -25,7 +28,7 @@ const manifest=JSON.parse(fs.readFileSync('work/v4-randomizer/manifest.json'));
   if(fs.readFileSync('work/v4-randomizer-ui-test2.gbc').equals(actual))throw Error('Second seed identical');
   if(errors.length)throw Error(errors.join('\n'));
   if(requests.some(u=>!u.startsWith('file:')&&!u.startsWith('blob:')))throw Error('Unexpected network request');
-  const report={passed:4,tests:['Actual offline browser selection/generation/download matches pure core','Incompatible ROM rejected before any mutation','Generated ROM can be reseeded and produces a different adventure','No network requests or browser script errors'],browser:process.env.PLAYWRIGHT_CHANNEL || 'Playwright Chromium headless',sha256:crypto.createHash('sha256').update(bytes).digest('hex')};
+  const report={passed:4,tests:['Actual offline browser selection/generation/download matches pure core and shows the seed preview','Incompatible ROM rejected before any mutation','Generated ROM can be reseeded and produces a different adventure','No network requests or browser script errors'],browser:process.env.PLAYWRIGHT_CHANNEL || 'Playwright Chromium headless',sha256:crypto.createHash('sha256').update(bytes).digest('hex')};
   fs.writeFileSync('work/v4-randomizer-ui-tests.json',JSON.stringify(report,null,2));console.log(report);
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

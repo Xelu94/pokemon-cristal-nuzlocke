@@ -28,7 +28,7 @@ Las herramientas y los resultados están en [`pruebas/simulacion/`](../pruebas/s
 2. **Diálogo desbordado del santuario del Encinar** (anterior a la 4.3). «comienza a brillar.» ocupa 19 caracteres. Se dividió en dos líneas.
 3. El resto de líneas de más de 18 caracteres que detectó la auditoría pertenece al texto original de la base española (Radio Torre Rocket) y no se tocó.
 
-Ambas correcciones están en [`parches/correcciones-v4.3.1.patch`](../parches/correcciones-v4.3.1.patch), que aplica limpiamente sobre la fuente 4.3. Con ellas se recompiló, se regeneró el manifiesto del randomizador y pasan las 137 comprobaciones. **No están publicadas**: cambiarían el hash de la ROM de la Release v4.3.
+Ambas correcciones están en [`parches/correcciones-v4.3.1.patch`](../parches/correcciones-v4.3.1.patch), que aplica limpiamente sobre la fuente 4.3. Con ellas se recompiló, se regeneró el manifiesto del randomizador y pasan las 137 comprobaciones. No entraron en la Release v4.3 (cambiarían su hash); se publican integradas en la v4.4.
 
 | Compilación 4.3 con las correcciones (no publicada) | SHA-256 |
 |---|---|
@@ -101,3 +101,7 @@ Basadas en lo que se ha visto del motor: tabla de 13 estructuras de objeto y 16 
 10. **Bot con cambios de Pokémon y uso de Full Restore** para que las cifras de equilibrio se parezcan más a una partida real, y un recorrido de «Nuzlocke» con capturas por zona.
 
 Lo que **no** es viable con este motor sin una reescritura grande: sprites de más de 16×16 en el mapa, más de 8 paletas de objeto simultáneas, ampliar la tabla de movimientos más allá de 254 identificadores o añadir habilidades (la estructura de Pokémon no tiene sitio libre garantizado).
+
+## Estado de las propuestas (22 de octubre de 2026)
+
+Aplicadas en la 4.4 (ver [CHANGELOG](../CHANGELOG.md)): 1 (tope de nivel en la pantalla de estado; el menú de Tito no se modificó porque ya consultaba el límite), 2 (iconos de categoría), 3 (rótulos de MT/MO, Balls y Objetos clave), 5 (animación de reposo de Tito), 8 (vista previa del randomizador, solo nombres, sin sprites) y 9 (integración continua parcial: sin compilación ni emulador). Sin hacer: 4, 6, 7 y 10. Los ajustes de equilibrio no se han aplicado.

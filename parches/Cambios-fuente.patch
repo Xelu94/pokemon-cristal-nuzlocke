@@ -39,6 +39,17 @@ index 7920521..7a02c57 100644
  
  	const_next 600
  ; Kurt Apricorn events
+diff --git a/constants/gfx_constants.asm b/constants/gfx_constants.asm
+index fbb9f74..dcb1abd 100644
+--- a/constants/gfx_constants.asm
++++ b/constants/gfx_constants.asm
+@@ -34,3 +34,6 @@ DEF SPRITE_GFX_LIST_CAPACITY EQU 32 ; see wUsedSprites
+ 	const ANIM_MON_EGG2
+ 
+ DEF OAM_YCOORD_HIDDEN EQU 160 ; hides an OAM offscreen
++
++; BG tile ids never referenced during a battle: move category icons (physical, special, status).
++DEF MOVE_CATEGORY_ICON_TILE EQU 89
 diff --git a/constants/item_constants.asm b/constants/item_constants.asm
 index 9774b0c..f349f3f 100644
 --- a/constants/item_constants.asm
@@ -84,6 +95,34 @@ index cdcbcde..0042111 100644
 +	const HELD_CHOICE_BAND
 +	const HELD_CHOICE_SPECS
 +	const HELD_CHOICE_SCARF
+diff --git a/constants/map_object_constants.asm b/constants/map_object_constants.asm
+index 3c478b9..092adbc 100644
+--- a/constants/map_object_constants.asm
++++ b/constants/map_object_constants.asm
+@@ -155,6 +155,7 @@ DEF MAPOBJECT_SCREEN_HEIGHT EQU (SCREEN_HEIGHT / 2) + 2
+ 	const SPRITEMOVEDATA_BOULDERDUST          ; 22
+ 	const SPRITEMOVEDATA_GRASS                ; 23
+ 	const SPRITEMOVEDATA_SWIM_WANDER          ; 24
++	const SPRITEMOVEDATA_STANDING_IDLE        ; 25
+ DEF NUM_SPRITEMOVEDATA EQU const_value
+ 
+ ; StepFunction_FromMovement.Pointers indexes (see engine/overworld/map_objects.asm)
+@@ -187,6 +188,7 @@ DEF NUM_SPRITEMOVEDATA EQU const_value
+ 	const SPRITEMOVEFN_SPIN_COUNTERCLOCKWISE ; 19
+ 	const SPRITEMOVEFN_BOULDERDUST           ; 1a
+ 	const SPRITEMOVEFN_GRASS                 ; 1b
++	const SPRITEMOVEFN_STANDING_IDLE         ; 1c
+ DEF NUM_SPRITEMOVEFN EQU const_value
+ 
+ ; StepTypesJumptable indexes (see engine/overworld/map_objects.asm)
+@@ -238,6 +240,7 @@ DEF NUM_STEP_TYPES EQU const_value
+ 	const OBJECT_ACTION_BOULDER_DUST  ; 0e
+ 	const OBJECT_ACTION_GRASS_SHAKE   ; 0f
+ 	const OBJECT_ACTION_SKYFALL       ; 10
++	const OBJECT_ACTION_IDLE          ; 11
+ DEF NUM_OBJECT_ACTIONS EQU const_value
+ 
+ ; Facings indexes (see data/sprites/facings.asm)
 diff --git a/constants/move_constants.asm b/constants/move_constants.asm
 index 4b09855..271e3bc 100644
 --- a/constants/move_constants.asm
@@ -58887,6 +58926,25 @@ index 54a0689..9c5ad25 100644
  	db 0 ; no more evolutions
  	db 1, GROWL
  	db 1, CHARM
+diff --git a/data/sprites/map_objects.asm b/data/sprites/map_objects.asm
+index 46f477e..e9e9549 100644
+--- a/data/sprites/map_objects.asm
++++ b/data/sprites/map_objects.asm
+@@ -298,6 +298,14 @@ SpriteMovementData::
+ 	db 0 ; flags2
+ 	db SWIMMING ; palette flags
+ 
++; SPRITEMOVEDATA_STANDING_IDLE
++	db SPRITEMOVEFN_STANDING_IDLE ; movement function
++	db DOWN ; facing
++	db OBJECT_ACTION_IDLE ; action
++	db 0 ; flags1
++	db 0 ; flags2
++	db 0 ; palette flags
++
+ 	assert_table_length NUM_SPRITEMOVEDATA
+ 
+ ; unused
 diff --git a/data/sprites/sprites.asm b/data/sprites/sprites.asm
 index 1bf0637..024ffa4 100644
 --- a/data/sprites/sprites.asm
@@ -73675,7 +73733,7 @@ index edf4831..eba6c42 100644
  	ret c
  	dec [hl]
 diff --git a/engine/battle/core.asm b/engine/battle/core.asm
-index 04aa55f..baeef17 100644
+index 04aa55f..5c82a93 100644
 --- a/engine/battle/core.asm
 +++ b/engine/battle/core.asm
 @@ -531,10 +531,7 @@ DetermineMoveOrder:
@@ -73830,7 +73888,7 @@ index 04aa55f..baeef17 100644
  
  .not_disabled
  	ld hl, wMenuCursorY
-@@ -5689,41 +5677,150 @@ MoveInfoBox:
+@@ -5689,41 +5677,151 @@ MoveInfoBox:
  	ld [wStringBuffer1], a
  	call .PrintPP
  
@@ -73851,6 +73909,7 @@ index 04aa55f..baeef17 100644
 +	decoord 1, 13
 +	ld bc, 3
 +	call CopyBytes
++	farcall DrawMoveCategoryIcon
 +
 +	ld a, [wPlayerMoveStruct + MOVE_ANIM]
 +	ld b, a
@@ -74004,7 +74063,7 @@ index 04aa55f..baeef17 100644
  	ld [hl], '/'
  	inc hl
  	ld de, wNamedObjectIndex
-@@ -5734,6 +5831,16 @@ MoveInfoBox:
+@@ -5734,6 +5832,16 @@ MoveInfoBox:
  CheckPlayerHasUsableMoves:
  	ld a, STRUGGLE
  	ld [wCurPlayerMove], a
@@ -74021,7 +74080,7 @@ index 04aa55f..baeef17 100644
  	ld a, [wPlayerDisableCount]
  	and a
  	ld hl, wBattleMonPP
-@@ -5827,7 +5934,14 @@ ParseEnemyAction:
+@@ -5827,7 +5935,14 @@ ParseEnemyAction:
  .skip_encore
  	call CheckEnemyLockedIn
  	jp nz, ResetVarsForSubstatusRage
@@ -74037,7 +74096,7 @@ index 04aa55f..baeef17 100644
  
  .skip_turn
  	ld a, $ff
-@@ -6096,28 +6210,21 @@ LoadEnemyMon:
+@@ -6096,28 +6211,21 @@ LoadEnemyMon:
  ; If it hasn't, we need to initialize the DVs
  ; (HP is initialized at the end of the battle)
  	call GetRoamMonDVs
@@ -74073,7 +74132,7 @@ index 04aa55f..baeef17 100644
  .GenerateDVs:
  ; Generate new random DVs
  	call BattleRandom
-@@ -6214,6 +6321,40 @@ LoadEnemyMon:
+@@ -6214,6 +6322,40 @@ LoadEnemyMon:
  ; Finally done with DVs
  
  .Happiness:
@@ -74114,7 +74173,7 @@ index 04aa55f..baeef17 100644
  ; Set happiness
  	ld a, BASE_HAPPINESS
  	ld [wEnemyMonHappiness], a
-@@ -6338,7 +6479,7 @@ LoadEnemyMon:
+@@ -6338,7 +6480,7 @@ LoadEnemyMon:
  	ld [hl], a
  	ld [wSkipMovesBeforeLevelUp], a
  ; Fill moves based on level
@@ -74123,7 +74182,7 @@ index 04aa55f..baeef17 100644
  
  .PP:
  ; Trainer battle?
-@@ -6445,49 +6586,9 @@ CheckSleepingTreeMon:
+@@ -6445,49 +6587,9 @@ CheckSleepingTreeMon:
  INCLUDE "data/wild/treemons_asleep.asm"
  
  CheckUnownLetter:
@@ -74176,7 +74235,7 @@ index 04aa55f..baeef17 100644
  	and a
  	ret
  
-@@ -6985,7 +7086,8 @@ GiveExperiencePoints:
+@@ -6985,7 +7087,8 @@ GiveExperiencePoints:
  	bit IN_BATTLE_TOWER_BATTLE_F, a
  	ret nz
  
@@ -74186,7 +74245,7 @@ index 04aa55f..baeef17 100644
  	xor a
  	ld [wCurPartyMon], a
  	ld bc, wPartyMon1Species
-@@ -6997,16 +7099,26 @@ GiveExperiencePoints:
+@@ -6997,16 +7100,26 @@ GiveExperiencePoints:
  	or [hl]
  	jp z, .next_mon ; fainted
  
@@ -74220,7 +74279,7 @@ index 04aa55f..baeef17 100644
  	jp z, .next_mon
  
  ; give stat exp
-@@ -7105,6 +7217,21 @@ GiveExperiencePoints:
+@@ -7105,6 +7218,21 @@ GiveExperiencePoints:
  	ld a, [hl]
  	cp LUCKY_EGG
  	call z, BoostExp
@@ -74242,7 +74301,7 @@ index 04aa55f..baeef17 100644
  	ldh a, [hQuotient + 3]
  	ld [wStringBuffer2 + 1], a
  	ldh a, [hQuotient + 2]
-@@ -7152,7 +7279,8 @@ GiveExperiencePoints:
+@@ -7152,7 +7280,8 @@ GiveExperiencePoints:
  	ld [wCurSpecies], a
  	call GetBaseData
  	push bc
@@ -74252,7 +74311,7 @@ index 04aa55f..baeef17 100644
  	callfar CalcExpAtLevel
  	pop bc
  	ld hl, MON_EXP + 2
-@@ -7354,39 +7482,8 @@ GiveExperiencePoints:
+@@ -7354,39 +7483,8 @@ GiveExperiencePoints:
  .done
  	jp ResetBattleParticipants
  
@@ -74294,7 +74353,7 @@ index 04aa55f..baeef17 100644
  
  BoostExp:
  ; Multiply experience by 1.5x
-@@ -7473,7 +7570,8 @@ AnimateExpBar:
+@@ -7473,7 +7571,8 @@ AnimateExpBar:
  	ld [hl], a
  
  .NoOverflow:
@@ -74304,7 +74363,7 @@ index 04aa55f..baeef17 100644
  	callfar CalcExpAtLevel
  	ldh a, [hProduct + 1]
  	ld b, a
-@@ -8018,12 +8116,19 @@ GetEnemyMonFrontpic_DoAnim:
+@@ -8018,12 +8117,19 @@ GetEnemyMonFrontpic_DoAnim:
  	ret
  
  StartBattle:
@@ -74324,7 +74383,7 @@ index 04aa55f..baeef17 100644
  
  	ld a, [wTimeOfDayPal]
  	push af
-@@ -8177,6 +8282,7 @@ InitEnemyTrainer:
+@@ -8177,6 +8283,7 @@ InitEnemyTrainer:
  InitEnemyWildmon:
  	ld a, WILD_BATTLE
  	ld [wBattleMode], a
@@ -74332,7 +74391,7 @@ index 04aa55f..baeef17 100644
  	farcall StubbedTrainerRankings_WildBattles
  	call LoadEnemyMon
  	ld hl, wEnemyMonMoves
-@@ -8260,6 +8366,7 @@ FillEnemyMovesFromMoveIndicesBuffer: ; unreferenced
+@@ -8260,6 +8367,7 @@ FillEnemyMovesFromMoveIndicesBuffer: ; unreferenced
  	ret
  
  ExitBattle:
@@ -74340,7 +74399,7 @@ index 04aa55f..baeef17 100644
  	call .HandleEndOfBattle
  	call CleanUpBattleRAM
  	ret
-@@ -9139,3 +9246,46 @@ BattleStartMessage:
+@@ -9139,3 +9247,78 @@ BattleStartMessage:
  	farcall Mobile_PrintOpponentBattleMessage
  
  	ret
@@ -74387,6 +74446,38 @@ index 04aa55f..baeef17 100644
 +	dw wWildMon, wCurPartySpecies, wTempSpecies, wCurItem
 +	dw wCurPartyMon, wCurPartyLevel, wEnemyMonBaseExp, wNamedObjectIndex
 +.SavedBytesEnd
++
++
++; Own section: bank 15 is nearly full.
++PUSHS
++SECTION "Move category icons", ROMX
++DrawMoveCategoryIcon::
++; Replace the three-letter category by an 8x8 icon: physical, special or status.
++; The three tiles go to tile ids that no battle screen references.
++	ld a, [wPlayerMoveStruct + MOVE_TYPE]
++	rlca
++	rlca
++	and 3 ; 1 physical, 2 special, 3 status
++	ret z
++	add MOVE_CATEGORY_ICON_TILE - 1
++	push af
++	ld hl, vTiles2 tile MOVE_CATEGORY_ICON_TILE
++	ld de, MoveCategoryIconsGFX
++	lb bc, BANK(MoveCategoryIconsGFX), 3
++	call Get2bpp
++	pop af
++	hlcoord 2, 13
++	ld [hl], a
++	dec hl
++	ld [hl], ' '
++	inc hl
++	inc hl
++	ld [hl], ' '
++	ret
++
++MoveCategoryIconsGFX:
++INCBIN "gfx/battle/move_categories.2bpp"
++POPS
 diff --git a/engine/battle/effect_commands.asm b/engine/battle/effect_commands.asm
 index ca395bb..9e02e52 100644
 --- a/engine/battle/effect_commands.asm
@@ -80145,6 +80236,74 @@ index d4f070f..8db4f2b 100644
 +TitoTitleBrandingGFX:
 +INCBIN "gfx/title/nuzlocke_branding.2bpp"
 +POPS
+diff --git a/engine/overworld/map_object_action.asm b/engine/overworld/map_object_action.asm
+index 5315c6c..d70dd36 100644
+--- a/engine/overworld/map_object_action.asm
++++ b/engine/overworld/map_object_action.asm
+@@ -19,6 +19,7 @@ ObjectActionPairPointers:
+ 	dw SetFacingBoulderDust,           SetFacingStanding
+ 	dw SetFacingGrassShake,            SetFacingStanding
+ 	dw SetFacingSkyfall,               SetFacingCurrent
++	dw SetFacingIdle,                  SetFacingCurrent
+ 	assert_table_length NUM_OBJECT_ACTIONS
+ 
+ SetFacingStanding:
+@@ -27,6 +28,24 @@ SetFacingStanding:
+ 	ld [hl], STANDING
+ 	ret
+ 
++SetFacingIdle:
++; Two-frame idle: the second frame of the sprite sheet shows for 16 of every 128
++; frames, so a standing NPC breathes slowly.
++	call GetSpriteDirection
++	ld d, a
++	ldh a, [hVBlankCounter]
++	and %01110000
++	cp %01110000
++	ld a, FACING_STEP_DOWN_0
++	jr nz, .frame
++	ld a, FACING_STEP_DOWN_1
++.frame
++	or d
++	ld hl, OBJECT_FACING
++	add hl, bc
++	ld [hl], a
++	ret
++
+ SetFacingCurrent:
+ 	call GetSpriteDirection
+ 	or FACING_STEP_DOWN_0 ; useless
+diff --git a/engine/overworld/map_objects.asm b/engine/overworld/map_objects.asm
+index 88e28f6..c220a79 100644
+--- a/engine/overworld/map_objects.asm
++++ b/engine/overworld/map_objects.asm
+@@ -553,6 +553,7 @@ StepFunction_FromMovement:
+ 	dw MovementFunction_SpinCounterclockwise ; 19
+ 	dw MovementFunction_BoulderDust          ; 1a
+ 	dw MovementFunction_ShakingGrass         ; 1b
++	dw MovementFunction_StandingIdle         ; 1c
+ 	assert_table_length NUM_SPRITEMOVEFN
+ 
+ MovementFunction_Null:
+@@ -613,6 +614,18 @@ MovementFunction_Standing:
+ 	ld [hl], STEP_TYPE_RESTORE
+ 	ret
+ 
++MovementFunction_StandingIdle:
++; Like MovementFunction_Standing, but the object breathes: see SetFacingIdle.
++	call CopyLastCoordsToCoords
++	call EndSpriteMovement
++	ld hl, OBJECT_ACTION
++	add hl, bc
++	ld [hl], OBJECT_ACTION_IDLE
++	ld hl, OBJECT_STEP_TYPE
++	add hl, bc
++	ld [hl], STEP_TYPE_RESTORE
++	ret
++
+ MovementFunction_ObeyDPad:
+ 	ld hl, GetPlayerNextMovementIndex
+ 	jp HandleMovementData
 diff --git a/engine/overworld/scripting.asm b/engine/overworld/scripting.asm
 index 4e152a6..f11e458 100644
 --- a/engine/overworld/scripting.asm
@@ -81073,10 +81232,40 @@ index 5d38904..de07800 100644
  
  InitPartyMenuLayout:
 diff --git a/engine/pokemon/stats_screen.asm b/engine/pokemon/stats_screen.asm
-index 114dfbc..70eb59b 100644
+index 114dfbc..85a371a 100644
 --- a/engine/pokemon/stats_screen.asm
 +++ b/engine/pokemon/stats_screen.asm
-@@ -746,6 +746,7 @@ LoadGreenPage:
+@@ -660,6 +660,19 @@ LoadPinkPage:
+ 	ld [hl], $40 ; left exp bar end cap
+ 	hlcoord 19, 16
+ 	ld [hl], $41 ; right exp bar end cap
++; Current level cap, so it is clear why experience stops.
++	ld de, .LevelCapStr
++	hlcoord 10, 17
++	call PlaceString
++	farcall GetCurrentLevelCap
++	ld a, [wTempMonLevel]
++	push af
++	ld a, b
++	ld [wTempMonLevel], a
++	hlcoord 15, 17
++	call PrintLevel
++	pop af
++	ld [wTempMonLevel], a
+ 	ret
+ 
+ .PrintNextLevel:
+@@ -715,6 +728,9 @@ LoadPinkPage:
+ .ExpPointStr:
+ 	db "PUNTOS EXP@"
+ 
++.LevelCapStr:
++	db "TOPE@"
++
+ .LevelUpStr:
+ 	db "MÁS NIVEL@"
+ 
+@@ -746,6 +762,7 @@ LoadGreenPage:
  	ld a, SCREEN_WIDTH * 2
  	ld [wListMovesLineSpacing], a
  	predef ListMovePP
@@ -81084,7 +81273,7 @@ index 114dfbc..70eb59b 100644
  	ret
  
  .GetItemName:
-@@ -769,6 +770,48 @@ LoadGreenPage:
+@@ -769,6 +786,48 @@ LoadGreenPage:
  .Move:
  	db "MOVER@"
  
@@ -81133,7 +81322,7 @@ index 114dfbc..70eb59b 100644
  LoadBluePage:
  	call .PlaceOTInfo
  	hlcoord 10, 8
-@@ -802,18 +845,8 @@ LoadBluePage:
+@@ -802,18 +861,8 @@ LoadBluePage:
  	farcall CorrectNickErrors
  	hlcoord 2, 13
  	call PlaceString
@@ -81568,6 +81757,18 @@ index 0000000..d63687a
 +	pop bc
 +	pop af
 +	ret
+diff --git a/gfx/battle/move_categories.png b/gfx/battle/move_categories.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a5efc3172ada54a650426dc6664f87a267531724
+GIT binary patch
+literal 139
+zcmeAS@N?(olHy`uVBq!ia0vp^5<tws0VEiXol4jbq=GzM978JR`1UdK9WdZvT6j~u
+z_Nm;-LtCS-9a*H&CAu?kf|Bf>B(5mw^yH}T`Ily>Na}`n-r?N2;9B5;KlhW&7jOKo
+nm{!=Ly~D`1E_mC=n>8O9rB>_wm)qHO1Z0b+tDnm{r-UW|(*831
+
+literal 0
+HcmV?d00001
+
 diff --git a/gfx/pack/pack_categories.png b/gfx/pack/pack_categories.png
 new file mode 100644
 index 0000000000000000000000000000000000000000..1ca2d535850ca1635443d7bbd3ef6ffebb974622
@@ -81582,6 +81783,31 @@ t;L?v3rC9l~f%Ns#kNr<RAzU6kjTZ?Qb(H+HIh6na002ovPDHLkV1lD4e*ypi
 
 literal 0
 HcmV?d00001
+
+diff --git a/gfx/pack/pack_menu.png b/gfx/pack/pack_menu.png
+index 8ffdd88b5d5433ec013d50b75501aea45e2c361b..fa35070a9fb10b14c37da460120b63d4af216208 100644
+GIT binary patch
+delta 532
+zcmV+v0_*+m0-*$u7=H)=0000J8m*K700HPpL_t(|ob6YOl7%1$1;=0PCvP9g4g!k#
+zsGIG~?o6jL9|VY?gc}^OyZYAjZmC892!zeI{yWcSOc&q|2oXuE*3}~epwuq~>6>o?
+zlA$=7v0*k30tA#7u|2pV#!)p1fgf$TUWSwb7Qkjm(-KWc+J9KBOuJ6C&BBTTSq~=!
+zQB0fLYIxUEz2iNRV&`P?+~E21G873sdtHS*ie)6#W6QnugSJ=L92@pHDjUnUxQ&g#
+z@)Ar!@fuL#`V80O`U;gtunK#M1*iB;^6n0l#AqzmZz2@F;y)IxNrde-HQ2G;2-R_S
+zTLH|=$(7P-A%8CH^?5`A@bYVKK0xE{84coWaA1bKsY+mLY_BSSK3-j`qm~A9FY>=f
+zfWMB<CKnB`%0HYD?3-M3s=Oyii%OAmf&uVMfse@EKQjiJ2$YjQ9r}6}X>Gv*u*2K}
+zZB}&MF~b?b2C@d1IcBZ0I@2WxXMA|}`!+bEyD3JJ$$y!NnPj?Ehcg9q{&NfXB#-y6
+zva6r5hxkks)EiRX##}n`XMtA<OTNeD@%c6V$VHeY;3ZSBKa3>_u_rZ^JgbzHR3r77
+z-PXTG==9}$p!`<ZNIv@gpTLq0Vz1MV_-Qs!kw2^e;6Nw)`74Vt%3NQ(c=6)@;0IZ4
+W=POO{s105K0000<MNUMnLSTaZ$NcaB
+
+delta 351
+zcmV-l0igb&1nvTm7=Ho)00014s<kx$00A{gL_t(|+U=7;YQ!)MMFk=|gRUab){rX%
+z%3NU<z0vdra|?m#E|9C}00vi1Jkw6%DYV`8hk%HmzP?BTC)WfpoK64}C0I2~rVzPS
+z@BpxY`US&FP)!?959?hU9WYF0qXPyi3F!cY#ZoW_W>pp(-+vFl3@OkGB(a%y4wTF%
+zSoV-MN6Ac^Lk$YBhOH5|7TxyQ1K8GVMFm(2cwDUy4FuY_yC!CKfVl#p2Sj7UWdke=
+z=^hYvK$=64*c%b>HX;jZAJ{_XBICi~Rt%rj&w!gQm$C|;>3nWL2mlr-=?-|iHXxF3
+zlQ8fzhfIpl0a&h=uRuYvy~FFn2st?1w^&1_@p*<n$TBT1?Vq;g(ZA}Bu;{4%u8}Y-
+x-Tnf_nnUW2h}EVpkN!`76LO?Pi^9KtqYtA?v@Qb1N?8B^002ovPDHLkV1hHUm4*NS
 
 diff --git a/gfx/pics.asm b/gfx/pics.asm
 index 9264e2d..acd373a 100644
@@ -81685,16 +81911,16 @@ index 0000000..4cb53a9
 +.....#######....
 diff --git a/gfx/sprites/tito_xeluis.png b/gfx/sprites/tito_xeluis.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..3c2ce034c8ba171274f98130759436a1590b5beb
+index 0000000000000000000000000000000000000000..2c2849675b1fd7c16de96fd5dd53b7759345ab4e
 GIT binary patch
-literal 305
-zcmV-10nYx3P)<h;3K|Lk000e1NJLTq000mG003YJ00000F}kgM0002^Nkl<Zc%1E1
-zQLY3b2rI@b>LKNj-B3g)*_ZdXe`7L4m<pw+5dbU<wC(bj0v3^WeXIcXfO`f20}cE4
-zUejneu?et&1bhP15&Ot&V+i0LWk}YMC5K^z7}|?WmYSmam7@uqRYvi*5oE(`1UGfB
-z9MKNbAOk<wqesDWgu6<13&qvTbM*k4ATH|dg8d+(TP3n+J-(Gc$1H(75<IH>uSeem
-zQxO!?t$<b1Qe;^vHcor!HMeA9G?suzAQd?Mv*m>tuKAK##nw&JMRZ<WTTKl9=p~7{
-zBAYrqZwJ0bZX0msX^-oGtNQivz8Adj1@C*o-|yuEF8%kCz*#wg00000NkvXXu0mjf
-DB-Dch
+literal 338
+zcmV-Y0j>UtP)<h;3K|Lk000e1NJLTq000mG003YJ00000F}kgM0003QNkl<Zc%0Q!
+zQ4T{P2rI@b;vwabEELg~ZP~}NEt$zP%B!VR5eEQ?30!vWCj%0ZcJ`P7>;bn700I}R
+z-)jtU!Hx~U8{7dKz%ax*m_?NUvq<Cab!2kmF%h9$Q%t5Bl={HY2+k~8`b9%*Obg*l
+zx)n#1<2fM%U-zR&!hOV7maG<xvzF`V0Te=v(%S*sMnttFk|;gCnLl-uK^6p;EU*3O
+zOJF*JQo0<FA}vRzlw-QfL$7;FCF0^`;5LW}cKzP+L8$S5-7|~KL(?gA9A8`A80=C@
+z3NuEQbXdL)Jeu4VVBe=)o&yf)-M!#H8>ms32B}im+x_x$Kl(QsNIuXn^4t%kBfF#i
+kqJenC!55-I|3<&u03&qp=dLdNRsaA107*qoM6N<$f-$I%@Bjb+
 
 literal 0
 HcmV?d00001
@@ -81818,7 +82044,7 @@ index 92e998f..d50b8b7 100644
 +INCLUDE "engine/debug/nuzlocke_sandbox.asm"
 +endc
 diff --git a/maps/AzaleaPokecenter1F.asm b/maps/AzaleaPokecenter1F.asm
-index 53f23d3..84e1449 100644
+index 53f23d3..da4bc96 100644
 --- a/maps/AzaleaPokecenter1F.asm
 +++ b/maps/AzaleaPokecenter1F.asm
 @@ -76,6 +76,16 @@ AzaleaPokecenter1FPokefanFText:
@@ -81842,7 +82068,7 @@ index 53f23d3..84e1449 100644
  	object_event  9,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FGentlemanScript, -1
  	object_event  6,  1, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FFishingGuruScript, -1
  	object_event  1,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FPokefanFScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, AzaleaPokecenter1FTitoXeluis, -1
 diff --git a/maps/BillsFamilysHouse.asm b/maps/BillsFamilysHouse.asm
 index bb38e8c..5a1d146 100644
 --- a/maps/BillsFamilysHouse.asm
@@ -81858,7 +82084,7 @@ index bb38e8c..5a1d146 100644
  	writetext BillEeveeMayEvolveText
  	waitbutton
 diff --git a/maps/BlackthornPokecenter1F.asm b/maps/BlackthornPokecenter1F.asm
-index 1a9b74c..ae5bebd 100644
+index 1a9b74c..337e605 100644
 --- a/maps/BlackthornPokecenter1F.asm
 +++ b/maps/BlackthornPokecenter1F.asm
 @@ -47,6 +47,16 @@ BlackthornPokecenter1FTwinText:
@@ -81882,7 +82108,7 @@ index 1a9b74c..ae5bebd 100644
  	object_event  5,  3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FGentlemanScript, -1
  	object_event  1,  4, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FTwinScript, -1
  	object_event  7,  6, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FCooltrainerMScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, BlackthornPokecenter1FTitoXeluis, -1
 diff --git a/maps/CeladonDeptStore6F.asm b/maps/CeladonDeptStore6F.asm
 index 76203be..9b80572 100644
 --- a/maps/CeladonDeptStore6F.asm
@@ -82014,7 +82240,7 @@ index be1d61b..4828b98 100644
  	sjump .loop
  
 diff --git a/maps/CeladonPokecenter1F.asm b/maps/CeladonPokecenter1F.asm
-index e12f833..788eef8 100644
+index e12f833..68cd807 100644
 --- a/maps/CeladonPokecenter1F.asm
 +++ b/maps/CeladonPokecenter1F.asm
 @@ -143,6 +143,16 @@ NoBeastsText:
@@ -82038,9 +82264,9 @@ index e12f833..788eef8 100644
  	object_event  0,  3, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FPharmacistScript, -1
  	object_event  8,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FCooltrainerFScript, -1
  	object_event  4,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonEusine, EVENT_SET_WHEN_FOUGHT_HO_OH
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonPokecenter1FTitoXeluis, -1
 diff --git a/maps/CeruleanPokecenter1F.asm b/maps/CeruleanPokecenter1F.asm
-index 2f60c9b..af83e85 100644
+index 2f60c9b..2911b8a 100644
 --- a/maps/CeruleanPokecenter1F.asm
 +++ b/maps/CeruleanPokecenter1F.asm
 @@ -62,6 +62,16 @@ CeruleanPokecenter1FGymGuideText:
@@ -82064,9 +82290,9 @@ index 2f60c9b..af83e85 100644
  	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FNurseScript, -1
  	object_event  8,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FSuperNerdScript, -1
  	object_event  1,  5, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FGymGuideScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeruleanPokecenter1FTitoXeluis, -1
 diff --git a/maps/CherrygroveCity.asm b/maps/CherrygroveCity.asm
-index 8253dc3..8ebb5e0 100644
+index 8253dc3..9d737df 100644
 --- a/maps/CherrygroveCity.asm
 +++ b/maps/CherrygroveCity.asm
 @@ -24,46 +24,36 @@ CherrygroveCityFlypointCallback:
@@ -82394,8 +82620,8 @@ index 8253dc3..8ebb5e0 100644
 -	para "Te dará un MAPA de"
 -	line "JOHTO para tu"
 -	cont "#GEAR."
-+	para "para tu #GEAR al"
-+	line "entrar en la"
++	para "para tu #GEAR,"
++	line "al entrar en la"
 +	cont "ciudad."
  	done
  
@@ -82410,7 +82636,7 @@ index 8253dc3..8ebb5e0 100644
  	coord_event 33,  7, SCENE_CHERRYGROVECITY_MEET_RIVAL, CherrygroveRivalSceneSouth
  
 diff --git a/maps/CherrygrovePokecenter1F.asm b/maps/CherrygrovePokecenter1F.asm
-index 950dcf1..79cdb59 100644
+index 950dcf1..bbc3fae 100644
 --- a/maps/CherrygrovePokecenter1F.asm
 +++ b/maps/CherrygrovePokecenter1F.asm
 @@ -70,6 +70,16 @@ CherrygrovePokecenter1FTeacherText_CommCenterOpen:
@@ -82434,9 +82660,9 @@ index 950dcf1..79cdb59 100644
  	object_event  2,  3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FFisherScript, -1
  	object_event  8,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FGentlemanScript, -1
  	object_event  1,  6, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FTeacherScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CherrygrovePokecenter1FTitoXeluis, -1
 diff --git a/maps/CianwoodPokecenter1F.asm b/maps/CianwoodPokecenter1F.asm
-index f02bd09..ab73f57 100644
+index f02bd09..7f5ffc3 100644
 --- a/maps/CianwoodPokecenter1F.asm
 +++ b/maps/CianwoodPokecenter1F.asm
 @@ -133,6 +133,16 @@ CianwoodPokecenter1FSuperNerdText:
@@ -82460,9 +82686,9 @@ index f02bd09..ab73f57 100644
  	object_event  1,  5, SPRITE_LASS, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CianwoodPokecenter1FLassScript, -1
  	object_event  5,  3, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodGymGuideScript, -1
  	object_event  8,  6, SPRITE_SUPER_NERD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CianwoodPokecenter1FSuperNerdScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPokecenter1FTitoXeluis, -1
 diff --git a/maps/CinnabarPokecenter1F.asm b/maps/CinnabarPokecenter1F.asm
-index d68fa73..6666432 100644
+index d68fa73..de0cb5f 100644
 --- a/maps/CinnabarPokecenter1F.asm
 +++ b/maps/CinnabarPokecenter1F.asm
 @@ -32,6 +32,16 @@ CinnabarPokecenter1FFisherText:
@@ -82486,7 +82712,7 @@ index d68fa73..6666432 100644
  	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarPokecenter1FNurseScript, -1
  	object_event  7,  6, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CinnabarPokecenter1FCooltrainerFScript, -1
  	object_event  2,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CinnabarPokecenter1FFisherScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CinnabarPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CinnabarPokecenter1FTitoXeluis, -1
 diff --git a/maps/CopycatsHouse2F.asm b/maps/CopycatsHouse2F.asm
 index 0218e30..627d934 100644
 --- a/maps/CopycatsHouse2F.asm
@@ -82517,7 +82743,7 @@ index 8ffdeb8..7e22bdd 100644
  	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
  	writetext DragonShrineSymbolicDragonText
 diff --git a/maps/EcruteakPokecenter1F.asm b/maps/EcruteakPokecenter1F.asm
-index af636ce..04198f3 100644
+index af636ce..ae3e1e4 100644
 --- a/maps/EcruteakPokecenter1F.asm
 +++ b/maps/EcruteakPokecenter1F.asm
 @@ -206,6 +206,16 @@ EcruteakPokecenter1FGymGuideText:
@@ -82541,7 +82767,7 @@ index af636ce..04198f3 100644
  	object_event  1,  4, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FCooltrainerFScript, -1
  	object_event  7,  1, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FGymGuideScript, -1
  	object_event  0,  7, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FTitoXeluis, -1
 diff --git a/maps/ElmsLab.asm b/maps/ElmsLab.asm
 index 3816a69..51e1649 100644
 --- a/maps/ElmsLab.asm
@@ -82665,7 +82891,7 @@ index 3816a69..51e1649 100644
  
  DidntChooseStarterText:
 diff --git a/maps/FuchsiaPokecenter1F.asm b/maps/FuchsiaPokecenter1F.asm
-index 8d8f46f..b2c79e2 100644
+index 8d8f46f..0731766 100644
 --- a/maps/FuchsiaPokecenter1F.asm
 +++ b/maps/FuchsiaPokecenter1F.asm
 @@ -86,6 +86,16 @@ FuchsiaPokecenter1FJanineImpersonatorText2:
@@ -82689,7 +82915,7 @@ index 8d8f46f..b2c79e2 100644
  	object_event  8,  4, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaPokecenter1FCooltrainerMScript, -1
  	object_event  1,  4, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaPokecenter1FCooltrainerFScript, -1
  	object_event  5,  3, SPRITE_JANINE_IMPERSONATOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaPokecenter1FJanineImpersonatorScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, FuchsiaPokecenter1FTitoXeluis, -1
 diff --git a/maps/GoldenrodDeptStore6F.asm b/maps/GoldenrodDeptStore6F.asm
 index 2b98fe9..28f1391 100644
 --- a/maps/GoldenrodDeptStore6F.asm
@@ -82821,7 +83047,7 @@ index 60278c8..a77221c 100644
  	sjump .loop
  
 diff --git a/maps/GoldenrodPokecenter1F.asm b/maps/GoldenrodPokecenter1F.asm
-index 1869985..f93aaae 100644
+index 1869985..060e777 100644
 --- a/maps/GoldenrodPokecenter1F.asm
 +++ b/maps/GoldenrodPokecenter1F.asm
 @@ -98,8 +98,10 @@ GoldenrodPokecenter1FPokefanF:
@@ -82857,12 +83083,12 @@ index 1869985..f93aaae 100644
  	object_event  6,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
  	object_event  1,  4, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
  	object_event  7,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FPokefanF, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FTitoXeluis, -1
 diff --git a/maps/IlexForest.asm b/maps/IlexForest.asm
-index a963788..f413323 100644
+index a963788..01444ff 100644
 --- a/maps/IlexForest.asm
 +++ b/maps/IlexForest.asm
-@@ -427,58 +427,27 @@ IlexForestSignpost:
+@@ -427,58 +427,28 @@ IlexForestSignpost:
  	jumptext IlexForestSignpostText
  
  IlexForestShrineScript:
@@ -82929,7 +83155,8 @@ index a963788..f413323 100644
 +	jumptext Text_IlexForestShrine
 +.Awakens:
 +	text "El SANTUARIO"
-+	line "comienza a brillar."
++	line "comienza a"
++	cont "brillar."
 +	para "¡Algo despierta"
 +	line "entre los árboles!"
 +	done
@@ -82937,7 +83164,7 @@ index a963788..f413323 100644
  MovementData_Farfetchd_Pos1_Pos2:
  	big_step UP
 diff --git a/maps/IndigoPlateauPokecenter1F.asm b/maps/IndigoPlateauPokecenter1F.asm
-index a181bfc..25a7ce7 100644
+index a181bfc..f74a64d 100644
 --- a/maps/IndigoPlateauPokecenter1F.asm
 +++ b/maps/IndigoPlateauPokecenter1F.asm
 @@ -300,6 +300,16 @@ AbraText:
@@ -82961,7 +83188,7 @@ index a181bfc..25a7ce7 100644
  	object_event 16,  9, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
  	object_event  1,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, TeleportGuyScript, EVENT_TELEPORT_GUY
  	object_event  0,  9, SPRITE_JYNX, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, AbraScript, EVENT_TELEPORT_GUY
-+	object_event  3, 11, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenter1FTitoXeluis, -1
++	object_event  3, 11, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, IndigoPlateauPokecenter1FTitoXeluis, -1
 diff --git a/maps/LakeOfRage.asm b/maps/LakeOfRage.asm
 index f203c25..b7fa379 100644
 --- a/maps/LakeOfRage.asm
@@ -82981,7 +83208,7 @@ index f203c25..b7fa379 100644
  	startbattle
  	ifequal LOSE, .NotBeaten
 diff --git a/maps/LavenderPokecenter1F.asm b/maps/LavenderPokecenter1F.asm
-index c5d3eac..b13f71d 100644
+index c5d3eac..012f380 100644
 --- a/maps/LavenderPokecenter1F.asm
 +++ b/maps/LavenderPokecenter1F.asm
 @@ -84,6 +84,16 @@ LavenderPokecenter1FYoungsterText_ReturnedMachinePart:
@@ -83005,9 +83232,9 @@ index c5d3eac..b13f71d 100644
  	object_event  7,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavenderPokecenter1FGentlemanScript, -1
  	object_event  5,  3, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, LavenderPokecenter1FTeacherScript, -1
  	object_event  1,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderPokecenter1FYoungsterScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderPokecenter1FTitoXeluis, -1
 diff --git a/maps/MahoganyPokecenter1F.asm b/maps/MahoganyPokecenter1F.asm
-index 4f1a7da..62e8e38 100644
+index 4f1a7da..64cd914 100644
 --- a/maps/MahoganyPokecenter1F.asm
 +++ b/maps/MahoganyPokecenter1F.asm
 @@ -53,6 +53,16 @@ MahoganyPokecenter1FCooltrainerFText:
@@ -83031,7 +83258,7 @@ index 4f1a7da..62e8e38 100644
  	object_event  7,  2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MahoganyPokecenter1FPokefanMScript, -1
  	object_event  1,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, MahoganyPokecenter1FYoungsterScript, -1
  	object_event  2,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MahoganyPokecenter1FCooltrainerFScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MahoganyPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, MahoganyPokecenter1FTitoXeluis, -1
 diff --git a/maps/MountMortarB1F.asm b/maps/MountMortarB1F.asm
 index 467e1aa..636e9c2 100644
 --- a/maps/MountMortarB1F.asm
@@ -83047,7 +83274,7 @@ index 467e1aa..636e9c2 100644
  .GotTyrogue:
  	writetext MountMortarB1FKiyoGotTyrogueText
 diff --git a/maps/OlivinePokecenter1F.asm b/maps/OlivinePokecenter1F.asm
-index c976d7a..98d88b6 100644
+index c976d7a..4ce4ba9 100644
 --- a/maps/OlivinePokecenter1F.asm
 +++ b/maps/OlivinePokecenter1F.asm
 @@ -45,6 +45,16 @@ OlivinePokecenter1FTeacherText:
@@ -83071,9 +83298,9 @@ index c976d7a..98d88b6 100644
  	object_event  8,  4, SPRITE_FISHING_GURU, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePokecenter1FFishingGuruScript, -1
  	object_event  2,  3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, OlivinePokecenter1FFisherScript, -1
  	object_event  7,  1, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivinePokecenter1FTeacherScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivinePokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivinePokecenter1FTitoXeluis, -1
 diff --git a/maps/PewterPokecenter1F.asm b/maps/PewterPokecenter1F.asm
-index 52436b2..61c3393 100644
+index 52436b2..86abaf2 100644
 --- a/maps/PewterPokecenter1F.asm
 +++ b/maps/PewterPokecenter1F.asm
 @@ -66,6 +66,16 @@ PewterPokecenter1FBugCatcherText:
@@ -83097,9 +83324,9 @@ index 52436b2..61c3393 100644
  	object_event  1,  3, SPRITE_JIGGLYPUFF, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterJigglypuff, -1
  	object_event  2,  3, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterPokecenter1FBugCatcherScript, -1
  	object_event  7,  2, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Chris, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterPokecenter1FTitoXeluis, -1
 diff --git a/maps/Route10Pokecenter1F.asm b/maps/Route10Pokecenter1F.asm
-index 0f028a0..b1e60d9 100644
+index 0f028a0..53ee342 100644
 --- a/maps/Route10Pokecenter1F.asm
 +++ b/maps/Route10Pokecenter1F.asm
 @@ -78,6 +78,16 @@ Route10Pokecenter1FCooltrainerFText:
@@ -83123,7 +83350,7 @@ index 0f028a0..b1e60d9 100644
  	object_event  7,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FGentlemanScript, -1
  	object_event  7,  2, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FGymGuideScript, -1
  	object_event  1,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FCooltrainerFScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route10Pokecenter1FTitoXeluis, -1
 diff --git a/maps/Route11.asm b/maps/Route11.asm
 index 2870689..b140699 100644
 --- a/maps/Route11.asm
@@ -83478,7 +83705,7 @@ index 3d24969..89f0738 100644
 +.Done
 +	end
 diff --git a/maps/Route32Pokecenter1F.asm b/maps/Route32Pokecenter1F.asm
-index 649d85e..6109873 100644
+index 649d85e..399ad76 100644
 --- a/maps/Route32Pokecenter1F.asm
 +++ b/maps/Route32Pokecenter1F.asm
 @@ -91,6 +91,16 @@ Route32Pokecenter1FCooltrainerFText:
@@ -83502,7 +83729,7 @@ index 649d85e..6109873 100644
  	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FNurseScript, -1
  	object_event  1,  4, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FFishingGuruScript, -1
  	object_event  6,  2, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FCooltrainerFScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FTitoXeluis, -1
 diff --git a/maps/Route34.asm b/maps/Route34.asm
 index fec7be8..c4e729c 100644
 --- a/maps/Route34.asm
@@ -83859,7 +84086,7 @@ index d5b25a1..75cb1da 100644
 +.Done
 +	end
 diff --git a/maps/SaffronPokecenter1F.asm b/maps/SaffronPokecenter1F.asm
-index e069878..111a044 100644
+index e069878..1e26fe5 100644
 --- a/maps/SaffronPokecenter1F.asm
 +++ b/maps/SaffronPokecenter1F.asm
 @@ -109,6 +109,16 @@ SaffronPokecenter1FYoungsterText:
@@ -83883,9 +84110,9 @@ index e069878..111a044 100644
  	object_event  7,  2, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, SaffronPokecenter1FTeacherScript, -1
  	object_event  8,  6, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronPokecenter1FFisherScript, -1
  	object_event  1,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronPokecenter1FYoungsterScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SaffronPokecenter1FTitoXeluis, -1
 diff --git a/maps/SilverCavePokecenter1F.asm b/maps/SilverCavePokecenter1F.asm
-index 5c0a930..3badf38 100644
+index 5c0a930..9d83786 100644
 --- a/maps/SilverCavePokecenter1F.asm
 +++ b/maps/SilverCavePokecenter1F.asm
 @@ -27,6 +27,16 @@ SilverCavePokecenter1FGrannyText:
@@ -83909,7 +84136,7 @@ index 5c0a930..3badf38 100644
  	def_object_events
  	object_event  3,  1, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenter1FNurseScript, -1
  	object_event  1,  5, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 2, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenter1FGrannyScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SilverCavePokecenter1FTitoXeluis, -1
 diff --git a/maps/SilverCaveRoom3.asm b/maps/SilverCaveRoom3.asm
 index c1fdd49..3e78d95 100644
 --- a/maps/SilverCaveRoom3.asm
@@ -84338,7 +84565,7 @@ index a4a6a3a..823eb7a 100644
  	disappear VERMILIONCITY_BIG_SNORLAX
  	setevent EVENT_FOUGHT_SNORLAX
 diff --git a/maps/VermilionPokecenter1F.asm b/maps/VermilionPokecenter1F.asm
-index bc8e7c9..7a6bff4 100644
+index bc8e7c9..c697ed6 100644
 --- a/maps/VermilionPokecenter1F.asm
 +++ b/maps/VermilionPokecenter1F.asm
 @@ -74,6 +74,16 @@ VermilionPokecenter1FBugCatcherText:
@@ -84362,7 +84589,7 @@ index bc8e7c9..7a6bff4 100644
  	object_event  7,  2, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FFishingGuruScript, -1
  	object_event  6,  5, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FSailorScript, -1
  	object_event  1,  5, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FBugCatcherScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VermilionPokecenter1FTitoXeluis, -1
 diff --git a/maps/VictoryRoadGate.asm b/maps/VictoryRoadGate.asm
 index 6661b6a..cf5ae30 100644
 --- a/maps/VictoryRoadGate.asm
@@ -84446,7 +84673,7 @@ index 6661b6a..cf5ae30 100644
  	text "Este camino lleva"
  	line "a MT. PLATEADO."
 diff --git a/maps/VioletPokecenter1F.asm b/maps/VioletPokecenter1F.asm
-index d50debb..d7f799b 100644
+index d50debb..87cd8b4 100644
 --- a/maps/VioletPokecenter1F.asm
 +++ b/maps/VioletPokecenter1F.asm
 @@ -24,7 +24,8 @@ VioletPokecenter1F_ElmsAideScript:
@@ -84480,9 +84707,9 @@ index d50debb..d7f799b 100644
  	object_event  1,  4, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VioletPokecenter1FGentlemanScript, -1
  	object_event  8,  1, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletPokecenter1FYoungsterScript, -1
  	object_event  4,  3, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, VioletPokecenter1F_ElmsAideScript, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, VioletPokecenter1FTitoXeluis, -1
 diff --git a/maps/ViridianPokecenter1F.asm b/maps/ViridianPokecenter1F.asm
-index 62515a5..121c178 100644
+index 62515a5..bde1643 100644
 --- a/maps/ViridianPokecenter1F.asm
 +++ b/maps/ViridianPokecenter1F.asm
 @@ -73,6 +73,16 @@ ViridianPokecenter1FBugCatcherText:
@@ -84506,7 +84733,7 @@ index 62515a5..121c178 100644
  	object_event  8,  4, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianPokecenter1FCooltrainerMScript, -1
  	object_event  5,  3, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianPokecenter1FCooltrainerFScript, -1
  	object_event  1,  6, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ViridianPokecenter1FBugCatcherScript, -1
-+	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianPokecenter1FTitoXeluis, -1
++	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianPokecenter1FTitoXeluis, -1
 diff --git a/maps/WhirlIslandLugiaChamber.asm b/maps/WhirlIslandLugiaChamber.asm
 index 076a24f..ca172cc 100644
 --- a/maps/WhirlIslandLugiaChamber.asm
@@ -85118,6 +85345,58 @@ index 0000000..9071693
 +    parser.add_argument("--seed", type=int, default=20261013)
 +    args = parser.parse_args()
 +    Randomizer(args.seed).run()
+diff --git a/tools/build_move_icons.py b/tools/build_move_icons.py
+new file mode 100644
+index 0000000..f24459e
+--- /dev/null
++++ b/tools/build_move_icons.py
+@@ -0,0 +1,46 @@
++"""Draw the three move-category icons (physical, special, status) as 8x8 tiles.
++
++Output: gfx/battle/move_categories.png, 24x8 (three tiles in a row), grayscale
++levels 255/170/85/0 = white/light/dark/black like the other 2bpp sources.
++Run from the root of the source tree.
++"""
++from pathlib import Path
++from PIL import Image
++
++ICONS = [
++    # physical: impact burst
++    ['#..##..#',
++     '.#.##.#.',
++     '..####..',
++     '#######.',
++     '..####..',
++     '.#.##.#.',
++     '#..##..#',
++     '...##...'],
++    # special: spiral
++    ['..####..',
++     '.#....#.',
++     '#..##..#',
++     '#.#..#.#',
++     '#.#..#.#',
++     '#..####.',
++     '.#......',
++     '..####..'],
++    # status: oval with a dot
++    ['..####..',
++     '.#++++#.',
++     '#+....+#',
++     '#+.##.+#',
++     '#+.##.+#',
++     '#+....+#',
++     '.#++++#.',
++     '..####..'],
++]
++LEVEL = {'.': 255, '+': 85, '#': 0}
++image = Image.new('L', (24, 8), 255)
++for n, rows in enumerate(ICONS):
++    for y, row in enumerate(rows):
++        for x, char in enumerate(row):
++            image.putpixel((n * 8 + x, y), LEVEL[char])
++image.save(Path.cwd() / 'gfx/battle/move_categories.png')
++print('move category icons: 3 tiles')
 diff --git a/tools/build_pack_labels.py b/tools/build_pack_labels.py
 new file mode 100644
 index 0000000..25fe396
@@ -85176,10 +85455,10 @@ index 0000000..25fe396
 +print('pack category labels: 4 labels, 20 tiles (40x32)')
 diff --git a/tools/build_tito_sprite.py b/tools/build_tito_sprite.py
 new file mode 100644
-index 0000000..51b099b
+index 0000000..16d9ea5
 --- /dev/null
 +++ b/tools/build_tito_sprite.py
-@@ -0,0 +1,33 @@
+@@ -0,0 +1,41 @@
 +"""Compile Tito's native pixel-grid source to PNG and LR35902-ready 2bpp.
 +
 +The PNG is an editable preview, the textual grid is the source of truth. Do not
@@ -85207,12 +85486,20 @@ index 0000000..51b099b
 +
 +shades = {'.': 255, 'y': 170, 'r': 85, '#': 0}
 +image = Image.new('L', (16, 96), 255)
-+for index, rows in enumerate(list(frames.values()) * 2):
++def breathe(rows):
++    new = list(rows)
++    for y in range(11, 0, -1):
++        new[y] = rows[y - 1]
++    new[0] = '.' * 16
++    return new
++
++
++for index, rows in enumerate(list(frames.values()) + [breathe(r) for r in frames.values()]):
 +    for y, row in enumerate(rows):
 +        for x, char in enumerate(row):
 +            image.putpixel((x, index * 16 + y), shades[char])
 +image.save(root / 'gfx/sprites/tito_xeluis.png')
-+print('Tito native artwork: front/back/LEFT + three safe alternate frames (16x96).')
++print('Tito native artwork: front/back/LEFT + three idle frames (head and torso one pixel lower), 16x96.')
 diff --git a/tools/convert_tito_assets.py b/tools/convert_tito_assets.py
 new file mode 100644
 index 0000000..62c069a
@@ -85342,10 +85629,10 @@ index 0000000..991db61
 +print('Native overworld 16x96 and battle portrait 56x56 converted')
 diff --git a/tools/export_portable_randomizer.py b/tools/export_portable_randomizer.py
 new file mode 100644
-index 0000000..6cf24c7
+index 0000000..ce80c37
 --- /dev/null
 +++ b/tools/export_portable_randomizer.py
-@@ -0,0 +1,71 @@
+@@ -0,0 +1,89 @@
 +"""Export the compiled address whitelist and an offline single-file HTML tool."""
 +from pathlib import Path
 +import collections,hashlib,json,re,sys
@@ -85408,6 +85695,24 @@ index 0000000..6cf24c7
 + address=egg['offset']+i*egg['stride']
 + mutable.extend([(address,1),(address+egg['exp'],3),(address+egg['stats'],12)])
 +manifest['mutable']=mutable
++# Preview data: Spanish names and the trainer slots of the gym leaders, Elite Four, champion, Blue and Red.
++species_names=re.findall(r'^\s*(?:db|li|dname) "([^"@]+)@?"',(ROOT/'data/pokemon/names.asm').read_text(encoding='utf8'),re.M)
++move_names=re.findall(r'^\s*(?:db|li|dname) "([^"@]+)@?"',(ROOT/'data/moves/names.asm').read_text(encoding='utf8'),re.M)
++manifest['speciesNames']=species_names
++manifest['moveNames']=move_names
++LEADER_GROUPS=['Falkner','Bugsy','Whitney','Morty','Chuck','Jasmine','Pryce','Clair','Will','Koga','Bruno','Karen','Champion','LtSurge','Sabrina','Erika','Janine','Misty','Brock','Blaine','Blue','Red']
++leaders=collections.OrderedDict();current=None
++for line in (ROOT/'data/trainers/parties.asm').read_text(encoding='utf8').splitlines():
++ m=re.match(r'^(\w+)Group:',line)
++ if m:
++  current=m[1] if m[1] in LEADER_GROUPS else None;continue
++ m=re.match(r'\s*db "([^@]+)@", TRAINERTYPE',line)
++ if m and current:
++  leaders[current]={'name':m[1],'keys':[]};continue
++ m=re.match(r'^\.(__RZ\d+):',line)
++ if m and current:leaders[current]['keys'].append(m[1])
++manifest['leaders']=[leaders[g] for g in LEADER_GROUPS if g in leaders]
++manifest['starterKeys']=[g['key'] for g in groups.values() if g['kind']=='starter']
 +masked=bytearray(rom)
 +for a,n in mutable:masked[a:a+n]=bytes(n)
 +manifest['immutableSHA256']=hashlib.sha256(masked).hexdigest()
@@ -85517,12 +85822,12 @@ index 0000000..6a5b5df
 +print(json.dumps({'groups':len(groups),'maps':len(flat),'max_group':max(len(g['maps']) for g in groups),'water_only':sum(m['collision']=='WATER' for m in flat)},ensure_ascii=False))
 diff --git a/tools/portable_randomizer.html b/tools/portable_randomizer.html
 new file mode 100644
-index 0000000..6b5e0e3
+index 0000000..7896f1d
 --- /dev/null
 +++ b/tools/portable_randomizer.html
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,41 @@
 +<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Randomizador de Cristal Nuzlocke</title>
-+<style>body{font:17px system-ui;color:#e6efff;background:#0d1424;max-width:780px;margin:60px auto;padding:0 24px;line-height:1.6}h1{line-height:1.15;font-size:36px}label{display:block;margin-top:25px;font-weight:700}input{display:block;width:100%;box-sizing:border-box;padding:13px;background:#18243a;border:1px solid #53729e;border-radius:8px;color:inherit;font:inherit}button{padding:13px 20px;margin:22px 10px 0 0;border:0;border-radius:8px;background:#91d5ff;color:#111d30;font:700 16px system-ui;cursor:pointer}button:disabled{opacity:.5}#status{white-space:pre-wrap;border-top:1px solid #405675;padding-top:20px}small{color:#b5c7e0}</style>
++<style>body{font:17px system-ui;color:#e6efff;background:#0d1424;max-width:780px;margin:60px auto;padding:0 24px;line-height:1.6}h1{line-height:1.15;font-size:36px}label{display:block;margin-top:25px;font-weight:700}input{display:block;width:100%;box-sizing:border-box;padding:13px;background:#18243a;border:1px solid #53729e;border-radius:8px;color:inherit;font:inherit}button{padding:13px 20px;margin:22px 10px 0 0;border:0;border-radius:8px;background:#91d5ff;color:#111d30;font:700 16px system-ui;cursor:pointer}button:disabled{opacity:.5}#status{white-space:pre-wrap;border-top:1px solid #405675;padding-top:20px}small{color:#b5c7e0}h2{font-size:22px;margin:30px 0 8px}table{border-collapse:collapse;width:100%;font-size:15px}td,th{border-top:1px solid #405675;padding:6px 8px;text-align:left;vertical-align:top}th{color:#91d5ff}code{color:#91d5ff}</style>
 +<h1>Una aventura diferente<br>con tus mismas reglas</h1><p>Pokémon Cristal Nuzlocke · Tito Xeluis · versión 4</p>
 +<p>Genera otra distribución de Pokémon y MTs conservando los niveles, la dificultad, los eventos, las MOs y todas las reglas. Los movimientos de los Pokémon siguen siendo aleatorios durante el juego. El equipo final de Tito permanece fijo.</p>
 +<label for="rom">1. Selecciona la ROM de esta versión</label><input id="rom" type="file" accept=".gbc,.gb"><small>Usa «Pokemon Cristal Nuzlocke.gbc», o una copia generada con este randomizador.</small>
@@ -85530,11 +85835,20 @@ index 0000000..6b5e0e3
 +<button id="new">Otra semilla</button><button id="generate">Generar y descargar ROM</button>
 +<p>Empieza una partida nueva al cambiar de semilla. Los guardados pertenecen a su aventura; las ROMs generadas llevan la semilla en el nombre.</p>
 +<p id="status">Todo funciona en tu navegador. La ROM se procesa en este equipo.</p>
++<div id="preview" hidden><h2>Vista previa de esta semilla</h2><div id="previewBody"></div></div>
 +<script>/*__CORE__*/</script><script>
 +const manifest=/*__MANIFEST__*/;
 +const seed=document.querySelector('#seed'),status=document.querySelector('#status');
 +function fresh(){const a=new Uint32Array(2);crypto.getRandomValues(a);seed.value=Array.from(a,n=>n.toString(16).padStart(8,'0')).join('');}
 +document.querySelector('#new').onclick=fresh;fresh();
++function showPreview(r){
++ const sp=id=>manifest.speciesNames[id-1]||('#'+id),mv=id=>manifest.moveNames[id-1]||('#'+id);
++ const row=(a,b)=>'<tr><th>'+a+'</th><td>'+b+'</td></tr>';
++ let html='<table>'+row('Iniciales',r.starters.map(sp).join(', '));
++ for(const l of manifest.leaders)html+=row(l.name,l.keys.map(k=>sp(r.chosen[k]||0)).join(', '));
++ html+=row('MT01–MT50',r.tms.map(mv).join(', '))+'</table><small>Solo cambian las especies y las MT; niveles, MO y reglas se conservan.</small>';
++ document.querySelector('#previewBody').innerHTML=html;document.querySelector('#preview').hidden=false;
++}
 +document.querySelector('#generate').onclick=async function(){
 + this.disabled=true;
 + try{
@@ -85548,13 +85862,14 @@ index 0000000..6b5e0e3
 +  const result=CristalRandomizer.randomize(bytes,manifest,seed.value.trim());
 +  const name='Cristal-Nuzlocke-'+seed.value.replace(/[^a-zA-Z0-9_-]/g,'_').slice(0,50)+'.gbc';
 +  const url=URL.createObjectURL(new Blob([result.bytes],{type:'application/octet-stream'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);
++  showPreview(result);
 +  status.textContent='ROM generada: '+name+'\nSemilla: '+result.seed+'\n'+result.sites+' referencias de Pokémon y 50 MTs aleatorizadas.\nAbre el archivo descargado en el emulador y comienza una partida nueva.';
 + }catch(e){status.textContent=e.message;}finally{this.disabled=false;}
 +};
 +</script></html>
 diff --git a/tools/portable_randomizer.js b/tools/portable_randomizer.js
 new file mode 100644
-index 0000000..2885139
+index 0000000..2f07339
 --- /dev/null
 +++ b/tools/portable_randomizer.js
 @@ -0,0 +1,51 @@
@@ -85604,7 +85919,7 @@ index 0000000..2885139
 +  // Cartridge global checksum excludes its own two bytes; no gameplay bytes change.
 +  let sum=0;for(let i=0;i<b.length;i++)if(i!==0x14e&&i!==0x14f)sum=(sum+b[i])&65535;
 +  b[0x14e]=sum>>8;b[0x14f]=sum&255;
-+  return {bytes:b,seed:String(seed),starters:m.groups.filter(g=>g.kind==='starter').map(g=>chosen[g.key]),sites:m.groups.reduce((n,g)=>n+g.sites.length,0),tms};
++  return {bytes:b,seed:String(seed),starters:m.groups.filter(g=>g.kind==='starter').map(g=>chosen[g.key]),sites:m.groups.reduce((n,g)=>n+g.sites.length,0),tms,chosen};
 + }
 + const api={randomize,masked,rng};
 + if(typeof module!=='undefined')module.exports=api;else root.CristalRandomizer=api;

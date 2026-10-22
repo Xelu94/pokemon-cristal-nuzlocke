@@ -1,4 +1,4 @@
-# Mecánicas y reglas vigentes (v4.3)
+# Mecánicas y reglas vigentes (v4.4)
 
 Descripción de la ROM normal. Los datos numéricos se contrastaron con la fuente integrada (`engine/pokemon/v2_balance.asm`, `data/moves/moves.asm`, `data/pokemon/evos_attacks.asm`). Cuando una regla depende del emulador o de la semilla, se indica.
 
@@ -13,10 +13,11 @@ Descripción de la ROM normal. Los datos numéricos se contrastaron con la fuent
 
 - **Categoría por movimiento**: física, especial o de estado, independiente del tipo. Las estadísticas Ataque, Defensa, Ataque Especial, Defensa Especial y Velocidad ya estaban separadas en la segunda generación; lo nuevo es que cada movimiento declara su categoría.
 - **Subpanel de combate**: potencia, tipo, categoría y PP del movimiento seleccionado dentro del marco del menú, con los cuatro nombres completos. La potencia también aparece en las pantallas de movimientos. El arreglo fue de distribución del panel; no se cambió la tipografía.
+- **Iconos de categoría (4.4)**: el subpanel muestra un icono (estallido, espiral u óvalo) en lugar de texto para físico, especial y estado.
 - **Poder Oculto** muestra tipo y potencia reales calculados con los DVs de segunda generación, coherentes con el combate (contrastado con 768 combinaciones de DVs).
 - **Reparto de experiencia**: los participantes vivos reciben la recompensa completa; las reservas vivas, la mitad. Huevos y Pokémon muertos no ganan experiencia.
 - **Experiencia por captura**: aproximadamente la mitad de derrotarlo. El Pokémon recién capturado no recibe experiencia por su propia captura.
-- **Tope de nivel**: al alcanzar el límite vigente se reciben 0 puntos de experiencia. Se aplica también a caramelos raros y guardería. Los Pokémon intercambiados obedecen hasta ese límite incluido.
+- **Tope de nivel**: al alcanzar el límite vigente se reciben 0 puntos de experiencia (4.4: el límite vigente se ve en la primera página de estado como «TOPE»). Se aplica también a caramelos raros y guardería. Los Pokémon intercambiados obedecen hasta ese límite incluido.
 - **Viento Hielo** conserva daño y bajada de Velocidad con una animación simplificada; se retiró una ruta gráfica problemática. Se probaron doce ejecuciones completas sin reinicio. El fallo original, observado en un emulador móvil con un guardado concreto, no se reprodujo con esos mismos elementos.
 
 ## Tipos y movimientos

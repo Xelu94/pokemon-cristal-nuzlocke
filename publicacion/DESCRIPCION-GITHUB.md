@@ -12,4 +12,4 @@
 
 **Sitio web:** vacío (no hay web alojada; el randomizador se ejecuta localmente).
 
-**Release actual:** `v4.3`, ver [RELEASE-v4.3.md](RELEASE-v4.3.md) (la `v4.2` sigue publicada: [RELEASE-v4.2.md](RELEASE-v4.2.md)).
+**Release actual:** `v4.4`, ver [RELEASE-v4.4.md](RELEASE-v4.4.md) (siguen publicadas la `v4.3`: [RELEASE-v4.3.md](RELEASE-v4.3.md) y la `v4.2`: [RELEASE-v4.2.md](RELEASE-v4.2.md)).

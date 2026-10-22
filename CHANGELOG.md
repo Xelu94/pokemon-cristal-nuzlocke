@@ -2,9 +2,28 @@
 
 Formato por versión. Las versiones anteriores a la 4 no están documentadas en este paquete; solo se sabe que la actualización v3→v4 permite continuar el guardado.
 
-## 4.3.1 — Correcciones de texto (sin publicar)
+## 4.4 — Interfaz y herramientas (22 de octubre de 2026)
 
-Dos líneas de diálogo desbordadas (la profesora de CIUDAD CEREZO y el santuario del Encinar), detectadas por el playtest automatizado. El parche está en [parches/correcciones-v4.3.1.patch](parches/correcciones-v4.3.1.patch) y la compilación pasa las 137 comprobaciones, pero **no se ha creado Release**: la v4.3 publicada no las incluye. Detalle y resultados de equilibrio en [docs/INFORME-PLAYTEST-v4.3.md](docs/INFORME-PLAYTEST-v4.3.md).
+Cinco mejoras de interfaz y herramientas propuestas en el [informe de playtest](docs/INFORME-PLAYTEST-v4.3.md) y aprobadas por el autor, más dos correcciones de texto. La compilación pasa 140 comprobaciones agrupadas ([evidencias/Validacion-v4.4.json](evidencias/Validacion-v4.4.json)): las 137 anteriores y 3 nuevas.
+
+1. **Tope de nivel en la pantalla de estado.** La primera página de estado muestra «TOPE» y el límite vigente (por ejemplo 24 con una medalla) en su fila inferior, con la misma rutina `GetCurrentLevelCap` que usa el combate. El menú de Tito ya consultaba el límite en su propio flujo y no se ha modificado.
+2. **Iconos de categoría en el subpanel de ataques.** La categoría física, especial o de estado se dibuja con un icono de un tile en lugar de texto. Los tres iconos (estallido, espiral y óvalo) se generan con `herramientas/fuentes/build_move_icons.py`, viven en una sección ROMX propia y se cargan en un tile de fondo libre al abrir el panel.
+3. **Rótulos en toda la mochila.** MT/MO, BALLS y OBJ.CLAVE se redibujan con la misma tipografía que MEDICINA, BAYAS, COMBATE y OTROS; reutilizan los tiles originales de `gfx/pack/pack_menu.png`, sin tiles nuevos.
+4. **Tito respira.** En los Centros Pokémon, Tito alterna dos fotogramas cada pocos segundos (hombros y cabeza un píxel más bajos). Usa el fotograma alterno que la hoja ya tenía, un nuevo movimiento de sprite (`SPRITEMOVEDATA_STANDING_IDLE`) y la acción `OBJECT_ACTION_IDLE`; no consume VRAM ni WRAM adicionales.
+5. **Randomizador con vista previa.** Tras generar, la página muestra los iniciales, los equipos de los 22 líderes, Alto Mando y rivales principales (nombres de especie) y las 50 MT de la semilla. Solo muestra nombres; no hay sprites.
+6. **Dos líneas desbordadas** (la profesora de CIUDAD CEREZO y el santuario del Encinar) detectadas por el playtest. Antes estaban sueltas en `parches/correcciones-v4.3.1.patch`; ahora están integradas en `Cambios-fuente.patch`.
+7. **Integración continua real** en [`.github/workflows/verificacion.yml`](.github/workflows/verificacion.yml): sintaxis de herramientas y pruebas, descarga de la ROM de la Release enlazada en el README, comprobación de su SHA-256 y prueba del randomizador con esa ROM. Todavía no hay una ejecución real registrada: se comprobará tras el primer `push`.
+
+ROM publicada (reconstruida desde la base española aplicando el parche y compilando con RGBDS 1.0.0):
+
+| | SHA-256 |
+|---|---|
+| ROM normal | `b4cff3b076988a780d6570653d677b7fecab1cbb4fdfcc6dde8cda5a22c1e3ef` |
+| Sandbox | `f77fb27ec0e2365985be7cc7d6045fde364a9e3e6ad484e2a1df5aab74b3706e` |
+
+### Compatibilidad
+
+No necesita partida nueva respecto a la 4.3. El randomizador de esta versión solo acepta la ROM 4.4 (cambia la firma de la parte inmutable). Otra semilla del randomizador sigue requiriendo partida nueva.
 
 ## 4.3 — Mejoras de jugabilidad (21 de octubre de 2026)
 

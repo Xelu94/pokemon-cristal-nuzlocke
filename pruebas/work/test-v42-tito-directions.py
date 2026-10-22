@@ -13,10 +13,13 @@ try:
     validated=[]
     for direction,name,frame in [(0,'FRENTE',0),(4,'ESPALDA',4),(8,'IZQUIERDA',8),(12,'DERECHA',8)]:
         p.memory[addr(f'wObject{actor}Direction')]=direction
-        p.tick(40)
+        p.tick(30)
+        p.memory[addr('hVBlankCounter')]=0  # Tito breathes on a 128-frame cycle: pin the standing phase
+        p.tick(2)
         c.snap('v42-'+name)
         oam=list(p.memory[0xfe00:0xfea0])
-        entries=[oam[i:i+4] for i in range(0,160,4) if tile<=oam[i+2]<tile+12 and oam[i]>0]
+        entries=[oam[i:i+4] for i in range(0,160,4) if (tile<=oam[i+2]<tile+12 or tile+128<=oam[i+2]<tile+140) and oam[i]>0]
+        entries=[[e[0],e[1],e[2]-128 if e[2]>=128 else e[2],e[3]] for e in entries]  # standing and walking copies hold the same 12 tiles
         print(name,'tilebase',tile,'OAM',entries,flush=True)
         assert len(entries)==4,(name,entries)
         assert sorted(e[2] for e in entries)==list(range(tile+frame,tile+frame+4)),(name,entries)

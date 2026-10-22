@@ -44,7 +44,7 @@
   // Cartridge global checksum excludes its own two bytes; no gameplay bytes change.
   let sum=0;for(let i=0;i<b.length;i++)if(i!==0x14e&&i!==0x14f)sum=(sum+b[i])&65535;
   b[0x14e]=sum>>8;b[0x14f]=sum&255;
-  return {bytes:b,seed:String(seed),starters:m.groups.filter(g=>g.kind==='starter').map(g=>chosen[g.key]),sites:m.groups.reduce((n,g)=>n+g.sites.length,0),tms};
+  return {bytes:b,seed:String(seed),starters:m.groups.filter(g=>g.kind==='starter').map(g=>chosen[g.key]),sites:m.groups.reduce((n,g)=>n+g.sites.length,0),tms,chosen};
  }
  const api={randomize,masked,rng};
  if(typeof module!=='undefined')module.exports=api;else root.CristalRandomizer=api;

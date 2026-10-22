@@ -60,6 +60,24 @@ for i in range(20):
  address=egg['offset']+i*egg['stride']
  mutable.extend([(address,1),(address+egg['exp'],3),(address+egg['stats'],12)])
 manifest['mutable']=mutable
+# Preview data: Spanish names and the trainer slots of the gym leaders, Elite Four, champion, Blue and Red.
+species_names=re.findall(r'^\s*(?:db|li|dname) "([^"@]+)@?"',(ROOT/'data/pokemon/names.asm').read_text(encoding='utf8'),re.M)
+move_names=re.findall(r'^\s*(?:db|li|dname) "([^"@]+)@?"',(ROOT/'data/moves/names.asm').read_text(encoding='utf8'),re.M)
+manifest['speciesNames']=species_names
+manifest['moveNames']=move_names
+LEADER_GROUPS=['Falkner','Bugsy','Whitney','Morty','Chuck','Jasmine','Pryce','Clair','Will','Koga','Bruno','Karen','Champion','LtSurge','Sabrina','Erika','Janine','Misty','Brock','Blaine','Blue','Red']
+leaders=collections.OrderedDict();current=None
+for line in (ROOT/'data/trainers/parties.asm').read_text(encoding='utf8').splitlines():
+ m=re.match(r'^(\w+)Group:',line)
+ if m:
+  current=m[1] if m[1] in LEADER_GROUPS else None;continue
+ m=re.match(r'\s*db "([^@]+)@", TRAINERTYPE',line)
+ if m and current:
+  leaders[current]={'name':m[1],'keys':[]};continue
+ m=re.match(r'^\.(__RZ\d+):',line)
+ if m and current:leaders[current]['keys'].append(m[1])
+manifest['leaders']=[leaders[g] for g in LEADER_GROUPS if g in leaders]
+manifest['starterKeys']=[g['key'] for g in groups.values() if g['kind']=='starter']
 masked=bytearray(rom)
 for a,n in mutable:masked[a:a+n]=bytes(n)
 manifest['immutableSHA256']=hashlib.sha256(masked).hexdigest()

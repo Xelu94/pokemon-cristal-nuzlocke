@@ -1,0 +1,17 @@
+{
+  "passed": 3,
+  "tests": [
+    {
+      "name": "the stats page prints TOPE and the level cap (24 with one badge) on its bottom row",
+      "passed": true
+    },
+    {
+      "name": "the move panel shows a physical, a special and a status icon in its category column",
+      "passed": true
+    },
+    {
+      "name": "Tito shows two different frames while he stands still",
+      "passed": true
+    }
+  ]
+}

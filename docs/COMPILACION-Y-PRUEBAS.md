@@ -50,14 +50,20 @@ Salidas: `pokecristal.gbc` (ROM normal) y `pokecristal_debug.gbc` (sandbox), con
 >
 > La compilación de la fuente de la 4.2 sin cambios reprodujo también los hashes publicados de la 4.2.
 
-### Generación del sprite de Tito y de los rótulos de la bolsa
+> **Verificado para la 4.4 (22 de octubre de 2026):** el parche acumulado (227 archivos) aplicado sobre `base-espanola-verificada` y compilado desde cero con RGBDS 1.0.0 produjo exactamente:
+>
+> - ROM normal: `b4cff3b076988a780d6570653d677b7fecab1cbb4fdfcc6dde8cda5a22c1e3ef`
+> - Sandbox: `f77fb27ec0e2365985be7cc7d6045fde364a9e3e6ad484e2a1df5aab74b3706e`
+
+### Generación del sprite de Tito, de los rótulos y de los iconos
 
 ```sh
 python herramientas/fuentes/build_tito_sprite.py   # desde la raíz de la fuente integrada
-python herramientas/fuentes/build_pack_labels.py   # rótulos MEDICINA/BAYAS/COMBATE/OTROS (40x32)
+python herramientas/fuentes/build_pack_labels.py   # rótulos de la mochila (40x32) y rótulos nativos MT/MO, BALLS, OBJ.CLAVE
+python herramientas/fuentes/build_move_icons.py    # iconos de categoría de ataque (24x8)
 ```
 
-El primero lee `gfx/sprites/tito_xeluis.pixels` y escribe `gfx/sprites/tito_xeluis.png` (16×96). El segundo escribe `gfx/pack/pack_categories.png`, que el Makefile convierte a 2bpp.
+El primero lee `gfx/sprites/tito_xeluis.pixels` y escribe `gfx/sprites/tito_xeluis.png` (16×96; la segunda mitad lleva el fotograma de «respiración»). El segundo escribe `gfx/pack/pack_categories.png` y redibuja los rótulos nativos en `gfx/pack/pack_menu.png`. El tercero escribe `gfx/battle/move_categories.png`. El Makefile convierte los PNG a 2bpp.
 
 ### Randomizador
 
@@ -77,14 +83,14 @@ cd pruebas
 python -m pip install -r requirements.txt
 npm install
 npx playwright install chromium
-python work/validate-v43-release.py
+python work/validate-v44-release.py
 ```
 
-`validate-v43-release.py` ejecuta los nueve grupos, comprueba el número esperado de comprobaciones de cada uno y genera `work/v43-validation.json`. Las pruebas de PyBoy usan la ROM compilada y sus símbolos; las de navegador usan el randomizador y no envían la ROM a ningún servidor.
+`validate-v44-release.py` ejecuta los diez grupos, comprueba el número esperado de comprobaciones de cada uno y genera `work/v44-validation.json`. Las pruebas de PyBoy usan la ROM compilada y sus símbolos; las de navegador usan el randomizador y no envían la ROM a ningún servidor.
 
-### Resultados de 4.3
+### Resultados de 4.4
 
-137 comprobaciones agrupadas, ejecutadas el 21 de octubre de 2026 sobre las ROM de los hashes anteriores (informes en [`evidencias/`](../evidencias)):
+140 comprobaciones agrupadas, ejecutadas el 22 de octubre de 2026 sobre las ROM de 4.4 (informes en [`evidencias/`](../evidencias); los ficheros `v4-*` y `v41-*` se regeneraron con esta compilación, y [`Validacion-v4.3.json`](../evidencias/Validacion-v4.3.json) conserva el resumen de la 4.3): (informes en [`evidencias/`](../evidencias)):
 
 | Grupo | Informe | Comprobaciones |
 |---|---|---|
@@ -97,8 +103,11 @@ python work/validate-v43-release.py
 | Núcleo del randomizador | `v4-randomizer-tests.json` | 9 |
 | Randomizador en navegador sin conexión | `v4-randomizer-ui-tests.json` | 4 |
 | Cambios de la 4.3 (Vuelo, anciano del mapa, tiendas, Liga, caramelos, bolsa) | `v43-changes-tests.json` | 13 |
+| Cambios de la 4.4 (tope en estado, iconos de ataque, respiración de Tito) | `v44-changes-tests.json` | 3 |
 
 Las comprobaciones nuevas de la 4.3: la partida nueva empieza con un montón de 99 caramelos y 6 montones en total, usar un caramelo sube el nivel sin gastarlo, el recuadro negro muestra los cuatro rótulos, la navegación derecha e izquierda recorre el círculo de bolsillos, VUELO aparece en el submenú solo con la MO, el anciano entrega el mapa por las dos filas de entrada, ninguna de las 34 tiendas vende curas ni queda vacía, y el oficial entrega 8/10/7 con ocho medallas.
+
+Las comprobaciones de la 4.4: la primera página de estado imprime TOPE y el límite (24 con una medalla); el subpanel de ataques muestra tres iconos distintos para un ataque físico, uno especial y uno de estado, con los bytes de VRAM iguales a los de la ROM; y Tito muestra exactamente dos fotogramas distintos en reposo. La prueba de orientaciones de Tito fija el contador de cuadros para medir siempre la pose de reposo, y la prueba del navegador comprueba que la vista previa coincide con las elecciones del núcleo. Los rótulos nativos de la mochila se verifican visualmente en la captura [bolsa-rotulos.png](../capturas/bolsa-rotulos.png), no con una comprobación automática propia.
 
 Los informes de 4.2 y anteriores pertenecen a otras compilaciones y no se suman a este recuento.
 
@@ -111,4 +120,9 @@ Los informes de 4.2 y anteriores pertenecen a otras compilaciones y no se suman 
 
 ## Integración continua
 
-No hay integración continua en este repositorio y no se muestra ninguna insignia de estado. Si se añade GitHub Actions, los resultados deben proceder de una ejecución real en este repositorio. Hasta entonces, los resultados anteriores son los de las ejecuciones locales descritas.
+[`.github/workflows/verificacion.yml`](../.github/workflows/verificacion.yml) se ejecuta en cada `push`, `pull_request` y a demanda. Tiene dos trabajos, ambos sin compilar la ROM:
+
+- **herramientas**: sintaxis de los scripts de Python y JavaScript, validez de los JSON de `evidencias/` y sintaxis de los scripts incrustados en `Randomizador.html`.
+- **release**: descarga el `.gbc` de la Release que enlaza el README, comprueba que su SHA-256 coincide con el del README y ejecuta [`pruebas/ci/verificar-randomizador.cjs`](../pruebas/ci/verificar-randomizador.cjs) con esa ROM y el `Randomizador.html` del repositorio (firma de la parte inmutable, determinismo por semilla, solo cambian bytes mutables, reaplicación sobre una ROM ya generada).
+
+La compilación completa y las pruebas con emulador **no** están en la CI: necesitan RGBDS, WinLibs/GCC y PyBoy y siguen siendo ejecuciones locales. No se muestra ninguna insignia de estado. El flujo se escribió y sus scripts se probaron en local antes de subirlo; el resultado de su primera ejecución real se consulta en la pestaña Actions del repositorio.
