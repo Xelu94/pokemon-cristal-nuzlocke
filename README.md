@@ -96,7 +96,7 @@ La versión 5.0 pasó **173 comprobaciones agrupadas**: 124 de los componentes y
 
 La reconstrucción también está comprobada: aplicar el parche a la base española y compilar con RGBDS 1.0.0 produce exactamente los SHA-256 de la ROM normal y de la compilación sandbox de los informes.
 
-Límites reales: los montajes omiten la introducción; algunos combates aumentan el daño para recorrer los equipos; en Ruta 17 se desactiva la gravedad solo en la prueba. No se ha completado una campaña entera ni queda demostrado el equilibrio global. El fallo móvil original de Viento Hielo no se reprodujo con el mismo emulador y guardado del usuario. La integración continua está preparada (script en [`pruebas/ci`](pruebas/ci)) pero su flujo de GitHub Actions todavía no se ha podido subir (el token usado no tiene el permiso `workflow`); hoy todo se ejecuta en local. Informe: [evidencias/Validacion-v5.0.json](evidencias/Validacion-v5.0.json).
+Límites reales: los montajes omiten la introducción; algunos combates aumentan el daño para recorrer los equipos; en Ruta 17 se desactiva la gravedad solo en la prueba. No se ha completado una campaña entera ni queda demostrado el equilibrio global. El fallo móvil original de Viento Hielo no se reprodujo con el mismo emulador y guardado del usuario. La integración continua (flujo de GitHub Actions y script en [`pruebas/ci`](pruebas/ci)) solo comprueba herramientas y el randomizador contra la ROM de la Release; la compilación y las pruebas con emulador se ejecutan en local. Informe: [evidencias/Validacion-v5.0.json](evidencias/Validacion-v5.0.json).
 No implementado: habilidades, megaevolución, generaciones tercera/cuarta, recursos de Prism.
 
 ## Contenido del repositorio

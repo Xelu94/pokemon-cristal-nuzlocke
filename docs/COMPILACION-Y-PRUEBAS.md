@@ -130,9 +130,9 @@ Los informes de 4.2 y anteriores pertenecen a otras compilaciones y no se suman 
 
 ## Integración continua
 
-El flujo de GitHub Actions `verificacion.yml` está escrito y probado en local, pero **todavía no está subido** al repositorio (el token usado no tiene el permiso `workflow`). Cuando se suba se ejecutará en cada `push`, `pull_request` y a demanda, con dos trabajos, ambos sin compilar la ROM:
+El flujo de GitHub Actions `verificacion.yml` está subido al repositorio y se ejecuta en cada `push`, `pull_request` y a demanda, con dos trabajos, ambos sin compilar la ROM:
 
 - **herramientas**: sintaxis de los scripts de Python y JavaScript, validez de los JSON de `evidencias/` y sintaxis de los scripts incrustados en `Randomizador.html`.
 - **release**: descarga el `.gbc` de la Release que enlaza el README, comprueba que su SHA-256 coincide con el del README y ejecuta [`pruebas/ci/verificar-randomizador.cjs`](../pruebas/ci/verificar-randomizador.cjs) con esa ROM y el `Randomizador.html` del repositorio (firma de la parte inmutable, determinismo por semilla, solo cambian bytes mutables, reaplicación sobre una ROM ya generada).
 
-La compilación completa y las pruebas con emulador **no** están en la CI: necesitan RGBDS, WinLibs/GCC y PyBoy y siguen siendo ejecuciones locales. No se muestra ninguna insignia de estado. El flujo se escribió y sus scripts se probaron en local antes de subirlo; el resultado de su primera ejecución real se consulta en la pestaña Actions del repositorio.
+La compilación completa y las pruebas con emulador **no** están en la CI: necesitan RGBDS, WinLibs/GCC y PyBoy y siguen siendo ejecuciones locales. No se muestra ninguna insignia de estado. Sus scripts se probaron en local antes de subirlo; el resultado de su primera ejecución real se consulta en la pestaña Actions del repositorio.

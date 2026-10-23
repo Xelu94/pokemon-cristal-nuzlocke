@@ -57,7 +57,7 @@ Cinco mejoras de interfaz y herramientas propuestas en el [informe de playtest](
 4. **Tito respira.** En los Centros Pokémon, Tito alterna dos fotogramas cada pocos segundos (hombros y cabeza un píxel más bajos). Usa el fotograma alterno que la hoja ya tenía, un nuevo movimiento de sprite (`SPRITEMOVEDATA_STANDING_IDLE`) y la acción `OBJECT_ACTION_IDLE`; no consume VRAM ni WRAM adicionales.
 5. **Randomizador con vista previa.** Tras generar, la página muestra los iniciales, los equipos de los 22 líderes, Alto Mando y rivales principales (nombres de especie) y las 50 MT de la semilla. Solo muestra nombres; no hay sprites.
 6. **Dos líneas desbordadas** (la profesora de CIUDAD CEREZO y el santuario del Encinar) detectadas por el playtest. Antes estaban sueltas en `parches/correcciones-v4.3.1.patch`; ahora están integradas en `Cambios-fuente.patch`.
-7. **Integración continua preparada** (`.github/workflows/verificacion.yml`, aún sin subir por falta del permiso `workflow` del token; el script que usa está en [`pruebas/ci`](pruebas/ci)): sintaxis de herramientas y pruebas, descarga de la ROM de la Release enlazada en el README, comprobación de su SHA-256 y prueba del randomizador con esa ROM. Todavía no hay una ejecución real registrada: se comprobará tras el primer `push`.
+7. **Integración continua** (`.github/workflows/verificacion.yml`; el script que usa está en [`pruebas/ci`](pruebas/ci)): sintaxis de herramientas y pruebas, descarga de la ROM de la Release enlazada en el README, comprobación de su SHA-256 y prueba del randomizador con esa ROM. Su primera ejecución real (23 de octubre de 2026) terminó con éxito.
 
 ROM publicada (reconstruida desde la base española aplicando el parche y compilando con RGBDS 1.0.0):
 
