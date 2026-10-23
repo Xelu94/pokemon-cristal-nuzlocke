@@ -7,5 +7,5 @@
     "No network requests or browser script errors"
   ],
   "browser": "Playwright Chromium headless",
-  "sha256": "339f38f5d51b9bd1a4adcd28e1767fbbf32ef4e0e343f4965acbdc9cb4fa00e5"
+  "sha256": "6861c67987485a36df0e3c4a83906bd68f778a7b649466984dffdeb31ffc590b"
 }

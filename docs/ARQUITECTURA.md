@@ -98,3 +98,8 @@ La base (motor, mapas, gráficos y textos de Pokémon Cristal en español) proce
 - **Dark Lugia:** `gfx/pokemon/dark_lugia/back.png` es la imagen trasera aportada (56×56 reducida a 48×48); `front.png` se genera con `tools/build_dark_lugia_sprite.py` a partir del vídeo del frontal.
 - **Pruebas por género.** `test-v43-changes.py` acepta `PLAYER_GENDER=1`: parchea `OakSpeech` para que guarde chica y así los recorridos se juegan como chica sin pasar por la introducción.
 
+## Cambios de la 5.2
+
+- **Combates rechazados.** `StartBattle` devuelve acarreo solo si hubo combate. `Script_startbattle` (que lo llama con `predef`, que conserva los flags) trata la ausencia de acarreo como una derrota: escribe `LOSE` en `wBattleResult` y activa `EVENT_BATTLE_REFUSED`. Antes el script leía el resultado del combate anterior (derrota repetida, o victoria y medalla gratis). `StartBattle` no se tocó: el bloque `Battle Core` está completo.
+- **Pantalla de derrota.** `Script_BattleWhiteout` mira `EVENT_BATTLE_REFUSED`: si está activo (nunca se dibujó la pantalla de combate) hace `reanchormap` + `OverworldBGMap`, como el desmayo por veneno, y borra la bandera; si no, conserva el aspecto de la derrota tras un combate real. El texto de fin de reto ya no se dibuja sin `opentext` ni ancla sobre el mapa.
+

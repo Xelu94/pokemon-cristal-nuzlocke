@@ -2,6 +2,23 @@
 
 Formato por versión. Las versiones anteriores a la 4 no están documentadas en este paquete; solo se sabe que la actualización v3→v4 permite continuar el guardado.
 
+## 5.2 — Mensaje de fin del reto (23 de octubre de 2026)
+
+Corrige el mensaje de «has perdido el reto» que salía cortado y desplazado, y un fallo relacionado que podía dar una medalla sin combatir. **200 comprobaciones agrupadas** ([evidencias/Validacion-v5.2.json](evidencias/Validacion-v5.2.json)): las 198 de la 5.1 con una más en cada recorrido de historia (chico y chica).
+
+1. **Un combate rechazado cuenta como derrota.** Con el reto Nuzlocke terminado (o sin Pokémon aptos) el motor rechaza todo combate nuevo, pero el script de después leía el resultado del combate *anterior*: casi siempre una derrota. El juego repetía entonces la pantalla de «pierdes el conocimiento» y «NUZLOCKE: no quedan #MON vivos. Fin de la partida. Empieza NUEVA PARTIDA» con el mapa a la vista, sin haber anclado la caja de texto: se veía desplazada y cortada por la izquierda y la parte de arriba. Ahora `Script_startbattle` detecta el rechazo, fija la derrota y marca `EVENT_BATTLE_REFUSED`; `Script_BattleWhiteout` en ese caso ancla el mapa y limpia la pantalla como la derrota por veneno, y el texto sale entero. La derrota tras un combate real no cambia.
+2. **Un líder de gimnasio ya no da la medalla si el combate se rechaza.** Si el último combate se había ganado, el resultado antiguo valía como victoria y el líder entregaba la medalla sin combatir (con el reto terminado). Nueva prueba: con el reto terminado, un líder no combate, no da medalla y la pantalla de derrota sale completa.
+3. **Pruebas.** Una comprobación más en el recorrido de historia (chico y chica).
+
+**Límites:** con el reto terminado, cada intento de combate (encuentro salvaje o entrenador) vuelve a mostrar el mensaje de fin y te devuelve al Centro Pokémon; es la forma que tiene el juego de decir que hay que empezar una partida nueva.
+
+ROM de esta versión (reconstruida desde la base española aplicando el parche con RGBDS 1.0.0):
+
+| | SHA-256 |
+|---|---|
+| ROM normal (`Radical Cristal.gbc`) | `6861c67987485a36df0e3c4a83906bd68f778a7b649466984dffdeb31ffc590b` |
+| Sandbox | `2d39b0abac24322576aa1deaa00e5ed09279958f37db97e5e01d69e2af9bf747` |
+
 ## 5.1 — Correcciones y arte propio de Dark Lugia (23 de octubre de 2026)
 
 Corrige los fallos que aparecían al hablar con el rival al principio de la partida y al volver de un combate, y sustituye la imagen trasera de Dark Lugia. **198 comprobaciones agrupadas** ([evidencias/Validacion-v5.1.json](evidencias/Validacion-v5.1.json)): las 173 de la 5.0 con dos más del recorrido de Pueblo Primavera, y el recorrido de historia repetido jugando como chica (22 + 22).

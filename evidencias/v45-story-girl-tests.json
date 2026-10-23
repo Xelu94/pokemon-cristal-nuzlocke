@@ -1,5 +1,5 @@
 {
-  "passed": 22,
+  "passed": 23,
   "tests": [
     {
       "name": "no tree gives an apricorn any more",
@@ -55,6 +55,10 @@
     },
     {
       "name": "the player walking sprite tiles are not overwritten after the ambush battle",
+      "passed": true
+    },
+    {
+      "name": "with the run over a gym leader refuses to fight, gives no badge and the whiteout shows the Nuzlocke message",
       "passed": true
     },
     {

@@ -11,10 +11,10 @@ index 12b9534..950053b 100644
  # Declare files that will always have CRLF line endings on checkout.
  *.patch.template text eol=crlf linguist-language=INI
 diff --git a/constants/event_flags.asm b/constants/event_flags.asm
-index 7920521..f9226d1 100644
+index 7920521..126fbc0 100644
 --- a/constants/event_flags.asm
 +++ b/constants/event_flags.asm
-@@ -268,7 +268,45 @@
+@@ -268,7 +268,46 @@
  	const EVENT_DANA_GAVE_THUNDERSTONE
  	const EVENT_TULLY_GAVE_WATER_STONE
  	const EVENT_TIFFANY_GAVE_PINK_BOW
@@ -57,6 +57,7 @@ index 7920521..f9226d1 100644
 +	const EVENT_SUPER_BEAT_ROJO
 +	const EVENT_SUPER_BEAT_ULEX
 +	const EVENT_SUPER_BEAT_TITO_ROOM
++	const EVENT_BATTLE_REFUSED
 +; Unused up to event 599
  
  	const_next 600
@@ -80872,10 +80873,29 @@ index 0000000..ed8a1e8
 +	assert @ - wSurroundingTiles <= SURROUNDING_WIDTH * SURROUNDING_HEIGHT
 +POPS
 diff --git a/engine/events/whiteout.asm b/engine/events/whiteout.asm
-index 7775273..e5f805f 100644
+index 7775273..9d899cb 100644
 --- a/engine/events/whiteout.asm
 +++ b/engine/events/whiteout.asm
-@@ -9,6 +9,11 @@ OverworldWhiteoutScript::
+@@ -1,7 +1,18 @@
+ Script_BattleWhiteout::
++	checkevent EVENT_BATTLE_REFUSED
++	iftrue .Refused
+ 	callasm BattleBGMap
+ 	sjump Script_Whiteout
+ 
++.Refused:
++; A refused battle (Nuzlocke run over, no fit Pokemon) never drew the battle
++; screen, so the text box must be anchored and the map cleared as in the
++; overworld whiteout; otherwise it shows displaced over the map.
++	clearevent EVENT_BATTLE_REFUSED
++	reanchormap
++	callasm OverworldBGMap
++	sjump Script_Whiteout
++
+ OverworldWhiteoutScript::
+ 	reanchormap
+ 	callasm OverworldBGMap
+@@ -9,6 +20,11 @@ OverworldWhiteoutScript::
  Script_Whiteout:
  	writetext .WhitedOutText
  	waitbutton
@@ -80887,7 +80907,7 @@ index 7775273..e5f805f 100644
  	special FadeOutToWhite
  	pause 40
  	special HealParty
-@@ -28,6 +33,14 @@ Script_Whiteout:
+@@ -28,6 +44,14 @@ Script_Whiteout:
  	text_far _WhitedOutText
  	text_end
  
@@ -80902,6 +80922,28 @@ index 7775273..e5f805f 100644
  OverworldBGMap:
  	call ClearPalettes
  	call ClearScreen
+@@ -71,3 +95,21 @@ GetWhiteoutSpawn:
+ .yes
+ 	ld [wDefaultSpawnpoint], a
+ 	ret
++
++PUSHS
++SECTION "Refused battle", ROMX
++
++RefusedBattleResult::
++; StartBattle refused (Nuzlocke run over, no fit Pokemon): the result left by an
++; earlier battle must not be read, and a gym leader must not hand out a badge.
++; A script that set DRAW beforehand (Ulex, Tito) tells the refusal apart by it.
++	ld a, [wBattleResult]
++	and ~BATTLERESULT_BITMASK
++	cp DRAW
++	ret z
++	ld a, LOSE
++	ld [wBattleResult], a
++	ld de, EVENT_BATTLE_REFUSED
++	ld b, SET_FLAG
++	jp EventFlagAction
++POPS
 diff --git a/engine/items/item_effects.asm b/engine/items/item_effects.asm
 index 021d938..6226783 100644
 --- a/engine/items/item_effects.asm
@@ -81539,7 +81581,7 @@ index a0a6135..5346444 100644
  	ld b, a
  	inc hl
 diff --git a/engine/overworld/scripting.asm b/engine/overworld/scripting.asm
-index 4e152a6..f11e458 100644
+index 4e152a6..1f0accc 100644
 --- a/engine/overworld/scripting.asm
 +++ b/engine/overworld/scripting.asm
 @@ -246,7 +246,7 @@ CheckScript:
@@ -81551,6 +81593,16 @@ index 4e152a6..f11e458 100644
  	ld hl, wScriptFlags
  	res SCRIPT_RUNNING, [hl]
  	ret
+@@ -1159,6 +1159,9 @@ Script_loadtrainer:
+ Script_startbattle:
+ 	call BufferScreen
+ 	predef StartBattle
++	jr c, .fought
++	farcall RefusedBattleResult
++.fought
+ 	ld a, [wBattleResult]
+ 	and ~BATTLERESULT_BITMASK
+ 	ld [wScriptVar], a
 diff --git a/engine/overworld/wildmons.asm b/engine/overworld/wildmons.asm
 index 8e3479a..5534e0f 100644
 --- a/engine/overworld/wildmons.asm

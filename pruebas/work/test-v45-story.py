@@ -186,6 +186,27 @@ check('the other protagonist is placed on the tile in front of the player, not a
 check('the player walking sprite tiles are not overwritten after the ambush battle', tiles_after is not None and tiles_after == tiles_before)
 g.close()
 
+# --- A refused battle (Nuzlocke run over) is a loss: no badge, no stale result, a clean whiteout ---------
+g = G('VIOLET_GYM', 5, 3)
+g.party([129], level=5)
+at = g.a('wPartyMonNicknames')
+g.p.memory[at:at + 11] = [0x8c, 0x80, 0x86, 0x88, 0x8a, 0x80, 0x91, 0x8f, 0x50, 0, 0]
+g.p.memory[g.a('wPlayerName'):g.a('wPlayerName') + 5] = [0x93, 0x88, 0x93, 0x8e, 0x50]
+g.write('wNuzlockeRunEnded', 1)
+g.write('wBattleResult', 0)  # the last battle was won: a refused one must still not count as a win
+g.p.tick(60)
+g.press('up', 20, hold=16)
+g.press('up', 20, hold=16)
+seen_text = False
+for i in range(80):
+    g.press('a', 25, hold=6)
+    seen_text = seen_text or 'NUEVA' in ' '.join(g.screen_text())
+g.p.tick(300)
+where = settled(g, g.pos)  # the whiteout warps to the spawn point, which the test sets at (5, 3)
+check('with the run over a gym leader refuses to fight, gives no badge and the whiteout shows the Nuzlocke message',
+      seen_text and not g.event('EVENT_BEAT_FALKNER') and not g.event('EVENT_BATTLE_REFUSED') and where == (5, 3))
+g.close()
+
 # --- Other protagonist: Sprout Tower ambush -----------------------------------------------------------
 g = G('SPROUT_TOWER_3F', 11, 10)
 strong_party(g)
