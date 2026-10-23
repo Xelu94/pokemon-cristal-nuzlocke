@@ -18,7 +18,7 @@ Las excepciones sin licencia propia existen porque:
 ## Qué no cubre ninguna licencia de este repositorio
 
 - Personajes, nombres, marcas y contenido de Pokémon, que pertenecen a sus titulares.
-- El sprite frontal de Dark Lugia (arte de un tercero; ver [CREDITOS.md](CREDITOS.md)), que viaja dentro del parche y de la ROM pero no está cubierto por las licencias de arriba.
+- El sprite frontal de Dark Lugia (arte de SageDeoxys; ver [CREDITOS.md](CREDITOS.md)), que viaja dentro del parche y de la ROM pero no está cubierto por las licencias de arriba.
 - Las herramientas externas citadas en [CREDITOS.md](CREDITOS.md), que mantienen su licencia.
 - El código y los recursos heredados de las bases citadas.
 

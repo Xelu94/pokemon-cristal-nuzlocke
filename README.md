@@ -2,7 +2,7 @@
 
 Modificación personal de **Pokémon Cristal** (antes «Cristal Nuzlocke») para Game Boy Color con un Nuzlocke integrado en el motor, combate modernizado, aleatorización por niveles, una liga extra y personajes propios. Versión **5.0**. Autor: **Tito Xeluis** (apodo de YouTube; [@Xelu94](https://github.com/Xelu94) en GitHub). El NPC Tito Xeluis del juego lleva el nombre del autor.
 
-> *English summary:* **Radical Cristal** is a personal ROM hack of Pokémon Crystal (Game Boy Color, SM83 assembly) built on the Spanish source tree of [MicaelAlighieri/pokecristal](https://github.com/MicaelAlighieri/pokecristal) and the [pret/pokecrystal](https://github.com/pret/pokecrystal) disassembly. It adds built-in Nuzlocke rules, per-move physical/special split, a Fairy type, level caps, a custom NPC (Tito Xeluis), a roaming thief (Ulex), the other protagonist as a rival, a 5-fight Super League at level 100, a new Dark Lugia, a sandbox build for testing and an offline seed-based randomizer. It is **not** a game written from scratch and **not** an official Pokémon product. Spanish only. Download the single `.gbc` from [Releases](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases) and open it in a Game Boy Color emulator.
+> *English summary:* **Radical Cristal** is a personal ROM hack of Pokémon Crystal (Game Boy Color, SM83 assembly) built on the Spanish source tree of [MicaelAlighieri/pokecristal](https://github.com/MicaelAlighieri/pokecristal) and the [pret/pokecrystal](https://github.com/pret/pokecrystal) disassembly. It adds built-in Nuzlocke rules, per-move physical/special split, a Fairy type, level caps, a custom NPC (Tito Xeluis), a roaming thief (Ulex), the other protagonist as a rival, a 5-fight Super League at level 100, a new Dark Lugia, a sandbox build for testing and an offline seed-based randomizer. It is **not** a game written from scratch and **not** an official Pokémon product. Spanish only. Download the single `.gbc` from [Releases](https://github.com/Xelu94/pokemon-radical-cristal/releases) and open it in a Game Boy Color emulator.
 
 ![Pantalla de título de Radical Cristal](capturas/titulo-radical-cristal.png)
 
@@ -10,9 +10,9 @@ Modificación personal de **Pokémon Cristal** (antes «Cristal Nuzlocke») para
 
 ## Descarga y cómo jugar
 
-**[⬇ Descargar Radical Cristal.gbc (v5.0)](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/download/v5.0/Radical.Cristal.gbc)** — enlace directo al asset de la [Release v5.0](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v5.0). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
+**[⬇ Descargar Radical Cristal.gbc (v5.0)](https://github.com/Xelu94/pokemon-radical-cristal/releases/download/v5.0/Radical.Cristal.gbc)** — enlace directo al asset de la [Release v5.0](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v5.0). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
 
-Versiones anteriores publicadas: [v4.4](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.4), [v4.3](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.3) y [v4.2](https://github.com/Xelu94/pokemon-cristal-nuzlocke/releases/tag/v4.2).
+Versiones anteriores publicadas: [v4.4](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v4.4), [v4.3](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v4.3) y [v4.2](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v4.2).
 
 | | |
 |---|---|
