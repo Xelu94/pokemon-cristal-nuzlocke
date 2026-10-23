@@ -18,7 +18,7 @@ Versiones anteriores publicadas: [v4.4](https://github.com/Xelu94/pokemon-radica
 |---|---|
 | Archivo | `Radical Cristal.gbc` (2 MiB) |
 | Versión | 5.0 |
-| SHA-256 | `86052da1d0db6fbdeb0a3a87c784e7c8032395fe54523f6127fc7179736ad089` |
+| SHA-256 | `5b9fb58edd1742f2de4b6a1bbc9999e05f48c31d3ac28a44200650e2f3133ecd` |
 1. Descarga el único archivo `.gbc` de la Release. No hay ZIP, parches ni instalador: no necesitas una ROM base ni aplicar nada.
 2. Ábrelo con un emulador compatible con Game Boy Color (por ejemplo mGBA). El emulador se obtiene por separado y no forma parte de este proyecto.
 3. Guarda dentro del juego. Las actualizaciones de esta familia continúan el guardado interno (`.sav`); no uses estados rápidos de otra compilación. Detalles en [compatibilidad de guardados](docs/COMPATIBILIDAD-GUARDADOS.md).
@@ -92,7 +92,7 @@ No es una aplicación React, Electron, Unity ni Godot, y no usa servidor, base d
 
 ## Estado y validación
 
-La versión 5.0 pasó **173 comprobaciones agrupadas**: 124 de los componentes ya existentes (servicios y mapas de Tito 48, orientaciones renderizadas 4, rutas de Ulex y Objetos 17, combates de Ulex y menú sandbox 27, cálculos de combate y almacenamiento 11, interfaz real de combate y captura 4, núcleo del randomizador 9, navegador sin conexión 4), 13 de la 4.3 (Vuelo, anciano del mapa, tiendas, suministros de la Liga, caramelos y bolsa), 4 de la 4.4 (tope en estado, iconos de ataque, barra de experiencia y respiración de Tito) y 32 de la 5.0 (objetos infinitos, huevos, selector de la Superliga, aviso de Ulex, Joy, Elm, el otro protagonista, la Superliga y los datos). Es un recuento de comprobaciones, **no un porcentaje de cobertura**; algunas agrupan muchos casos (Poder Oculto se contrasta con 768 combinaciones de DVs). Las comprobaciones de informes de versiones anteriores no se suman.
+La versión 5.0 pasó **175 comprobaciones agrupadas**: 124 de los componentes ya existentes (servicios y mapas de Tito 48, orientaciones renderizadas 4, rutas de Ulex y Objetos 17, combates de Ulex y menú sandbox 27, cálculos de combate y almacenamiento 11, interfaz real de combate y captura 4, núcleo del randomizador 9, navegador sin conexión 4), 13 de la 4.3 (Vuelo, anciano del mapa, tiendas, suministros de la Liga, caramelos y bolsa), 4 de la 4.4 (tope en estado, iconos de ataque, barra de experiencia y respiración de Tito) y 34 de la 5.0 (objetos infinitos, huevos, selector de la Superliga, aviso de Ulex, Joy, Elm, el otro protagonista, la Superliga y los datos). Es un recuento de comprobaciones, **no un porcentaje de cobertura**; algunas agrupan muchos casos (Poder Oculto se contrasta con 768 combinaciones de DVs). Las comprobaciones de informes de versiones anteriores no se suman.
 
 La reconstrucción también está comprobada: aplicar el parche a la base española y compilar con RGBDS 1.0.0 produce exactamente los SHA-256 de la ROM normal y de la compilación sandbox de los informes.
 

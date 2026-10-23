@@ -78531,10 +78531,10 @@ index 7c824ca..2028c2b 100644
  	ld [wCurItem], a
 diff --git a/engine/events/other_protagonist.asm b/engine/events/other_protagonist.asm
 new file mode 100644
-index 0000000..9fcfb5f
+index 0000000..231a6d2
 --- /dev/null
 +++ b/engine/events/other_protagonist.asm
-@@ -0,0 +1,227 @@
+@@ -0,0 +1,228 @@
 +; The other protagonist (Gold when the player is a girl, Cristal when the player is a boy):
 +; ambush battles after the rival's talk-only scenes, the final fight at the Indigo Plateau
 +; and the Rattata trade at her home in New Bark Town.
@@ -78543,8 +78543,9 @@ index 0000000..9fcfb5f
 +SECTION "Other protagonist", ROMX
 +
 +MoveObjectToPlayerFront::
-+; wScriptVar = map object index. Puts the object on the tile the player is facing.
++; wScriptVar = object constant, as in setval NEWBARKTOWN_OTHER_GIRL. Puts the object on the tile the player is facing.
 +	ld a, [wScriptVar]
++	dec a ; script object constants are map object index + 1 (GetScriptObject)
 +	ld b, a
 +	push bc
 +	call GetFacingTileCoord
@@ -81505,7 +81506,7 @@ index 88e28f6..c220a79 100644
  	ld hl, GetPlayerNextMovementIndex
  	jp HandleMovementData
 diff --git a/engine/overworld/overworld.asm b/engine/overworld/overworld.asm
-index a0a6135..3d94336 100644
+index a0a6135..5346444 100644
 --- a/engine/overworld/overworld.asm
 +++ b/engine/overworld/overworld.asm
 @@ -118,6 +118,9 @@ AddIndoorSprites:
@@ -81518,6 +81519,25 @@ index a0a6135..3d94336 100644
  	ld a, [wMapGroup]
  	dec a
  	ld c, a
+@@ -484,9 +487,17 @@ ArrangeUsedSprites:
+ 	call GetSpriteLength
+ 
+ ; There are only two tables, so don't go any further than that.
++; A sprite that does not fit is dropped together with the rest of the list;
++; leaving it would make GetUsedSprites read its type as a tile number and
++; overwrite the player's tiles.
+ 	add b
+-	jr c, .quit
++	jr nc, .fits
++	dec hl
++	xor a
++	ld [hl], a
++	ret
+ 
++.fits
+ 	ld [hl], b
+ 	ld b, a
+ 	inc hl
 diff --git a/engine/overworld/scripting.asm b/engine/overworld/scripting.asm
 index 4e152a6..f11e458 100644
 --- a/engine/overworld/scripting.asm

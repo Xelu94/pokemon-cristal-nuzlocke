@@ -1,5 +1,5 @@
 {
-  "passed": 19,
+  "passed": 21,
   "tests": [
     {
       "name": "no tree gives an apricorn any more",
@@ -43,6 +43,14 @@
     },
     {
       "name": "after the rival leaves New Bark Town the other protagonist battles, heals the party and hands over a Max Potion",
+      "passed": true
+    },
+    {
+      "name": "the other protagonist is placed on the tile in front of the player, not at her map spot",
+      "passed": true
+    },
+    {
+      "name": "the player walking sprite tiles are not overwritten after the ambush battle",
       "passed": true
     },
     {

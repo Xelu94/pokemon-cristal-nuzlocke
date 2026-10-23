@@ -26,7 +26,7 @@ Requisitos previos: la fuente integrada y compilada (`work/source/pokecristal.gb
 | `work/test-v43-changes.py` | Cambios de la 4.3 (Vuelo, anciano del mapa, tiendas, Liga, caramelos, bolsa) | 13 |
 | `work/test-v44-changes.py` | Cambios de la 4.4 (tope en estado, iconos de ataque, barra de experiencia, respiración de Tito) | 4 |
 | `work/test-v45-routines.py` | Rutinas de la 5.0 con el arnés de CPU (objetos infinitos, eclosión, selector de la Superliga, huevos de 10 pasos) | 13 |
-| `work/test-v45-story.py` | Historia y mundo de la 5.0 con el emulador (aviso de Ulex, Joy, Elm, otro protagonista, Superliga, datos) | 19 |
+| `work/test-v45-story.py` | Historia y mundo de la 5.0 con el emulador (aviso de Ulex, Joy, Elm, otro protagonista, Superliga, datos) | 21 |
 | `work/story_helper.py` | Ayudante: banderas de evento, mochila, equipo y lectura estable de memoria | |
 | `ci/verificar-randomizador.cjs` | Usado por la integración continua: randomizador contra una ROM dada | 4–5 |
 

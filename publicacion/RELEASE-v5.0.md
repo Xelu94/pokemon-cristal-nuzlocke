@@ -6,7 +6,7 @@ Modificación personal de Pokémon Cristal para Game Boy Color, basada en el có
 
 Un único archivo jugable: **`Radical Cristal.gbc`** (ROM normal v5.0).
 
-- SHA-256: `86052da1d0db6fbdeb0a3a87c784e7c8032395fe54523f6127fc7179736ad089`
+- SHA-256: `5b9fb58edd1742f2de4b6a1bbc9999e05f48c31d3ac28a44200650e2f3133ecd`
 - No necesita ROM base ni aplicar parches. Ábrela con un emulador compatible con Game Boy Color (se obtiene por separado).
 - No necesita partida nueva respecto a la 4.4: guarda dentro del juego y carga el `.sav` con la nueva ROM. No uses estados rápidos de otra compilación. Otra semilla del randomizador requiere partida nueva.
 
@@ -22,7 +22,7 @@ Un único archivo jugable: **`Radical Cristal.gbc`** (ROM normal v5.0).
 
 ## Validación
 
-173 comprobaciones agrupadas, no un porcentaje de cobertura. No se ha completado una campaña entera ni queda demostrado el equilibrio global; el combate del campeón de la Superliga no se juega entero en las pruebas. La reconstrucción desde el parche y la base reproduce exactamente los SHA-256 de las ROM. Informe: `evidencias/Validacion-v5.0.json`. Detalle de cada novedad: `docs/SUPERLIGA-Y-RIVAL.md` y `CHANGELOG.md`.
+175 comprobaciones agrupadas, no un porcentaje de cobertura. No se ha completado una campaña entera ni queda demostrado el equilibrio global; el combate del campeón de la Superliga no se juega entero en las pruebas. La reconstrucción desde el parche y la base reproduce exactamente los SHA-256 de las ROM. Informe: `evidencias/Validacion-v5.0.json`. Detalle de cada novedad: `docs/SUPERLIGA-Y-RIVAL.md` y `CHANGELOG.md`.
 
 ## Más información
 

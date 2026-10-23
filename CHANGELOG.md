@@ -4,7 +4,7 @@ Formato por versión. Las versiones anteriores a la 4 no están documentadas en 
 
 ## 5.0 — Radical Cristal (22 de octubre de 2026)
 
-El juego pasa a llamarse **Radical Cristal** (pantalla de título, Randomizador, README y la Release). Es la versión con más contenido nuevo desde la 4.0: un cambio en la historia (el otro protagonista y el duelo de Elm), una liga extra, un Pokémon nuevo y varios arreglos. Detalle de las partes nuevas en [docs/SUPERLIGA-Y-RIVAL.md](docs/SUPERLIGA-Y-RIVAL.md). **173 comprobaciones agrupadas** ([evidencias/Validacion-v5.0.json](evidencias/Validacion-v5.0.json)): las 140 de la 4.4, 1 nueva de la barra de experiencia y 32 de esta versión.
+El juego pasa a llamarse **Radical Cristal** (pantalla de título, Randomizador, README y la Release). Es la versión con más contenido nuevo desde la 4.0: un cambio en la historia (el otro protagonista y el duelo de Elm), una liga extra, un Pokémon nuevo y varios arreglos. Detalle de las partes nuevas en [docs/SUPERLIGA-Y-RIVAL.md](docs/SUPERLIGA-Y-RIVAL.md). **175 comprobaciones agrupadas** ([evidencias/Validacion-v5.0.json](evidencias/Validacion-v5.0.json)): las 140 de la 4.4, 1 nueva de la barra de experiencia y 34 de esta versión.
 
 **Mundo y objetos**
 
@@ -21,6 +21,8 @@ El juego pasa a llamarse **Radical Cristal** (pantalla de título, Randomizador,
 
 9. **Animación de andar del rival (y de otros PNJ).** En CIUDAD CEREZO (y en 22 mapas más) algunos PNJ que caminan se dibujaban con los fotogramas de pie, porque la lista de gráficos exteriores del grupo tenía más sprites de los que caben con fotogramas de andar. Ahora los sprites de los objetos del propio mapa se cargan primero (`AddOutdoorSprites`). Comprobado en los 394 mapas (`pruebas/simulacion`): ninguno queda con un PNJ andando sin fotogramas.
 10. **Barra de experiencia.** Los iconos de categoría de la 4.4 reutilizaban tiles de la barra; al abrir el panel de ataques, la barra mostraba esos símbolos en su extremo. Ahora se restauran al volver a dibujar la barra (`RestoreExpBarTiles`).
+- **Sprites tras un combate (corregido el 23 de octubre de 2026 en la ROM de la 5.0).** Con la lista de gráficos ampliada, algunos mapas superaban los 20 sprites de 12 tiles que caben en la VRAM; el sobrante no se descartaba y `GetUsedSprites` leía su tipo como número de tile y escribía encima de los tiles del jugador, que se veía deformado al volver de un combate. Ahora `ArrangeUsedSprites` corta la lista donde ya no cabe nada. Comprobado en los 394 mapas (ningún objeto se queda sin sprite) y con una prueba nueva que compara los tiles del jugador antes y después de la emboscada.
+- **El otro protagonista aparecía lejos.** `MoveObjectToPlayerFront` usaba la constante del script como índice del objeto sin restarle uno, así que en las emboscadas de Pueblo Primavera, Torre Bellsprout y Guarida Dragón movía otro objeto y ella aparecía en su sitio del mapa (detrás del cartel de Pueblo Primavera). Ahora aparece en la casilla frente al jugador (prueba nueva).
 
 **Historia**
 
@@ -40,8 +42,8 @@ ROM de esta versión (reconstruida desde la base española aplicando el parche c
 
 | | SHA-256 |
 |---|---|
-| ROM normal (`Radical Cristal.gbc`) | `86052da1d0db6fbdeb0a3a87c784e7c8032395fe54523f6127fc7179736ad089` |
-| Sandbox | `a41a4c28dd574e6b0e0e00188482e156652249bae093e30c8edc92b964299556` |
+| ROM normal (`Radical Cristal.gbc`) | `5b9fb58edd1742f2de4b6a1bbc9999e05f48c31d3ac28a44200650e2f3133ecd` |
+| Sandbox | `ec9dbc978709369f95218bb1afca61927ca27b225b95f2f4fd832cee416a0130` |
 
 ### Compatibilidad
 

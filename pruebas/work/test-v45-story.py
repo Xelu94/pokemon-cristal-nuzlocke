@@ -150,6 +150,28 @@ check('after the rival leaves New Bark Town the other protagonist battles, heals
       done and bag.get(items['MAX_POTION'], 0) == 1)
 g.close()
 
+# --- Other protagonist: she stands next to the player and the sprite tiles survive the battle ----------
+g = G('NEW_BARK_TOWN', 4, 2)
+strong_party(g)
+g.p.tick(30)
+g.press('left', 20, hold=16)
+adjacent = tiles_before = tiles_after = None
+for i in range(200):
+    g.press('a', 30, hold=6)
+    text = ' '.join(g.screen_text())
+    if adjacent is None and 'culito' in text:
+        base = g.a('wMapObjects') + 5 * 16  # NEWBARKTOWN_OTHER_GIRL is script object 6 (map object 5)
+        girl = (g.p.memory[base + 3] - 4, g.p.memory[base + 2] - 4)
+        me = g.pos()
+        adjacent = abs(girl[0] - me[0]) + abs(girl[1] - me[1]) == 1
+        tiles_before = bytes(g.p.memory[1, 0x8000:0x8000 + 16 * 12])
+    if tiles_before and 'Bah' in text:
+        tiles_after = bytes(g.p.memory[1, 0x8000:0x8000 + 16 * 12])
+        break
+check('the other protagonist is placed on the tile in front of the player, not at her map spot', adjacent is True)
+check('the player walking sprite tiles are not overwritten after the ambush battle', tiles_after is not None and tiles_after == tiles_before)
+g.close()
+
 # --- Other protagonist: Sprout Tower ambush -----------------------------------------------------------
 g = G('SPROUT_TOWER_3F', 11, 10)
 strong_party(g)

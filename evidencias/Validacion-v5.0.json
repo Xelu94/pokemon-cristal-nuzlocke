@@ -1,9 +1,9 @@
 {
   "version": "5.0",
   "fecha": "2026-10-22",
-  "normal_sha256": "86052da1d0db6fbdeb0a3a87c784e7c8032395fe54523f6127fc7179736ad089",
-  "sandbox_sha256": "a41a4c28dd574e6b0e0e00188482e156652249bae093e30c8edc92b964299556",
-  "passed": 173,
+  "normal_sha256": "5b9fb58edd1742f2de4b6a1bbc9999e05f48c31d3ac28a44200650e2f3133ecd",
+  "sandbox_sha256": "ec9dbc978709369f95218bb1afca61927ca27b225b95f2f4fd832cee416a0130",
+  "passed": 175,
   "groups": [
     {
       "name": "Tito services and maps",
@@ -63,7 +63,7 @@
     {
       "name": "v5.0 story and world (Ulex warning, Joy, Elm, other protagonist, Super League, data)",
       "report": "v45-story-tests.json",
-      "passed": 19
+      "passed": 21
     }
   ],
   "limitaciones": [
