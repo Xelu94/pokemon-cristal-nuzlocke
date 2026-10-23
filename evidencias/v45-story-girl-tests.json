@@ -1,5 +1,5 @@
 {
-  "passed": 23,
+  "passed": 28,
   "tests": [
     {
       "name": "no tree gives an apricorn any more",
@@ -14,7 +14,7 @@
       "passed": true
     },
     {
-      "name": "the Goldenrod stone vendor sells all six evolution stones",
+      "name": "Elm duels as his own trainer class with his own picture, not as Oak",
       "passed": true
     },
     {
@@ -59,6 +59,26 @@
     },
     {
       "name": "with the run over a gym leader refuses to fight, gives no badge and the whiteout shows the Nuzlocke message",
+      "passed": true
+    },
+    {
+      "name": "Route 36 sets the weird tree to Sudowoodo before the fight, whatever the game skipped",
+      "passed": true
+    },
+    {
+      "name": "losing to Ulex in the Super League shows his loss text and sends you back to the Pokemon Center",
+      "passed": true
+    },
+    {
+      "name": "losing to Tito in the Super League shows his loss text and sends you back to the Pokemon Center",
+      "passed": true
+    },
+    {
+      "name": "the Silver Cave guard disappears for good after allowing the player to pass",
+      "passed": true
+    },
+    {
+      "name": "the Indigo Plateau sandbox spawn tile is walkable",
       "passed": true
     },
     {

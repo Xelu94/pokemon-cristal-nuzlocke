@@ -126,6 +126,25 @@ check('using a Rare Candy raises the level', g.p.memory[level_address] > 10)
 check('the Rare Candy stack stays at 99 after use', g.bag()[items['RARE_CANDY']] == 99)
 g.close()
 
+# --- Several Rare Candies at once ------------------------------------------------------------------------
+g = Game('ROUTE_31', 21, 14)
+g.party([152, 6], level=10)
+level_address = g.a('wPartyMon1Level')
+g.press('start', 40)
+g.press('down', 20)
+g.press('a', 60)
+g.press('a', 40)
+g.press('a', 40)
+g.press('a', 60)
+for _ in range(4):
+    g.press('up', 12)  # the quantity selector starts at 1
+g.press('a', 60)
+for _ in range(8):
+    g.press('a', 40)
+check('choosing 5 in the Rare Candy quantity box raises the level by 5 and keeps the stack at 99',
+      g.p.memory[level_address] == 15 and g.bag()[items['RARE_CANDY']] == 99)
+g.close()
+
 # --- Bag: pocket labels and circular navigation ----------------------------
 g = Game('ROUTE_31', 21, 14)
 g.press('start', 40)

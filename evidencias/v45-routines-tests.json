@@ -1,5 +1,5 @@
 {
-  "passed": 13,
+  "passed": 14,
   "tests": [
     {
       "name": "exactly Focus Sash, Choice Band, Choice Specs, Choice Scarf and Leftovers are infinite",
@@ -23,6 +23,10 @@
     },
     {
       "name": "160 hatchings give a non-legendary first-stage species with shiny DVs and the level-5 experience",
+      "passed": true
+    },
+    {
+      "name": "a forced-shiny gift sent to the PC gets shiny DVs",
       "passed": true
     },
     {

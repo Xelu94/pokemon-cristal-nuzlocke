@@ -3,7 +3,7 @@
 front.png: the user-supplied animated Dark Lugia sprite (video, 280x280 = 56x56 pixels scaled by 5).
 Frame 0 is the idle pose, frames 1-3 are the wing-flap poses. Colours are reduced to the four
 colours of the Dark Lugia palette. back.png is not generated here: it is the back view supplied by the
-project author (56x56 pixel art reduced to 48x48 with the same four colours, red mark removed).
+project author (56x56 pixel art cropped to its central 48x48 with the same four colours, red mark removed).
 Usage: build_dark_lugia_sprite.py <frames_dir> <idle> <flap> <flap> <flap>   (frame numbers in frames_dir)"""
 import sys
 from collections import Counter

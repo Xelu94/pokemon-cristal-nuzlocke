@@ -75,9 +75,12 @@ def static_checks():
     zero = [label for label in ['ITEM_19', 'RARE_CANDY', 'ITEM_2D', 'ITEM_32', 'ITEM_5A', 'LEFTOVERS', 'MASTER_BALL']
             if re.search(r'; %s\n\titem_attribute 0,' % label, attrs)]
     check('Master Ball, Rare Candy and the five starting combat items are worth 0', len(zero) == 7)
-    marts = (root / 'data/items/marts.asm').read_text(encoding='utf8')
-    check('the Goldenrod stone vendor sells all six evolution stones',
-          re.search(r'MartGoldenrodStones:\n\tdb 6 ; # items\n\tdb FIRE_STONE\n\tdb WATER_STONE\n\tdb THUNDERSTONE\n\tdb LEAF_STONE\n\tdb MOON_STONE\n\tdb SUN_STONE', marts) is not None)
+    # Elm's duel has a class (and picture) of its own
+    lab = (root / 'maps/ElmsLab.asm').read_text(encoding='utf8')
+    classes = (root / 'data/trainers/class_names.asm').read_text(encoding='utf8')
+    check('Elm duels as his own trainer class with his own picture, not as Oak',
+          'loadtrainer ELM_PROF, ELM_PROF1' in lab and 'dba_pic ElmPic' in (root / 'data/trainers/pic_pointers.asm').read_text(encoding='utf8')
+          and (root / 'gfx/trainers/elm.png').exists() and classes.rstrip().endswith('assert_list_length NUM_TRAINER_CLASSES'))
     # Dark Lugia
     lugia = (root / 'data/pokemon/base_stats/dark_lugia.asm').read_text(encoding='utf8')
     check('Dark Lugia is Dark/Flying with Hp 106, Atk 130, Def 90, Spd 110, SpA 154 and SpD 90',
@@ -205,6 +208,69 @@ g.p.tick(300)
 where = settled(g, g.pos)  # the whiteout warps to the spawn point, which the test sets at (5, 3)
 check('with the run over a gym leader refuses to fight, gives no badge and the whiteout shows the Nuzlocke message',
       seen_text and not g.event('EVENT_BEAT_FALKNER') and not g.event('EVENT_BATTLE_REFUSED') and where == (5, 3))
+g.close()
+
+# --- Variable sprites: Route 36's tree is drawn as Sudowoodo even if no script set it ----------------------
+g = G('ROUTE_36', 34, 9)
+g.p.tick(90)
+check('Route 36 sets the weird tree to Sudowoodo before the fight, whatever the game skipped',
+      g.p.memory[g.a('wVariableSprites') + 4] == 0x52)  # SPRITE_SUDOWOODO
+g.close()
+
+# --- The Super League texts of Ulex and Tito are read from their own map bank (no reset) -------------------
+def lose_in_super_league(room, x, y, ups, face, word, face2=None):
+    g = G(room, x, y)
+    g.party([129], level=5)
+    at = g.a('wPartyMonNicknames')
+    g.p.memory[at:at + 11] = [0x8c, 0x80, 0x86, 0x88, 0x8a, 0x80, 0x91, 0x8f, 0x50, 0, 0]
+    g.p.memory[g.a('wPlayerName'):g.a('wPlayerName') + 5] = [0x93, 0x88, 0x93, 0x8e, 0x50]
+    g.write('wJohtoBadges', 0xff)
+    g.write('wKantoBadges', 0xff)
+    g.set_event('EVENT_BEAT_TITO_XELUIS')
+    g.set_event('EVENT_SUPER_LEAGUE_RESTORES_GIVEN')
+    g.p.tick(30)
+    for _ in range(ups):
+        g.press('up', 8, hold=14)
+    g.press(face, 8, hold=14)
+    if face2:
+        g.press(face2, 8, hold=14)
+    seen = reset = False
+    for i in range(500):
+        g.press('a', 25, hold=6)
+        text = ' '.join(g.screen_text())
+        if 'cartucho' in text:
+            reset = True
+            break
+        seen = seen or word in text
+    where = settled(g, g.pos)
+    g.close()
+    return seen and not reset and where == (6, 10)
+
+
+check('losing to Ulex in the Super League shows his loss text and sends you back to the Pokemon Center',
+      lose_in_super_league('SUPER_LEAGUE_ULEX', 4, 16, 9, 'right', 'ahora'))
+check('losing to Tito in the Super League shows his loss text and sends you back to the Pokemon Center',
+      lose_in_super_league('SUPER_LEAGUE_TITO', 4, 22, 18, 'right', 'calle', 'up'))
+
+# --- The guard in front of Red steps aside once he lets you pass -----------------------------------------
+g = G('SILVER_CAVE_ROOM_3', 10, 32)
+g.write('wJohtoBadges', 0xff)
+g.write('wKantoBadges', 0xff)
+g.p.tick(60)
+g.press('up', 8, hold=14)
+for i in range(30):
+    g.press('a', 25, hold=6)
+g.p.tick(60)
+check('the Silver Cave guard disappears for good after allowing the player to pass', g.event('EVENT_SILVER_CAVE_GUARD_GONE'))
+g.close()
+
+# --- The sandbox travel to the League no longer drops the player inside the wall ---------------------------
+g = G('INDIGO_PLATEAU_POKECENTER_1F', 6, 10)
+g.p.tick(60)
+start = g.pos()
+g.press('up', 20, hold=16)
+g.p.tick(20)
+check('the Indigo Plateau sandbox spawn tile is walkable', g.pos() != start)
 g.close()
 
 # --- Other protagonist: Sprout Tower ambush -----------------------------------------------------------

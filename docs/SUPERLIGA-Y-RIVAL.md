@@ -7,6 +7,7 @@ Todo lo de esta página es de la v5.0 «Radical Cristal». Los textos son los de
 - **Cuándo.** Cuando Elm te da la Master Ball (al tener la última medalla de Johto y hablar con él en su laboratorio). Al terminar te pregunta si quieres un combate «para volver a sentir lo que es ser un entrenador». Si dices que no, te lo vuelve a ofrecer cada vez que hables con él hasta que lo hagas.
 - **Equipo.** Togetic, Xatu, Slowking (nivel 50) y Ampharos (53): los niveles de DÉBORA, la líder de Johto de más nivel; como cualquier entrenador sube al mínimo del tope vigente si hace falta.
 - **Sin muertes.** Es un duelo de exhibición: tus Pokémon pueden debilitarse pero no mueren (bandera `EVENT_EXHIBITION_BATTLE`, también usada en la Superliga).
+- **Imagen.** Elm usa su propia clase de entrenador e imagen desde la 5.3 (antes salía la de Oak).
 - **Premio.** Si ganas, Elm te entrega un FERALIGATR, un MEGANIUM y un TYPHLOSION **shiny** a nivel 53 (uno detrás de otro; el juego te deja ponerles mote). Se entregan una sola vez.
 
 ## El otro protagonista: GOLD y CRISTAL

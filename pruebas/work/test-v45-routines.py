@@ -134,6 +134,21 @@ for run in range(160):
     picked.add(name)
 check('160 hatchings give a non-legendary first-stage species with shiny DVs and the level-5 experience', len(picked) > 40)
 
+# --- A forced-shiny gift that goes straight to the PC -----------------------------------------------------
+sys.path.insert(0, 'work')
+from story_helper import EVENTS
+force = EVENTS['EVENT_FORCE_SHINY_GIFT']
+
+
+def setup_box_gift(r_):
+    r_.p.memory[addr('wEventFlags') + force // 8] |= 1 << (force % 8)
+    r_.p.memory[addr('wEnemyMonDVs'):addr('wEnemyMonDVs') + 2] = [0x12, 0x34]
+
+
+r.run('BoxGiftRollShiny', setup_box_gift)
+dvs = list(r.p.memory[addr('wEnemyMonDVs'):addr('wEnemyMonDVs') + 2])
+check('a forced-shiny gift sent to the PC gets shiny DVs', dvs[1] == 0xaa and (dvs[0] & 0x0f) == 0x0a and ((dvs[0] >> 4) in (2, 3, 6, 7, 10, 11, 14, 15)))
+
 # --- Super League species picker -------------------------------------------------------------------
 class_ids = {}
 trainer_text = (root / 'constants/trainer_constants.asm').read_text(encoding='utf8')

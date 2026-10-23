@@ -1,5 +1,5 @@
 {
-  "passed": 13,
+  "passed": 14,
   "tests": [
     {
       "name": "new game starts with one Rare Candy stack of 99 and five held items in 6 slots",
@@ -11,6 +11,10 @@
     },
     {
       "name": "the Rare Candy stack stays at 99 after use",
+      "passed": true
+    },
+    {
+      "name": "choosing 5 in the Rare Candy quantity box raises the level by 5 and keeps the stack at 99",
       "passed": true
     },
     {
@@ -42,7 +46,7 @@
       "passed": true
     },
     {
-      "name": "no mart sells potions, revives, status heals or healing drinks (35 marts)",
+      "name": "no mart sells potions, revives, status heals or healing drinks (34 marts)",
       "passed": true
     },
     {

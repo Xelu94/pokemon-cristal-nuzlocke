@@ -11,10 +11,10 @@ index 12b9534..950053b 100644
  # Declare files that will always have CRLF line endings on checkout.
  *.patch.template text eol=crlf linguist-language=INI
 diff --git a/constants/event_flags.asm b/constants/event_flags.asm
-index 7920521..126fbc0 100644
+index 7920521..bffd220 100644
 --- a/constants/event_flags.asm
 +++ b/constants/event_flags.asm
-@@ -268,7 +268,46 @@
+@@ -268,7 +268,47 @@
  	const EVENT_DANA_GAVE_THUNDERSTONE
  	const EVENT_TULLY_GAVE_WATER_STONE
  	const EVENT_TIFFANY_GAVE_PINK_BOW
@@ -58,6 +58,7 @@ index 7920521..126fbc0 100644
 +	const EVENT_SUPER_BEAT_ULEX
 +	const EVENT_SUPER_BEAT_TITO_ROOM
 +	const EVENT_BATTLE_REFUSED
++	const EVENT_SILVER_CAVE_GUARD_GONE
 +; Unused up to event 599
  
  	const_next 600
@@ -164,16 +165,6 @@ index 3c478b9..092adbc 100644
  DEF NUM_OBJECT_ACTIONS EQU const_value
  
  ; Facings indexes (see data/sprites/facings.asm)
-diff --git a/constants/mart_constants.asm b/constants/mart_constants.asm
-index 32b193c..3ebc816 100644
---- a/constants/mart_constants.asm
-+++ b/constants/mart_constants.asm
-@@ -43,4 +43,5 @@ DEF NUM_MART_TYPES EQU const_value
- 	const MART_MT_MOON
- 	const MART_INDIGO_PLATEAU
- 	const MART_UNDERGROUND
-+	const MART_GOLDENROD_STONES
- DEF NUM_MARTS EQU const_value
 diff --git a/constants/move_constants.asm b/constants/move_constants.asm
 index 4b09855..271e3bc 100644
 --- a/constants/move_constants.asm
@@ -256,7 +247,7 @@ index 1181285..c2547df 100644
  
  ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
 diff --git a/constants/trainer_constants.asm b/constants/trainer_constants.asm
-index a56ab82..d680de8 100644
+index a56ab82..355f126 100644
 --- a/constants/trainer_constants.asm
 +++ b/constants/trainer_constants.asm
 @@ -70,6 +70,7 @@ DEF KRIS EQU __trainer_class__
@@ -287,7 +278,7 @@ index a56ab82..d680de8 100644
  
  	trainerclass OFFICER ; 41
  	const KEITH
-@@ -703,4 +707,44 @@ DEF KRIS EQU __trainer_class__
+@@ -703,4 +707,47 @@ DEF KRIS EQU __trainer_class__
  	trainerclass MYSTICALMAN ; 43
  	const EUSINE
  
@@ -328,6 +319,9 @@ index a56ab82..d680de8 100644
 +	const OTHER_GIRL2
 +	const OTHER_GIRL3
 +	const OTHER_GIRL4
++
++	trainerclass ELM_PROF
++	const ELM_PROF1
 +
  DEF NUM_TRAINER_CLASSES EQU __trainer_class__ - 1
 +
@@ -57196,14 +57190,10 @@ index 9e4a6d7..dc8033d 100644
  	db PSNCUREBERRY ; ROUTE_2
  	db BITTER_BERRY ; ROUTE_1
 diff --git a/data/items/marts.asm b/data/items/marts.asm
-index a876268..4d4e803 100644
+index a876268..1e5c7b2 100644
 --- a/data/items/marts.asm
 +++ b/data/items/marts.asm
-@@ -35,80 +35,60 @@ Marts:
- 	dw MartMtMoon
- 	dw MartIndigoPlateau
- 	dw MartUnderground
-+	dw MartGoldenrodStones
+@@ -38,77 +38,68 @@ Marts:
  	assert_table_length NUM_MARTS
  
  MartCherrygrove:
@@ -57264,9 +57254,15 @@ index a876268..4d4e803 100644
 -	db HYPER_POTION
 -	db FULL_HEAL
 -	db REVIVE
-+	db 2 ; # items
++	db 8 ; # items
 +	db GREAT_BALL
 +	db SUPER_REPEL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartGoldenrod2F1:
@@ -57278,11 +57274,17 @@ index a876268..4d4e803 100644
 -	db AWAKENING
 -	db BURN_HEAL
 -	db ICE_HEAL
-+	db 4 ; # items
++	db 10 ; # items
 +	db POKE_BALL
 +	db GREAT_BALL
 +	db ESCAPE_ROPE
 +	db REPEL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartGoldenrod2F2:
@@ -57297,12 +57299,9 @@ index a876268..4d4e803 100644
  	db POKE_DOLL
  	db FLOWER_MAIL
  	db -1 ; end
-@@ -166,97 +146,58 @@ MartGoldenrod5F4:
- 	db -1 ; end
- 
+@@ -168,148 +159,146 @@ MartGoldenrod5F4:
  MartOlivine:
--	db 9 ; # items
-+	db 3 ; # items
+ 	db 9 ; # items
  	db GREAT_BALL
 -	db SUPER_POTION
 -	db HYPER_POTION
@@ -57312,11 +57311,17 @@ index a876268..4d4e803 100644
 -	db ICE_HEAL
  	db SUPER_REPEL
  	db SURF_MAIL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartEcruteak:
 -	db 10 ; # items
-+	db 2 ; # items
++	db 8 ; # items
  	db POKE_BALL
  	db GREAT_BALL
 -	db POTION
@@ -57327,15 +57332,27 @@ index a876268..4d4e803 100644
 -	db BURN_HEAL
 -	db ICE_HEAL
 -	db REVIVE
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartMahogany1:
 -	db 4 ; # items
-+	db 3 ; # items
++	db 9 ; # items
  	db TINYMUSHROOM
  	db SLOWPOKETAIL
  	db POKE_BALL
 -	db POTION
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartMahogany2:
@@ -57354,7 +57371,7 @@ index a876268..4d4e803 100644
  
  MartBlackthorn:
 -	db 9 ; # items
-+	db 5 ; # items
++	db 11 ; # items
  	db GREAT_BALL
  	db ULTRA_BALL
 -	db HYPER_POTION
@@ -57364,11 +57381,17 @@ index a876268..4d4e803 100644
  	db MAX_REPEL
  	db X_DEFEND
  	db X_ATTACK
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartViridian:
 -	db 9 ; # items
-+	db 2 ; # items
++	db 8 ; # items
  	db ULTRA_BALL
 -	db HYPER_POTION
 -	db FULL_HEAL
@@ -57378,11 +57401,17 @@ index a876268..4d4e803 100644
 -	db AWAKENING
 -	db BURN_HEAL
  	db FLOWER_MAIL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartPewter:
 -	db 7 ; # items
-+	db 2 ; # items
++	db 8 ; # items
  	db GREAT_BALL
 -	db SUPER_POTION
  	db SUPER_REPEL
@@ -57390,11 +57419,17 @@ index a876268..4d4e803 100644
 -	db PARLYZ_HEAL
 -	db AWAKENING
 -	db BURN_HEAL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartCerulean:
 -	db 9 ; # items
-+	db 7 ; # items
++	db 13 ; # items
  	db GREAT_BALL
  	db ULTRA_BALL
 -	db SUPER_POTION
@@ -57403,12 +57438,17 @@ index a876268..4d4e803 100644
  	db X_DEFEND
  	db X_ATTACK
  	db DIRE_HIT
-@@ -264,52 +205,29 @@ MartCerulean:
+ 	db SURF_MAIL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartLavender:
--	db 8 ; # items
-+	db 2 ; # items
+ 	db 8 ; # items
  	db GREAT_BALL
 -	db POTION
 -	db SUPER_POTION
@@ -57417,11 +57457,16 @@ index a876268..4d4e803 100644
 -	db PARLYZ_HEAL
 -	db AWAKENING
 -	db BURN_HEAL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartVermilion:
--	db 8 ; # items
-+	db 2 ; # items
+ 	db 8 ; # items
  	db ULTRA_BALL
 -	db SUPER_POTION
 -	db HYPER_POTION
@@ -57430,6 +57475,12 @@ index a876268..4d4e803 100644
 -	db AWAKENING
 -	db BURN_HEAL
  	db LITEBLUEMAIL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartCeladon2F1:
@@ -57439,9 +57490,15 @@ index a876268..4d4e803 100644
 -	db HYPER_POTION
 -	db MAX_POTION
 -	db REVIVE
-+	db 2 ; # items
++	db 8 ; # items
  	db SUPER_REPEL
  	db MAX_REPEL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartCeladon2F2:
@@ -57460,12 +57517,12 @@ index a876268..4d4e803 100644
  	db -1 ; end
  
  MartCeladon3F:
-@@ -349,59 +267,52 @@ MartCeladon5F2:
+@@ -349,59 +338,65 @@ MartCeladon5F2:
  	db -1 ; end
  
  MartFuchsia:
 -	db 7 ; # items
-+	db 4 ; # items
++	db 10 ; # items
  	db GREAT_BALL
  	db ULTRA_BALL
 -	db SUPER_POTION
@@ -57473,11 +57530,17 @@ index a876268..4d4e803 100644
 -	db FULL_HEAL
  	db MAX_REPEL
  	db FLOWER_MAIL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartSaffron:
 -	db 8 ; # items
-+	db 5 ; # items
++	db 11 ; # items
  	db GREAT_BALL
  	db ULTRA_BALL
 -	db HYPER_POTION
@@ -57486,22 +57549,34 @@ index a876268..4d4e803 100644
  	db X_ATTACK
  	db X_DEFEND
  	db FLOWER_MAIL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartMtMoon:
 -	db 6 ; # items
-+	db 3 ; # items
++	db 9 ; # items
  	db POKE_DOLL
 -	db FRESH_WATER
 -	db SODA_POP
 -	db LEMONADE
  	db REPEL
  	db PORTRAITMAIL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartIndigoPlateau:
 -	db 7 ; # items
-+	db 2 ; # items
++	db 8 ; # items
  	db ULTRA_BALL
  	db MAX_REPEL
 -	db HYPER_POTION
@@ -57509,6 +57584,12 @@ index a876268..4d4e803 100644
 -	db FULL_RESTORE
 -	db REVIVE
 -	db FULL_HEAL
++	db FIRE_STONE
++	db WATER_STONE
++	db THUNDERSTONE
++	db LEAF_STONE
++	db MOON_STONE
++	db SUN_STONE
  	db -1 ; end
  
  MartUnderground:
@@ -57520,18 +57601,8 @@ index a876268..4d4e803 100644
 +	db 2 ; # items
 +	db ESCAPE_ROPE
 +	db REPEL
-+	db -1 ; end
-+
-+MartGoldenrodStones:
-+	db 6 ; # items
-+	db FIRE_STONE
-+	db WATER_STONE
-+	db THUNDERSTONE
-+	db LEAF_STONE
-+	db MOON_STONE
-+	db SUN_STONE
  	db -1 ; end
- 
+-
  DefaultMart:
 -	db 2 ; # items
 +	db 1 ; # items
@@ -59571,11 +59642,27 @@ index c343c38..120d6f3 100644
 -	done
 \ No newline at end of file
 +	done
+diff --git a/data/text/common_2.asm b/data/text/common_2.asm
+index 5f56e5a..ad055e6 100644
+--- a/data/text/common_2.asm
++++ b/data/text/common_2.asm
+@@ -1160,6 +1160,11 @@ _PlayersPCHowManyWithdrawText::
+ 	line "sacar?"
+ 	done
+ 
++_RareCandyHowManyText::
++	text "¿Cuántos CARAMELOS"
++	line "quieres usar?"
++	done
++
+ _PlayersPCWithdrewItemsText::
+ 	text "Sacaste @"
+ 	text_decimal wItemQuantityChange, 1, 2
 diff --git a/data/trainers/attributes.asm b/data/trainers/attributes.asm
-index 58a7e05..12b8bd1 100644
+index 58a7e05..db25068 100644
 --- a/data/trainers/attributes.asm
 +++ b/data/trainers/attributes.asm
-@@ -404,4 +404,26 @@ TrainerClassAttributes:
+@@ -404,4 +404,32 @@ TrainerClassAttributes:
  	dw AI_BASIC | AI_SETUP | AI_SMART | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY
  	dw CONTEXT_USE | SWITCH_SOMETIMES
  
@@ -59601,12 +59688,18 @@ index 58a7e05..12b8bd1 100644
 +	db 20
 +	dw AI_BASIC | AI_SETUP | AI_SMART | AI_AGGRESSIVE | AI_STATUS
 +	dw CONTEXT_USE | SWITCH_SOMETIMES
++
++; Prof. Elm (exhibition duel)
++	db NO_ITEM, NO_ITEM
++	db 20
++	dw AI_BASIC | AI_SETUP | AI_SMART | AI_AGGRESSIVE | AI_STATUS
++	dw CONTEXT_USE | SWITCH_SOMETIMES
  	assert_table_length NUM_TRAINER_CLASSES
 diff --git a/data/trainers/class_names.asm b/data/trainers/class_names.asm
-index 681af15..b461bd8 100644
+index 681af15..3bab53c 100644
 --- a/data/trainers/class_names.asm
 +++ b/data/trainers/class_names.asm
-@@ -68,4 +68,8 @@ TrainerClassNames::
+@@ -68,4 +68,9 @@ TrainerClassNames::
  	li "POLICÍA"
  	li "ROCKET"
  	li "MÍSTICO"
@@ -59614,12 +59707,13 @@ index 681af15..b461bd8 100644
 +	li "LADRÓN"
 +	li "RIVAL"
 +	li "RIVAL"
++	li "PROF."
  	assert_list_length NUM_TRAINER_CLASSES
 diff --git a/data/trainers/dvs.asm b/data/trainers/dvs.asm
-index ce88be4..5aae36d 100644
+index ce88be4..ad4a19f 100644
 --- a/data/trainers/dvs.asm
 +++ b/data/trainers/dvs.asm
-@@ -70,4 +70,8 @@ TrainerClassDVs:
+@@ -70,4 +70,9 @@ TrainerClassDVs:
  	dn  9,  8,  8,  8 ; OFFICER
  	dn  7, 14, 10,  8 ; GRUNTF
  	dn  9,  8,  8,  8 ; MYSTICALMAN
@@ -59627,12 +59721,13 @@ index ce88be4..5aae36d 100644
 +	dn 15, 10, 10, 10 ; ULEX always shiny
 +	dn  9,  8,  8,  8 ; OTHER_BOY
 +	dn  9,  8,  8,  8 ; OTHER_GIRL
++	dn  9,  8,  8,  8 ; ELM_PROF
  	assert_table_length NUM_TRAINER_CLASSES
 diff --git a/data/trainers/encounter_music.asm b/data/trainers/encounter_music.asm
-index ea417d7..c8e4aba 100644
+index ea417d7..c4f9464 100644
 --- a/data/trainers/encounter_music.asm
 +++ b/data/trainers/encounter_music.asm
-@@ -71,6 +71,10 @@ TrainerEncounterMusic::
+@@ -71,6 +71,11 @@ TrainerEncounterMusic::
  	db MUSIC_HIKER_ENCOUNTER       ; officer
  	db MUSIC_ROCKET_ENCOUNTER      ; gruntf
  	db MUSIC_HIKER_ENCOUNTER       ; mysticalman
@@ -59640,14 +59735,15 @@ index ea417d7..c8e4aba 100644
 +	db MUSIC_ROCKET_ENCOUNTER ; ULEX
 +	db MUSIC_RIVAL_ENCOUNTER ; OTHER_BOY
 +	db MUSIC_RIVAL_ENCOUNTER ; OTHER_GIRL
++	db MUSIC_OFFICER_ENCOUNTER ; ELM_PROF
  	assert_table_length NUM_TRAINER_CLASSES + 1
  	db MUSIC_HIKER_ENCOUNTER       ; unused
  	db MUSIC_HIKER_ENCOUNTER       ; unused
 diff --git a/data/trainers/genders.asm b/data/trainers/genders.asm
-index 9748e75..e8fdc19 100644
+index 9748e75..b785f5d 100644
 --- a/data/trainers/genders.asm
 +++ b/data/trainers/genders.asm
-@@ -69,4 +69,9 @@ BTTrainerClassGenders:
+@@ -69,4 +69,10 @@ BTTrainerClassGenders:
  	db MALE   ; BLUE
  	db MALE   ; OFFICER
  	db FEMALE ; GRUNTF
@@ -59657,12 +59753,13 @@ index 9748e75..e8fdc19 100644
 +	db MALE ; ULEX
 +	db MALE ; OTHER_BOY
 +	db FEMALE ; OTHER_GIRL
++	db MALE ; ELM_PROF
 +	assert_table_length NUM_TRAINER_CLASSES
 diff --git a/data/trainers/palettes.asm b/data/trainers/palettes.asm
-index 5179da1..e3f7179 100644
+index 5179da1..fb03103 100644
 --- a/data/trainers/palettes.asm
 +++ b/data/trainers/palettes.asm
-@@ -77,4 +77,8 @@ INCBIN "gfx/trainers/officer.gbcpal", middle_colors
+@@ -77,4 +77,9 @@ INCBIN "gfx/trainers/officer.gbcpal", middle_colors
  INCBIN "gfx/trainers/grunt_f.gbcpal", middle_colors
  INCBIN "gfx/trainers/mysticalman.gbcpal", middle_colors
  
@@ -59670,12 +59767,13 @@ index 5179da1..e3f7179 100644
 +	RGB 23, 12, 30, 9, 4, 16 ; Ulex purple burglar
 +INCBIN "gfx/trainers/cal.gbcpal", middle_colors ; OTHER_BOY (Chris uses the same colors as Cal)
 +INCBIN "gfx/trainers/falkner.gbcpal", middle_colors ; OTHER_GIRL (Kris shares Falkner's palette)
++INCBIN "gfx/trainers/elm.gbcpal", middle_colors ; ELM_PROF
  	assert_table_length NUM_TRAINER_CLASSES + 1
 diff --git a/data/trainers/parties.asm b/data/trainers/parties.asm
-index c19e32e..3df1937 100644
+index c19e32e..3bde27d 100644
 --- a/data/trainers/parties.asm
 +++ b/data/trainers/parties.asm
-@@ -13,3485 +13,5080 @@ Trainers:
+@@ -13,182 +13,268 @@ Trainers:
  FalknerGroup:
  	; FALKNER (1)
  	db "PEGASO@", TRAINERTYPE_MOVES
@@ -60024,14 +60122,7 @@ index c19e32e..3df1937 100644
  	db -1 ; end
  
  PokemonProfGroup:
-+	; ELM (1): a duel offered after the Master Ball, at DÉBORA's levels
-+	db "ELM@", TRAINERTYPE_MOVES
-+	db 50, TOGETIC, MOONBLAST, FLY, THUNDER_WAVE, REST
-+	db 50, XATU, PSYCHIC_M, WING_ATTACK, CONFUSE_RAY, FUTURE_SIGHT
-+	db 50, SLOWKING, SURF, PSYCHIC_M, ICE_BEAM, RECOVER
-+	db 53, AMPHAROS, THUNDERBOLT, FIRE_PUNCH, THUNDER_WAVE, CONFUSE_RAY
-+	db -1 ; end
- 
+@@ -196,3302 +282,4813 @@ PokemonProfGroup:
  WillGroup:
  	; WILL (1)
  	db "MENTO@", TRAINERTYPE_MOVES
@@ -66009,12 +66100,21 @@ index c19e32e..3df1937 100644
 +	db 60, TAUROS
 +	db 60, ARCANINE
 +	db 62, DRAGONITE
++	db -1 ; end
++
++ElmProfGroup:
++	; ELM (1): a duel offered after the Master Ball, at DÉBORA's levels
++	db "ELM@", TRAINERTYPE_MOVES
++	db 50, TOGETIC, MOONBLAST, FLY, THUNDER_WAVE, REST
++	db 50, XATU, PSYCHIC_M, WING_ATTACK, CONFUSE_RAY, FUTURE_SIGHT
++	db 50, SLOWKING, SURF, PSYCHIC_M, ICE_BEAM, RECOVER
++	db 53, AMPHAROS, THUNDERBOLT, FIRE_PUNCH, THUNDER_WAVE, CONFUSE_RAY
  	db -1 ; end
 diff --git a/data/trainers/party_pointers.asm b/data/trainers/party_pointers.asm
-index f4e20ac..39b97fb 100644
+index f4e20ac..97f2a5c 100644
 --- a/data/trainers/party_pointers.asm
 +++ b/data/trainers/party_pointers.asm
-@@ -70,4 +70,8 @@ TrainerGroups:
+@@ -70,4 +70,9 @@ TrainerGroups:
  	dw OfficerGroup
  	dw GruntFGroup
  	dw MysticalmanGroup
@@ -66022,12 +66122,13 @@ index f4e20ac..39b97fb 100644
 +	dw UlexGroup
 +	dw OtherBoyGroup
 +	dw OtherGirlGroup
++	dw ElmProfGroup
  	assert_table_length NUM_TRAINER_CLASSES
 diff --git a/data/trainers/pic_pointers.asm b/data/trainers/pic_pointers.asm
-index cd60325..8b91d43 100644
+index cd60325..fe493e9 100644
 --- a/data/trainers/pic_pointers.asm
 +++ b/data/trainers/pic_pointers.asm
-@@ -70,4 +70,8 @@ TrainerPicPointers::
+@@ -70,4 +70,9 @@ TrainerPicPointers::
  	dba_pic OfficerPic
  	dba_pic GruntfPic
  	dba_pic MysticalmanPic
@@ -66035,12 +66136,13 @@ index cd60325..8b91d43 100644
 +	dba_pic BurglarPic
 +	dba_pic OtherBoyPic
 +	dba_pic OtherGirlPic
++	dba_pic ElmPic
  	assert_table_length NUM_TRAINER_CLASSES
 diff --git a/data/trainers/sprites.asm b/data/trainers/sprites.asm
-index 8ef3cdf..0b4af86 100644
+index 8ef3cdf..dbd7f66 100644
 --- a/data/trainers/sprites.asm
 +++ b/data/trainers/sprites.asm
-@@ -67,4 +67,9 @@ BTTrainerClassSprites:
+@@ -67,4 +67,10 @@ BTTrainerClassSprites:
  	db SPRITE_BLUE
  	db SPRITE_OFFICER
  	db SPRITE_ROCKET_GIRL
@@ -66050,6 +66152,7 @@ index 8ef3cdf..0b4af86 100644
 +	db SPRITE_PHARMACIST
 +	db SPRITE_CHRIS ; OTHER_BOY
 +	db SPRITE_KRIS ; OTHER_GIRL
++	db SPRITE_ELM ; ELM_PROF
 +	assert_table_length NUM_TRAINER_CLASSES
 diff --git a/data/types/category_names.asm b/data/types/category_names.asm
 new file mode 100644
@@ -75836,10 +75939,10 @@ index ff7f07a..6e73f93 100644
  	ld de, MUSIC_ROCKET_BATTLE
 diff --git a/engine/debug/nuzlocke_sandbox.asm b/engine/debug/nuzlocke_sandbox.asm
 new file mode 100644
-index 0000000..74b5e2f
+index 0000000..ff981c2
 --- /dev/null
 +++ b/engine/debug/nuzlocke_sandbox.asm
-@@ -0,0 +1,374 @@
+@@ -0,0 +1,391 @@
 +SECTION "Nuzlocke sandbox tools", ROMX
 +
 +SandboxMenu::
@@ -76194,14 +76297,31 @@ index 0000000..74b5e2f
 +	ld hl, wSandboxStage
 +	dec [hl]
 +	jr nz, .tms
++	ld hl, .HMs
++.hms
++	ld a, [hli]
++	and a
++	jr z, .hms_done
++	push hl
++	ld [wCurItem], a
++	ld a, 1
++	ld [wItemQuantityChange], a
++	ld hl, wNumItems
++	call ReceiveItem
++	pop hl
++	jr .hms
++.hms_done
 +	ld hl, .Text
 +	jp PrintText
 +.Items
 +	db REPEL, SUPER_REPEL, MAX_REPEL, FOCUS_SASH, POTION, FULL_RESTORE, 0
++.HMs
++	db HM_CUT, HM_FLY, HM_SURF, HM_STRENGTH, HM_FLASH, HM_WHIRLPOOL, HM_WATERFALL, 0
 +.Text
 +	text "Objetos añadidos:"
 +	line "repelentes, curas,"
-+	cont "BANDA FOCUS y MTs."
++	cont "BANDA FOCUS, MTs"
++	cont "y las 7 MOs."
 +	done
 +
 +INCLUDE "engine/debug/sandbox_destinations.asm"
@@ -77388,7 +77508,7 @@ index 0000000..864cf60
 +	db "26 CEREZO@"
 diff --git a/engine/debug/sandbox_destinations.asm b/engine/debug/sandbox_destinations.asm
 new file mode 100644
-index 0000000..ff0b6f7
+index 0000000..4aa2a25
 --- /dev/null
 +++ b/engine/debug/sandbox_destinations.asm
 @@ -0,0 +1,354 @@
@@ -77644,7 +77764,7 @@ index 0000000..ff0b6f7
 +	end
 +.Dest16
 +	loadmem wPlayerState, PLAYER_NORMAL
-+	warp INDIGO_PLATEAU_POKECENTER_1F, 6, 5
++	warp INDIGO_PLATEAU_POKECENTER_1F, 6, 10
 +	end
 +.Dest17
 +	loadmem wPlayerState, PLAYER_NORMAL
@@ -79226,10 +79346,10 @@ index 0000000..4b0ff3a
 +POPS
 diff --git a/engine/events/tito_xeluis.asm b/engine/events/tito_xeluis.asm
 new file mode 100644
-index 0000000..3ce0cf4
+index 0000000..ac8d93a
 --- /dev/null
 +++ b/engine/events/tito_xeluis.asm
-@@ -0,0 +1,734 @@
+@@ -0,0 +1,768 @@
 +SECTION "Tito Xeluis services", ROMX
 +
 +TitoXeluisServices::
@@ -79682,7 +79802,41 @@ index 0000000..3ce0cf4
 +	closetext
 +	end
 +.SuperLeague
++; Tito speaks in the first person here; the entrance script is shared with the
++; Indigo Plateau trainer, whose texts talk about Tito.
++	checkevent EVENT_BEAT_TITO_XELUIS
++	iffalse .SuperLeagueNotBeaten
++	checkevent EVENT_SUPER_LEAGUE_LOST
++	iftrue .SuperLeagueLost
 +	farsjump SuperLeagueEnterScript
++.SuperLeagueNotBeaten
++	writetext .SuperLeagueNotBeatenText
++	waitbutton
++	closetext
++	end
++.SuperLeagueLost
++	writetext .SuperLeagueLostText
++	waitbutton
++	closetext
++	end
++.SuperLeagueNotBeatenText
++	text "La SUPERLIGA sólo"
++	line "se abre a quien"
++	cont "me ha vencido a"
++	cont "mí, wachin."
++
++	para "Vuelve cuando me"
++	line "hayas ganado."
++	done
++.SuperLeagueLostText
++	text "Caíste en la"
++	line "SUPERLIGA."
++
++	para "Para volver a"
++	line "entrar, tienes"
++	cont "que ganarme otra"
++	cont "vez."
++	done
 +.NoVictory
 +	reloadmapafterbattle
 +	end
@@ -80945,7 +81099,7 @@ index 7775273..9d899cb 100644
 +	jp EventFlagAction
 +POPS
 diff --git a/engine/items/item_effects.asm b/engine/items/item_effects.asm
-index 021d938..6226783 100644
+index 021d938..6fc3059 100644
 --- a/engine/items/item_effects.asm
 +++ b/engine/items/item_effects.asm
 @@ -214,6 +214,12 @@ PokeBallEffect:
@@ -80978,7 +81132,86 @@ index 021d938..6226783 100644
  
  	call ClearSprites
  
-@@ -1251,8 +1260,11 @@ RareCandyEffect:
+@@ -1248,12 +1257,91 @@ RareCandyEffect:
+ 
+ 	call RareCandy_StatBooster_GetParameters
+ 
++; How many candies at once. They are not consumed, so any amount up to 99 works.
++	ld hl, RareCandy_HowManyText
++	call MenuTextbox
++	ld a, 99
++	ld [wItemQuantity], a
++	farcall SelectQuantityToToss
++	call ExitMenu
++	call ExitMenu
++	jp c, RareCandy_StatBooster_ExitMenu
++
++	ld a, [wItemQuantityChange]
++	ld b, a
++	ld c, 0 ; levels gained
++.level_up
++	push bc
++	call RareCandy_LevelUpOnce
++	pop bc
++	jr c, .levelled
++	inc c
++	dec b
++	jr nz, .level_up
++.levelled
++	ld a, c
++	and a
++	jp z, NoEffectMessage
++
++	push bc
++	ld a, PARTYMENUTEXT_LEVEL_UP
++	call ItemActionText
++
++	xor a ; PARTYMON
++	ld [wMonType], a
++	predef CopyMonToTempMon
++
++	hlcoord 9, 0
++	ld b, 10
++	ld c, 9
++	call Textbox
++
++	hlcoord 11, 1
++	ld bc, 4
++	predef PrintTempMonStats
++
++	call WaitPressAorB_BlinkCursor
++	pop bc
++
++; Moves learnt at every level that was gained, in order.
++	ld a, [wCurPartyLevel]
++	sub c
++	ld d, a
++.learn
++	push bc
++	push de
++	inc d
++	ld a, d
++	ld [wCurPartyLevel], a
++	xor a ; PARTYMON
++	ld [wMonType], a
++	ld a, [wCurPartySpecies]
++	ld [wTempSpecies], a
++	predef LearnLevelMoves
++	pop de
++	pop bc
++	inc d
++	dec c
++	jr nz, .learn
++
++	xor a
++	ld [wForceEvolution], a
++	farcall EvolvePokemon
++
++	; Rare Candies are not consumed: the stack of 99 is infinite.
++	ret
++
++RareCandy_LevelUpOnce:
++; One level for the selected party Pokemon. Carry if the level cap stops it.
  	ld a, MON_LEVEL
  	call GetPartyParamLocation
  
@@ -80987,21 +81220,58 @@ index 021d938..6226783 100644
 +	pop hl
  	ld a, [hl]
 -	cp MAX_LEVEL
+-	jp nc, NoEffectMessage
 +	cp b
- 	jp nc, NoEffectMessage
++	jr nc, .capped
  
  	inc a
-@@ -1328,7 +1340,8 @@ RareCandyEffect:
- 	ld [wForceEvolution], a
- 	farcall EvolvePokemon
+ 	ld [hl], a
+@@ -1299,36 +1387,16 @@ RareCandyEffect:
+ 	adc b
+ 	ld [hl], a
+ 	farcall LevelUpHappinessMod
++	and a
++	ret
+ 
+-	ld a, PARTYMENUTEXT_LEVEL_UP
+-	call ItemActionText
+-
+-	xor a ; PARTYMON
+-	ld [wMonType], a
+-	predef CopyMonToTempMon
+-
+-	hlcoord 9, 0
+-	ld b, 10
+-	ld c, 9
+-	call Textbox
+-
+-	hlcoord 11, 1
+-	ld bc, 4
+-	predef PrintTempMonStats
+-
+-	call WaitPressAorB_BlinkCursor
+-
+-	xor a ; PARTYMON
+-	ld [wMonType], a
+-	ld a, [wCurPartySpecies]
+-	ld [wTempSpecies], a
+-	predef LearnLevelMoves
+-
+-	xor a
+-	ld [wForceEvolution], a
+-	farcall EvolvePokemon
++.capped
++	scf
++	ret
  
 -	jp UseDisposableItem
-+	; Rare Candies are not consumed: the stack of 99 is infinite.
-+	ret
++RareCandy_HowManyText:
++	text_far _RareCandyHowManyText
++	text_end
  
  HealPowderEffect:
  	ld b, PARTYMENUACTION_HEALING_ITEM
-@@ -1670,6 +1683,14 @@ UseItem_SelectMon:
+@@ -1670,6 +1738,14 @@ UseItem_SelectMon:
  	ret
  
  .not_egg
@@ -81016,7 +81286,7 @@ index 021d938..6226783 100644
  	and a
  	ret
  
-@@ -1773,6 +1794,8 @@ ReviveHalfHP:
+@@ -1773,6 +1849,8 @@ ReviveHalfHP:
  ReviveFullHP:
  	call LoadHPFromBuffer1
  ContinueRevive:
@@ -81025,7 +81295,7 @@ index 021d938..6226783 100644
  	ld a, MON_HP
  	call GetPartyParamLocation
  	ld [hl], d
-@@ -1781,6 +1804,8 @@ ContinueRevive:
+@@ -1781,6 +1859,8 @@ ContinueRevive:
  	jp LoadCurHPIntoBuffer3
  
  RestoreHealth:
@@ -81841,10 +82111,10 @@ index 4589eac..a5a9037 100644
  
 diff --git a/engine/pokemon/custom_shiny.asm b/engine/pokemon/custom_shiny.asm
 new file mode 100644
-index 0000000..f09b073
+index 0000000..806e50b
 --- /dev/null
 +++ b/engine/pokemon/custom_shiny.asm
-@@ -0,0 +1,44 @@
+@@ -0,0 +1,58 @@
 +PUSHS
 +SECTION "Twenty percent shiny mechanics", ROMX
 +
@@ -81878,6 +82148,20 @@ index 0000000..f09b073
 +	cp $2a
 +	ret nz
 +	dec b
++	ret
++
++BoxGiftRollShiny::
++; A gift that goes straight to the PC takes its DVs from wEnemyMon, which is only
++; rolled for shininess in wild battles: do the same roll the party gifts get.
++	ld hl, wEnemyMonDVs
++	ld b, [hl]
++	inc hl
++	ld c, [hl]
++	call RollFivePercentShinyDVs
++	ld hl, wEnemyMonDVs
++	ld [hl], b
++	inc hl
++	ld [hl], c
 +	ret
 +
 +ForceShinyDVs::
@@ -82300,7 +82584,7 @@ index b286b9a..729ab37 100644
  	call IsFieldMove
  	pop hl
 diff --git a/engine/pokemon/move_mon.asm b/engine/pokemon/move_mon.asm
-index 23bc7ab..d31d6c0 100644
+index 23bc7ab..a96401e 100644
 --- a/engine/pokemon/move_mon.asm
 +++ b/engine/pokemon/move_mon.asm
 @@ -133,7 +133,7 @@ rept NUM_MOVES - 1
@@ -82344,7 +82628,15 @@ index 23bc7ab..d31d6c0 100644
  	ld a, MON_SPECIES
  	call GetPartyParamLocation
  	ld a, [hl]
-@@ -1823,3 +1832,5 @@ InitNickname:
+@@ -1651,6 +1660,7 @@ GivePoke::
+ 	ld a, [wCurPartySpecies]
+ 	ld [wTempEnemyMonSpecies], a
+ 	callfar LoadEnemyMon
++	callfar BoxGiftRollShiny ; LoadEnemyMon only rolls shininess for wild battles
+ 	call SendMonIntoBox
+ 	jp nc, .FailedToGiveMon
+ 	ld a, BOXMON
+@@ -1823,3 +1833,5 @@ InitNickname:
  	ld hl, ExitAllMenus
  	rst FarCall
  	ret
@@ -83284,7 +83576,7 @@ zlQ8fzhfIpl0a&h=uRuYvy~FFn2st?1w^&1_@p*<n$TBT1?Vq;g(ZA}Bu;{4%u8}Y-
 x-Tnf_nnUW2h}EVpkN!`76LO?Pi^9KtqYtA?v@Qb1N?8B^002ovPDHLkV1hHUm4*NS
 
 diff --git a/gfx/pics.asm b/gfx/pics.asm
-index 9264e2d..10b8954 100644
+index 9264e2d..b79617f 100644
 --- a/gfx/pics.asm
 +++ b/gfx/pics.asm
 @@ -73,7 +73,7 @@ DewgongFrontpic:     INCBIN "gfx/pokemon/dewgong/front.animated.2bpp.lz"
@@ -83305,7 +83597,7 @@ index 9264e2d..10b8954 100644
  
  SECTION "Pics 19", ROMX
  
-@@ -780,6 +782,11 @@ INCBIN "gfx/pokemon/unown_r/back.2bpp.lz"
+@@ -780,6 +782,12 @@ INCBIN "gfx/pokemon/unown_r/back.2bpp.lz"
  
  SECTION "Pics 20", ROMX
  
@@ -83313,11 +83605,12 @@ index 9264e2d..10b8954 100644
 +TitoXeluisPic: INCBIN "gfx/trainers/tito_xeluis.2bpp.lz"
 +OtherBoyPic:    INCBIN "gfx/trainers/other_boy.2bpp.lz"
 +OtherGirlPic:   INCBIN "gfx/trainers/other_girl.2bpp.lz"
++ElmPic:         INCBIN "gfx/trainers/elm.2bpp.lz"
 +
  SECTION "Pics 21", ROMX
  
  SECTION "Pics 22", ROMX
-@@ -787,3 +794,4 @@ SECTION "Pics 22", ROMX
+@@ -787,3 +795,4 @@ SECTION "Pics 22", ROMX
  SECTION "Pics 23", ROMX
  
  SECTION "Pics 24", ROMX
@@ -83386,28 +83679,29 @@ index 0000000..6d91bec
 +	endanim
 diff --git a/gfx/pokemon/dark_lugia/back.png b/gfx/pokemon/dark_lugia/back.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..f448a202d3445bd2403f988cd9bae2fe1c4c7b8e
+index 0000000000000000000000000000000000000000..61625020ad092cafa92c49a4e29510da179db6f5
 GIT binary patch
-literal 961
-zcmV;y13vtTP)<h;3K|Lk000e1NJLTq001xm001xu0ssI2*kEqZ000AsNkl<Zc%03d
-z$(7<T5Qe3GB;upzNC=(`;Km#wgCPvaV0>)fh786ba2y{AMg7`^|1MXR7EI4lCooz*
-z{k2FkK7`=P%zN*gD{sHdUdm~jdguPU6#;qg_nT8yum1}m&$Mak9Xalw0r`=Jw7Cse
-z{p()>@}rgXU&fRee`U4~A)rGw4;}K_Gr2|)iHV97I&9B6v#L4Svb+P0b8f#mX`Kv(
-z(7L@G#Y1A+*K5!`Bo)!<Sj;FCLI6q?N%j5a)DK;H?!)%X1u$uJ+NQEB>ya1}^dqN`
-zncDP2Cp3OBBcF>DGlYUL400Q;x8X|75;P*?Ryy(#8U4^Taj!uDzC`NIrEM=qO#^9l
-z#@#cVhQQoho@OeHF>5bJFwq3<<rs4}_p;EK#+hXqt)r^f)ReGDCvJj|XRi?By)PpJ
-z4M#!yd%$spOsmG}g=QLyTtgEOM?#EP=J!JvtwW-7GdZrk9BC#qyg&mET1mS0K)iQ#
-z?x8eko=x>?E*O@MxDkF4hzS(>x&jT4n*`i#Tr20GukaCl08N?$hV1@8F()oGt^v`Y
-zJ58)NB0VW-c?WuE`f@Vys|g{xuS(pMH60~9l4#a`=t`C?Pb9k3X3Z=%2ypR1bQDiy
-zVMMeSV)fJ9zka{cldoUC2^z$Za7FCsV(dgbV_n<;Ax9j`tQkxqH%%;AhtOvkjT=P*
-zftCuC=Ds;AjD;x9I>c}q5LESAR7*1kIN1zHr-|8L6jn{coADI;(14wOL^c>(2X9){
-z>)1Iatq@;2fON15IC^qFF^19bgL!f8$3aU@_5INGLuZ~janPo5!rY83Gb5>=yD5Dy
-z!ytTH<s~P*B;)v@-4u%NI*09<?+-jg3I~}1!Kr*%!7N{vNL=8;E*T&-{i`cBy6l?9
-z7na4!oEUwiKQ4IXM;FqMoRDBjT@?9S2XSjdw2D-syO<t|lBm5Lvu{hHun?dfrxYvG
-zp@!|#Jcm5+CNmbZ+!yU6gDC6fRa);~SvO^X^fpqByAr<g^C&Ml01}}4&FRO_?}bcJ
-zh4_lA>87Dk%mXK{hkSon4kWglX1W>jcoG`ihO5~79;&Dhzo&-rJ&2w(^^RO7Huhx}
-ztwZMG_Ud(qzUXjgEda^~nrAVt@A>ANgT*vOK+a;)#&3pCy`wEH4?c4bd9(mN3*_Qh
-jpM|mnh-1M%_YbQ#w9Zlb>UBi*00000NkvXXu0mjf+@!la
+literal 1022
+zcmV<a0|ESrP)<h;3K|Lk000e1NJLTq001xm001xu0ssI2*kEqZ000BUNkl<Zc$}?S
+zyLIY75M8}PBMRk^666j<hC|VTDFb(4g^$d1V3pwTDWnwnz`*5dW`7cIjst_VJ9qE=
+zmtq`87m%VT>S|k7Yv<f~_>nLB;fN(gQ8?!!J1met7KEtDl(sp{df%&#cUY;%<2dr;
+z@=6a&U2Wwx`3UBgp=p}~tM)Lo+kD`Sy4psNsTZC>!%R;YQqPnCQ%z{tr52z8!PtDl
+z&^V6WX>SoIDXVo|ZTsQqGQ>KiMI-+U5gvv_;^ru;waWkm-Ea{v8esDHP`<RyAx;uI
+znVdd?2G(DJPdR~#vZRC@2%Cs*v3?TG#bg|KO2K*f3AquU+hUTf*y!D9A3_6~g})WF
+z!q|APuC|$&_$2bNZ4TXO&zK@mp#2v1mQ{&0Sx`@RvH18T0;_EftX|HRgz^BSPEb~B
+zywsicSS*_|dM_-6CWOO6kyVLoTiz9Oe!>z3iyZ~5M9A>kF_?$cg4S>r@-V9dZje*>
+z9ub~dn93^x5QhFlz62{s<>0KW*2>MT^uzH{;k-u4H>J1^$dlbws9W#G_xOKOa-Zoa
+z`l&KOqhgIin1wMs)k1`X(XjbMECn;7>`AJ;IO3i(+o>~g2rIA=n=j-^A}f{h7r^St
+zkwt(8AoBhCk%!Q)<iqL-%J;v&^5yHx8-oB_iZiv<gBQlZmQKdn_Z@+i*OxcO0rXOF
+zm0vTsO9z4v`A}RG4M<W&P!$tz{pn77oriMJ^r^-kfFzG|29NtgS*=%dlVKliTj4+u
+z-dT*uJ1B7H;pftzc~vHJd{VfaSuM(Uq0!Sm+j(9@c9+gKVlqWi<Z3|X((bfpaJf;|
+zPwyBqeF%G6Kmx^%33^<L5aX~W1qf}mYSxs|y_-xLG_OC6^Cx8$xhf&WH@pGDIHry=
+zhQ}`NBXxzqn38KJfUMguAZB;JISC1eMV86(an#dWq7a%;e~rUib+Oq#K2r;(-R497
+zEC_G1y%dM*s-V)imlSlTrUH$tK~D2!FDJbQ2~Or1hn+7OdLsa>MI_57UBYwe*)|9H
+zgAT>8(1Xf=)MC3FJW}o)5q)lTxRRzYY=?^kHF>EzXb0!dulE^Yug=7?X?xB6LLO*9
+z`-gPQ1r<B+-H+Qi!4#1RATA@HU++SgVB$MG?)m^F?m!^8D{iGUBz~vn_^Pi8U_0A3
+zsCk)N=>^5df7y^MpCbkEWG2iQbY=sJKxut<cx*MXCZ~hBB`DoU)TSGc59gs??Ee6A
+s0Zd*|R}0I2B}xOz`Q1Z7dFD5(UvwL%&L-7Vj{pDw07*qoM6N<$f}LdMT>t<8
 
 literal 0
 HcmV?d00001
@@ -83614,6 +83908,26 @@ uoV`xgIB=l-k0-g@$|jlh!RN91OZx^rdMS&WlOH1h0000<MNUMnLSTY<$;3SX
 literal 0
 HcmV?d00001
 
+diff --git a/gfx/trainers/elm.png b/gfx/trainers/elm.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..539f82cce14417dc8b93325a796bfa95fb04d882
+GIT binary patch
+literal 1269
+zcmeAS@N?(olHy`uVBq!ia0vp^79h;Q3?%1AoYrArU}gyL332`Z|Nnyx1qBWYK=Dy9
+z8UiCN1TOX!mIM9FQWE4B49pAvb2Z#585kHBc)B=-RLt2s?RMT_2M(9SXaE22luFpX
+zZceGf+EdM<?sjtT;x^lxGR-ecOOQ%if8ld#((@3h+f{rAN<E8xJcNYQA9n3bU76;$
+zeD~!&@3l4Jn=fzWofY)*^o{d=As4xo*<)<@%dbltbX?3Z=raBxP_lZ8pF?oOzR8!L
+zhX|aGa4t={qPpW{!^NaEZB?%r(ku-)C$3^T9ddfx^i@hpf0{#Vch3<lGE<o<Z{`?i
+zIJx@mhH$5dC91_D^)^jXEG%1vW-k_8_i196ID78FR5!&}EJl|Eoloyp60YOaYF6BR
+z`BYHPY<ADYS*)cq=be7@#J8<ZCHY{*(y6JODR0^po~~J)zD&XAvfj3Dp%GOPp_aQ=
+z`6jDhIQMem`qxKwZa2;`-=$$*&%5i|blZu)FV21xyxUE<ru~h*$jzS{qI@>(GHBz;
+zT4R3al+E|&7S`Wo%NQ$J-^x4GtvkW*=;L_D@ry{Yd{VQ;yWZXF%NS?RTW99llwJSj
+zKxxO}A12?eH-x=?(6A-@{K^C^-J>VlL%SV>C47F%1RUS-L+Z-;ZL4qZe|_&~VtlAE
+V`vLjN$|g{H^>p=fS?83{1OTwu<YoW>
+
+literal 0
+HcmV?d00001
+
 diff --git a/gfx/trainers/other_boy.png b/gfx/trainers/other_boy.png
 new file mode 100644
 index 0000000000000000000000000000000000000000..19869944e6bbb0bf34e9e157fc2aa03580c97e2e
@@ -83684,10 +83998,10 @@ literal 0
 HcmV?d00001
 
 diff --git a/home/trainers.asm b/home/trainers.asm
-index f271ef1..80c6ba4 100644
+index f271ef1..84ef789 100644
 --- a/home/trainers.asm
 +++ b/home/trainers.asm
-@@ -248,7 +248,19 @@ PrintWinLossText::
+@@ -248,7 +248,25 @@ PrintWinLossText::
  	ld a, [hli]
  	ld h, [hl]
  	ld l, a
@@ -83696,9 +84010,15 @@ index f271ef1..80c6ba4 100644
 +	jr z, .tito_bank
 +	cp ULEX
 +	jr nz, .map_bank
++	ld a, [wOtherTrainerID]
++	cp ULEX_SUPER
++	jr z, .map_bank ; the Super League rooms keep their texts in their own map bank
 +	ld a, BANK(UlexBattleScript)
 +	jr .print
 +.tito_bank
++	ld a, [wOtherTrainerID]
++	cp TITO_XELUIS_SUPER
++	jr z, .map_bank
 +	ld a, BANK(TitoXeluisBattleScript)
 +	jr .print
 +.map_bank
@@ -84697,7 +85017,7 @@ index af636ce..ae3e1e4 100644
  	object_event  0,  7, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ECRUTEAK_POKE_CENTER_BILL
 +	object_event  6,  4, SPRITE_TITO_XELUIS, SPRITEMOVEDATA_STANDING_IDLE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakPokecenter1FTitoXeluis, -1
 diff --git a/maps/ElmsLab.asm b/maps/ElmsLab.asm
-index 3816a69..251eda4 100644
+index 3816a69..2ec90a6 100644
 --- a/maps/ElmsLab.asm
 +++ b/maps/ElmsLab.asm
 @@ -96,7 +96,7 @@ ProfElmScript:
@@ -84822,7 +85142,7 @@ index 3816a69..251eda4 100644
 +	closetext
 +	setevent EVENT_EXHIBITION_BATTLE
 +	winlosstext ElmDuelBeatenText, ElmDuelLossText
-+	loadtrainer POKEMON_PROF, ELM1
++	loadtrainer ELM_PROF, ELM_PROF1
 +	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 +	startbattle
 +	reloadmap
@@ -85148,25 +85468,10 @@ index 60278c8..a77221c 100644
  	sjump .loop
  
 diff --git a/maps/GoldenrodPokecenter1F.asm b/maps/GoldenrodPokecenter1F.asm
-index 1869985..3d605e8 100644
+index 1869985..060e777 100644
 --- a/maps/GoldenrodPokecenter1F.asm
 +++ b/maps/GoldenrodPokecenter1F.asm
-@@ -79,7 +79,13 @@ GoldenrodPokecenter1F_GSBallSceneRight:
- 	end
- 
- GoldenrodPokecenter1FGameboyKidScript:
--	jumptextfaceplayer GoldenrodPokecenter1FGameboyKidText
-+	faceplayer
-+	opentext
-+	writetext GoldenrodPokecenter1FStoneVendorText
-+	promptbutton
-+	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_STONES
-+	closetext
-+	end
- 
- GoldenrodPokecenter1FLassScript:
- 	jumptextfaceplayer GoldenrodPokecenter1FLassText
-@@ -98,8 +104,10 @@ GoldenrodPokecenter1FPokefanF:
+@@ -98,8 +98,10 @@ GoldenrodPokecenter1FPokefanF:
  	waitbutton
  	writetext GoldenrodPokecenter1FPokefanFThisIsForYouText
  	waitbutton
@@ -85178,21 +85483,7 @@ index 1869985..3d605e8 100644
  	writetext GoldenrodPokecenter1FPokefanFDaughterWillBeDelightedText
  	waitbutton
  	closetext
-@@ -695,6 +703,13 @@ GoldenrodPokecomCenterPerson11Text: ; unreferenced
- 	cont "en las NOTICIAS…"
- 	done
- 
-+GoldenrodPokecenter1FStoneVendorText:
-+	text "Vendo piedras de"
-+	line "evolución a los"
-+	cont "entrenadores que"
-+	cont "pasan por aquí."
-+	done
-+
- GoldenrodPokecenter1FGameboyKidText:
- 	text "En el COLISEO de"
- 	line "arriba se lucha"
-@@ -839,6 +854,16 @@ GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText:
+@@ -839,6 +841,16 @@ GoldenrodPokecenter1FPlayerGaveAwayTheEonMailText:
  	line "la CARTA EÓN."
  	done
  
@@ -85209,7 +85500,7 @@ index 1869985..3d605e8 100644
  GoldenrodPokecenter1F_MapEvents:
  	db 0, 0 ; filler
  
-@@ -860,3 +885,4 @@ GoldenrodPokecenter1F_MapEvents:
+@@ -860,3 +872,4 @@ GoldenrodPokecenter1F_MapEvents:
  	object_event  6,  1, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FGameboyKidScript, -1
  	object_event  1,  4, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FLassScript, -1
  	object_event  7,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, GoldenrodPokecenter1FPokefanF, -1
@@ -86872,10 +87163,35 @@ index a8e445d..16bc613 100644
  	setevent EVENT_GOT_KENYA
  .alreadyhavekenya
 diff --git a/maps/Route36.asm b/maps/Route36.asm
-index 3e4d3f7..7edb340 100644
+index 3e4d3f7..3a9ed9c 100644
 --- a/maps/Route36.asm
 +++ b/maps/Route36.asm
-@@ -74,7 +74,8 @@ WateredWeirdTreeScript:: ; export (for when you use Squirtbottle from pack)
+@@ -16,6 +16,7 @@ Route36_MapScripts:
+ 
+ 	def_callbacks
+ 	callback MAPCALLBACK_OBJECTS, Route36ArthurCallback
++	callback MAPCALLBACK_SPRITES, Route36SudowoodoSpriteCallback
+ 
+ Route36Noop1Scene:
+ 	end
+@@ -23,6 +24,16 @@ Route36Noop1Scene:
+ Route36Noop2Scene:
+ 	end
+ 
++Route36SudowoodoSpriteCallback:
++; The tree's graphic is a variable sprite that only the new-game script and the
++; Sudowoodo fight set; a game that skipped them or mixed their flags (the sandbox)
++; showed another NPC. While the tree is on the map it is Sudowoodo.
++	checkevent EVENT_ROUTE_36_SUDOWOODO
++	iftrue .Done
++	variablesprite SPRITE_WEIRD_TREE, SPRITE_SUDOWOODO
++.Done:
++	endcallback
++
+ Route36ArthurCallback:
+ 	readvar VAR_WEEKDAY
+ 	ifequal THURSDAY, .ArthurAppears
+@@ -74,7 +85,8 @@ WateredWeirdTreeScript:: ; export (for when you use Squirtbottle from pack)
  	writetext SudowoodoAttackedText
  	waitbutton
  	closetext
@@ -87331,7 +87647,7 @@ index 07a2c2c..87c4e69 100644
  SilverCaveRoom2PPUp:
  	itemball PP_UP
 diff --git a/maps/SilverCaveRoom3.asm b/maps/SilverCaveRoom3.asm
-index c1fdd49..3e78d95 100644
+index c1fdd49..c024550 100644
 --- a/maps/SilverCaveRoom3.asm
 +++ b/maps/SilverCaveRoom3.asm
 @@ -1,5 +1,6 @@
@@ -87363,7 +87679,7 @@ index c1fdd49..3e78d95 100644
  	special FadeOutMusic
  	opentext
  	writetext RedLeavesText
-@@ -33,12 +39,57 @@ Red:
+@@ -33,12 +39,60 @@ Red:
  	reanchormap
  	credits
  	end
@@ -87389,6 +87705,8 @@ index c1fdd49..3e78d95 100644
 +	writetext SilverCaveRoom3GuardAllowedText
 +	waitbutton
 +	closetext
++; he steps aside for good: the flag is the object's own event flag
++	disappear SILVERCAVEROOM3_GUARD
 +	end
 +.BlockedText:
 +	text "Para retar a ROJO"
@@ -87408,6 +87726,7 @@ index c1fdd49..3e78d95 100644
 +	closetext
 +	applymovement PLAYER, .StepBack
 +.Pass:
++	disappear SILVERCAVEROOM3_GUARD
 +	end
 +.StepBack:
 +	step DOWN
@@ -87421,7 +87740,7 @@ index c1fdd49..3e78d95 100644
  RedWinLossText:
  	text "…"
  	done
-@@ -55,8 +106,30 @@ SilverCaveRoom3_MapEvents:
+@@ -55,8 +109,30 @@ SilverCaveRoom3_MapEvents:
  	warp_event  9, 33, SILVER_CAVE_ROOM_2, 2
  
  	def_coord_events
@@ -87451,7 +87770,7 @@ index c1fdd49..3e78d95 100644
  
  	def_object_events
  	object_event  9, 10, SPRITE_RED, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Red, EVENT_RED_IN_MT_SILVER
-+	object_event 10, 31, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SilverCaveRoom3GuardScript, -1
++	object_event 10, 31, SPRITE_GYM_GUIDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SilverCaveRoom3GuardScript, EVENT_SILVER_CAVE_GUARD_GONE
 diff --git a/maps/SproutTower1F.asm b/maps/SproutTower1F.asm
 index e816548..2161f5d 100644
 --- a/maps/SproutTower1F.asm
@@ -89537,7 +89856,7 @@ index 0000000..9071693
 +    Randomizer(args.seed).run()
 diff --git a/tools/build_dark_lugia_sprite.py b/tools/build_dark_lugia_sprite.py
 new file mode 100644
-index 0000000..ac55409
+index 0000000..ed8bdfb
 --- /dev/null
 +++ b/tools/build_dark_lugia_sprite.py
 @@ -0,0 +1,41 @@
@@ -89546,7 +89865,7 @@ index 0000000..ac55409
 +front.png: the user-supplied animated Dark Lugia sprite (video, 280x280 = 56x56 pixels scaled by 5).
 +Frame 0 is the idle pose, frames 1-3 are the wing-flap poses. Colours are reduced to the four
 +colours of the Dark Lugia palette. back.png is not generated here: it is the back view supplied by the
-+project author (56x56 pixel art reduced to 48x48 with the same four colours, red mark removed).
++project author (56x56 pixel art cropped to its central 48x48 with the same four colours, red mark removed).
 +Usage: build_dark_lugia_sprite.py <frames_dir> <idle> <flap> <flap> <flap>   (frame numbers in frames_dir)"""
 +import sys
 +from collections import Counter

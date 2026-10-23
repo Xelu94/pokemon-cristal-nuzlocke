@@ -13,6 +13,7 @@ El sandbox es una **compilación separada** (`pokecristal_debug` en el Makefile)
 | SHA-256 de 5.0 | `5b9fb58edd1742f2de4b6a1bbc9999e05f48c31d3ac28a44200650e2f3133ecd` | `ec9dbc978709369f95218bb1afca61927ca27b225b95f2f4fd832cee416a0130` |
 | SHA-256 de 5.1 | `339f38f5d51b9bd1a4adcd28e1767fbbf32ef4e0e343f4965acbdc9cb4fa00e5` | `b060483611e9bb5c1fbc88607e2f5a218ac500bbb268962279725a1cb4702183` |
 | SHA-256 de 5.2 | `6861c67987485a36df0e3c4a83906bd68f778a7b649466984dffdeb31ffc590b` | `2d39b0abac24322576aa1deaa00e5ed09279958f37db97e5e01d69e2af9bf747` |
+| SHA-256 de 5.3 | `aab4601450c38aa762b643033df21af26dd698cb30d44dce50f92780783e6408` | `880a161a97ae2321565a751ca58c4284d796263f490c4aba67a1fe5b90f020d6` |
 
 El hash del sandbox figura en `evidencias/Validacion-v4.3.json` (4.3), `evidencias/Validacion-v4.4.json` (4.4) y `evidencias/Validacion-v5.0.json` (5.0). El catálogo de destinos incluye desde la 5.0 los seis mapas de la Superliga (394 destinos) y corresponde a la compilación probada; no se adjunta ninguna ROM sandbox.
 
@@ -25,7 +26,7 @@ Start → SANDBOX abre las herramientas en cualquier mapa donde se pueda usar el
 - **LIGA/ROJO**: con 8 medallas alterna la victoria de Liga; con 16, la de Rojo.
 - **EQUIPO DE PRUEBA**: sustituye el equipo sandbox por Bayleef, Houndoom y Togetic shiny al nivel del límite menos uno, con estadísticas y PP correctos, Viento Hielo, Poder Oculto, Fuerza Lunar y Surf, equipados con Banda Focus.
 - **REINICIAR RETOS**: limpia capturas de zona, intercambio de Tito, victorias de Tito/Rojo, santuario y Ulex. Hay que salir de la zona y volver para recargar sus actores.
-- **OBJETOS**: entrega diez unidades de Repelente, Superrepelente, Máximo Repelente, Banda Focus, Poción y Restaurar Todo, más siete MT aleatorias, si hay capacidad. Se puede repetir. No es un editor arbitrario de objetos.
+- **OBJETOS**: entrega diez unidades de Repelente, Superrepelente, Máximo Repelente, Banda Focus, Poción y Restaurar Todo, más siete MT aleatorias y, desde la 5.3, las siete MO (Corte, Vuelo, Surf, Fuerza, Destello, Torbellino y Cascada), si hay capacidad. Se puede repetir. No es un editor arbitrario de objetos.
 - **OPCIONES**: ajustes normales del juego.
 
 Los viajes y las medallas son herramientas de prueba: no completan automáticamente las misiones de historia. Los eventos siguen siendo los reales.

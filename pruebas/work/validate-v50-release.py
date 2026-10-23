@@ -18,11 +18,12 @@ groups=[('Tito services and maps','test-v4-tito.py',True,'v4-tito-tests.json',48
         ('Real battle UI and capture','test-v4-battle-ui.py',True,'v41-battle-ui-tests.json',4),
         ('Randomizer core','test-v4-randomizer.cjs',False,'v4-randomizer-tests.json',9),
         ('Offline randomizer UI','test-v4-randomizer-ui.cjs',False,'v4-randomizer-ui-tests.json',4),
-        ('v4.3 changes (Fly, Map Card, marts, League supplies, candies, bag)','test-v43-changes.py',False,'v43-changes-tests.json',13),
+        ('v4.3 changes (Fly, Map Card, marts, League supplies, candies, bag)','test-v43-changes.py',False,'v43-changes-tests.json',14),
         ('v4.4 interface (level cap, move icons, exp bar, Tito idle)','test-v44-changes.py',False,'v44-changes-tests.json',4),
-        ('v5.0 routines (infinite items, hatching, Super League picker, 10-step eggs)','test-v45-routines.py',False,'v45-routines-tests.json',13),
-        ('v5.0 story and world (Ulex warning, Joy, Elm, other protagonist, Super League, data)','test-v45-story.py',False,'v45-story-tests.json',23),
-        ('v5.0 story and world played as a girl (Gold ambushes, Cristal does not)','test-v45-story.py',False,'v45-story-girl-tests.json',23,{'PLAYER_GENDER':'1'})]
+        ('v5.0 routines (infinite items, hatching, Super League picker, 10-step eggs)','test-v45-routines.py',False,'v45-routines-tests.json',14),
+        ('v5.0 story and world (Ulex warning, Joy, Elm, other protagonist, Super League, data)','test-v45-story.py',False,'v45-story-tests.json',28),
+        ('v5.3 sandbox HMs and mart stones (data and routines)','test-v53-routines.py',False,'v53-routines-tests.json',5),
+        ('v5.0 story and world played as a girl (Gold ambushes, Cristal does not)','test-v45-story.py',False,'v45-story-girl-tests.json',28,{'PLAYER_GENDER':'1'})]
 reports=[]
 for title,script,rom_arg,report,expected,*extra in groups:
     executable=str(node) if script.endswith('.cjs') else sys.executable

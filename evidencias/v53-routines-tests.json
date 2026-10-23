@@ -1,0 +1,25 @@
+{
+  "passed": 5,
+  "tests": [
+    {
+      "name": "the sandbox items option gives each of the seven HMs once",
+      "passed": true
+    },
+    {
+      "name": "the sandbox items option still gives TMs",
+      "passed": true
+    },
+    {
+      "name": "every general shop from Goldenrod onward sells all six evolution stones and its item count matches",
+      "passed": true
+    },
+    {
+      "name": "the first three towns and the Underground sell none",
+      "passed": true
+    },
+    {
+      "name": "the Goldenrod Pokemon Center no longer has a stone vendor",
+      "passed": true
+    }
+  ]
+}

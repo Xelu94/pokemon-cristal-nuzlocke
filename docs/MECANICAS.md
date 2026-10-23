@@ -1,4 +1,4 @@
-# Mecánicas y reglas vigentes (v5.2)
+# Mecánicas y reglas vigentes (v5.3)
 
 Descripción de la ROM normal. Los datos numéricos se contrastaron con la fuente integrada (`engine/pokemon/v2_balance.asm`, `data/moves/moves.asm`, `data/pokemon/evos_attacks.asm`). Cuando una regla depende del emulador o de la semilla, se indica.
 
@@ -71,7 +71,7 @@ Ver [NIVELES-Y-EVOLUCIONES.md](NIVELES-Y-EVOLUCIONES.md) para la tabla completa.
 - **Aviso de Ulex.** El NPC de la Ruta 29 que enseñaba a capturar avisa ahora de que ULEX anda por la CUEVA OSCURA y recomienda el nivel 15.
 - **Duelo de Elm, otro protagonista y Superliga:** ver [SUPERLIGA-Y-RIVAL.md](SUPERLIGA-Y-RIVAL.md).
 - **Huevos.** Eclosionan a los 10 pasos en un Pokémon aleatorio shiny de su primera etapa (sin legendarios).
-- **Enfermeras Joy** (rutas 13, 14, 25, 26, 27 y 46), **piedras evolutivas** en el Centro Pokémon de Trigal, **BAYA DORADA** en los árboles de bonguri y **MÁX. POCIÓN** en lugar de cualquier Ball del mapa o de regalo (la Master Ball se mantiene).
+- **Enfermeras Joy** (rutas 13, 14, 25, 26, 27 y 46), **piedras evolutivas** a la venta (desde la 5.3) en las tiendas normales de Ciudad Trigal en adelante, **BAYA DORADA** en los árboles de bonguri y **MÁX. POCIÓN** en lugar de cualquier Ball del mapa o de regalo (la Master Ball se mantiene).
 - **Objetos de combate infinitos y precio 0.** Banda Focus, Cinta Elegida, Gafas Elegidas, Pañuelo Elegido y Restos de la partida nueva no se consumen al equipar o devolver; ellos, los caramelos raros y la Master Ball se venden por 0.
 - **Dark Lugia:** especie 252, no capturable; se entrega a nivel 100 al vencer a Tito por primera vez.
 

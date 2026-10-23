@@ -2,6 +2,38 @@
 
 Formato por versión. Las versiones anteriores a la 4 no están documentadas en este paquete; solo se sabe que la actualización v3→v4 permite continuar el guardado.
 
+## 5.3 — Revisión de la Superliga, Elm, tiendas y caramelos (23 de octubre de 2026)
+
+Corrige lo que salió al probar la 5.2 con el sandbox y añade tres mejoras. **217 comprobaciones agrupadas** ([evidencias/Validacion-v5.3.json](evidencias/Validacion-v5.3.json)): las 200 de la 5.2, las nuevas de esta versión y el recorrido de historia ampliado, jugado como chico y como chica.
+
+**Errores corregidos**
+
+1. **Reinicio al vencer o perder contra ULEX o TITO en la Superliga.** El texto de victoria o derrota de un entrenador se lee del banco de ROM de su clase: para ULEX y TITO XELUIS el motor suponía los scripts de sus encuentros normales, pero en la Superliga los textos viven en el mapa de cada sala. Se leían de un banco equivocado y la consola se reiniciaba («Este cartucho está diseñado para ser usado únicamente en Game Boy Color»). Ahora la Superliga usa el banco del mapa (`PrintWinLossText`). Comprobado ganando y perdiendo contra los dos.
+2. **Elm combatía con la imagen de Oak.** El duelo usaba la clase de entrenador de Oak (que también sale en la introducción). Ahora Elm tiene su propia clase, `ELM_PROF`, y su propia imagen (la de Oak con el pelo castaño y los pantalones marrones).
+3. **Los tres regalos de Elm no eran shiny al ir a la caja.** Con el equipo lleno los Pokémon regalados van al PC y esa vía nunca tiraba el dado de shiny (ni el forzado). Ahora lo hace, así que los regalos forzados (Elm, la Superliga) son shiny vayan al equipo o a la caja, y los demás regalos al PC tienen la misma probabilidad que los del equipo.
+4. **Sandbox: «Viajar» a la Liga te dejaba dentro de la pared.** La casilla de llegada al Centro Pokémon de la Meseta Añil estaba mal. Se comprobaron los 41 destinos: el resto son transitables (en Ciudad Iris el anciano Bill y en el laboratorio de Elm la escena de llegada te sujetan unos segundos, como en el juego original).
+5. **TITO hablaba de sí mismo en tercera persona** al pulsar SUPERLIGA sin haberle vencido. Ahora habla en primera persona. El entrenador de la Meseta conserva su texto.
+6. **El guardia que cierra el paso a ROJO no desaparecía** al dejarte pasar. Ahora se aparta para siempre (bandera propia).
+7. **Sudowoodo se dibujaba con el sprite de otro PNJ** en partidas que se saltaron el script de partida nueva o que mezclaron sus banderas (el sandbox): su gráfico es un sprite variable. Ahora, mientras el árbol está en el mapa, es Sudowoodo.
+8. **Imagen trasera de Dark Lugia más grande**: ahora es el recorte central de 48×48 del arte original (antes se había reducido).
+
+**Mejoras**
+
+9. **Piedras evolutivas en las tiendas.** Las seis piedras se compran en las tiendas normales de Ciudad Trigal en adelante (Trigal, Olivo, Ecruteak, Caoba, Orquídea, Endrino, Azulona…, Viridian, Plateada, Celeste, Lavanda, Carmín, Azafrán, Fucsia, Celadón, Monte Moon y Meseta Añil). Se quitó el vendedor del Centro Pokémon de Trigal, que vuelve a ser el chico de la Game Boy.
+10. **Caramelos raros varios a la vez.** Tras elegir el Pokémon sale un selector de cantidad (1 a 99): sube todos los niveles de golpe hasta el tope vigente, muestra una sola ficha de estadísticas, enseña los movimientos de cada nivel y evoluciona al final. Siguen sin consumirse.
+11. **Sandbox: OBJETOS también entrega las siete MO** (Corte, Vuelo, Surf, Fuerza, Destello, Torbellino y Cascada).
+
+**Revisión general:** los 394 mapas cargan y ningún objeto se queda sin sprite; humo de 373 mapas; ningún texto nuevo supera las 18 columnas; la Superliga se juega entera (victoria y derrota de Azul, Lance, Rojo, Ulex y Tito) sin reinicios; Pokédex y combates con Dark Lugia.
+
+**Límites:** no he podido reproducir el cambio de sprite de PLATA tras el primer combate (en Ciudad Cerezo se ve igual antes y después en la ROM normal y en la del sandbox, con y sin el estado de partida nueva); si vuelve a verse hacen falta los pasos exactos o la partida. PLATA en Ciudad Olivo es la escena del juego original (aparece al entrar por la ruta del este); en el sandbox se activa al saltar hasta allí. Con el reto terminado, cada intento de combate sigue mostrando el mensaje de fin (diseño).
+
+ROM de esta versión (reconstruida desde la base española aplicando el parche con RGBDS 1.0.0):
+
+| | SHA-256 |
+|---|---|
+| ROM normal (`Radical Cristal.gbc`) | `aab4601450c38aa762b643033df21af26dd698cb30d44dce50f92780783e6408` |
+| Sandbox | `880a161a97ae2321565a751ca58c4284d796263f490c4aba67a1fe5b90f020d6` |
+
 ## 5.2 — Mensaje de fin del reto (23 de octubre de 2026)
 
 Corrige el mensaje de «has perdido el reto» que salía cortado y desplazado, y un fallo relacionado que podía dar una medalla sin combatir. **200 comprobaciones agrupadas** ([evidencias/Validacion-v5.2.json](evidencias/Validacion-v5.2.json)): las 198 de la 5.1 con una más en cada recorrido de historia (chico y chica).

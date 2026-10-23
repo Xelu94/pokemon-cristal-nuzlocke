@@ -1,6 +1,6 @@
 # Radical Cristal — Tito Xeluis
 
-Modificación personal de **Pokémon Cristal** (antes «Cristal Nuzlocke») para Game Boy Color con un Nuzlocke integrado en el motor, combate modernizado, aleatorización por niveles, una liga extra y personajes propios. Versión **5.2**. Autor: **Tito Xeluis** (apodo de YouTube; [@Xelu94](https://github.com/Xelu94) en GitHub). El NPC Tito Xeluis del juego lleva el nombre del autor.
+Modificación personal de **Pokémon Cristal** (antes «Cristal Nuzlocke») para Game Boy Color con un Nuzlocke integrado en el motor, combate modernizado, aleatorización por niveles, una liga extra y personajes propios. Versión **5.3**. Autor: **Tito Xeluis** (apodo de YouTube; [@Xelu94](https://github.com/Xelu94) en GitHub). El NPC Tito Xeluis del juego lleva el nombre del autor.
 
 > *English summary:* **Radical Cristal** is a personal ROM hack of Pokémon Crystal (Game Boy Color, SM83 assembly) built on the Spanish source tree of [MicaelAlighieri/pokecristal](https://github.com/MicaelAlighieri/pokecristal) and the [pret/pokecrystal](https://github.com/pret/pokecrystal) disassembly. It adds built-in Nuzlocke rules, per-move physical/special split, a Fairy type, level caps, a custom NPC (Tito Xeluis), a roaming thief (Ulex), the other protagonist as a rival, a 5-fight Super League at level 100, a new Dark Lugia, a sandbox build for testing and an offline seed-based randomizer. It is **not** a game written from scratch and **not** an official Pokémon product. Spanish only. Download the single `.gbc` from [Releases](https://github.com/Xelu94/pokemon-radical-cristal/releases) and open it in a Game Boy Color emulator.
 
@@ -10,15 +10,15 @@ Modificación personal de **Pokémon Cristal** (antes «Cristal Nuzlocke») para
 
 ## Descarga y cómo jugar
 
-**[⬇ Descargar Radical Cristal.gbc (v5.2)](https://github.com/Xelu94/pokemon-radical-cristal/releases/download/v5.2/Radical.Cristal.gbc)** — enlace directo al asset de la [Release v5.2](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v5.2). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
+**[⬇ Descargar Radical Cristal.gbc (v5.3)](https://github.com/Xelu94/pokemon-radical-cristal/releases/download/v5.3/Radical.Cristal.gbc)** — enlace directo al asset de la [Release v5.3](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v5.3). GitHub sustituye los espacios del nombre por puntos en la URL; el archivo es el mismo.
 
-Versiones anteriores publicadas: [v5.1](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v5.1), [v5.0](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v5.0), [v4.4](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v4.4), [v4.3](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v4.3) y [v4.2](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v4.2).
+Versiones anteriores publicadas: [v5.2](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v5.2), [v5.1](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v5.1), [v5.0](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v5.0), [v4.4](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v4.4), [v4.3](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v4.3) y [v4.2](https://github.com/Xelu94/pokemon-radical-cristal/releases/tag/v4.2).
 
 | | |
 |---|---|
 | Archivo | `Radical Cristal.gbc` (2 MiB) |
-| Versión | 5.2 |
-| SHA-256 | `6861c67987485a36df0e3c4a83906bd68f778a7b649466984dffdeb31ffc590b` |
+| Versión | 5.3 |
+| SHA-256 | `aab4601450c38aa762b643033df21af26dd698cb30d44dce50f92780783e6408` |
 1. Descarga el único archivo `.gbc` de la Release. No hay ZIP, parches ni instalador: no necesitas una ROM base ni aplicar nada.
 2. Ábrelo con un emulador compatible con Game Boy Color (por ejemplo mGBA). El emulador se obtiene por separado y no forma parte de este proyecto.
 3. Guarda dentro del juego. Las actualizaciones de esta familia continúan el guardado interno (`.sav`); no uses estados rápidos de otra compilación. Detalles en [compatibilidad de guardados](docs/COMPATIBILIDAD-GUARDADOS.md).
@@ -63,6 +63,15 @@ El proyecto evoluciona una base existente de ensamblador SM83 con límites estri
 
 ![Randomizador sin conexión](capturas/randomizador.png)
 
+### Novedades de la versión 5.3
+
+- **La Superliga ya no reinicia la consola** al vencer o perder contra Ulex o Tito.
+- **Elm** pelea con su propia imagen, y sus tres regalos son shiny también cuando van a la caja.
+- **Piedras evolutivas en todas las tiendas** de Ciudad Trigal en adelante, y **caramelos raros por tandas** (selector de cantidad).
+- Sandbox: la Meseta Añil ya no te deja en la pared y OBJETOS da las siete MO. Además: el guardia de Rojo se aparta, Sudowoodo se ve bien, Dark Lugia tiene la imagen trasera más grande y Tito habla en primera persona.
+
+![Elm con su propia imagen](capturas/elm-duelo-imagen.png)
+
 ### Novedades de la versión 5.2
 
 - El mensaje de «fin del reto» sale entero y en su sitio (antes salía cortado y desplazado sobre el mapa), y un combate rechazado ya no puede dar una medalla.
@@ -84,7 +93,7 @@ El proyecto evoluciona una base existente de ensamblador SM83 con límites estri
 - **El otro protagonista** (GOLD o CRISTAL) te embosca tras las escenas en que Plata solo habla, te da un último combate en la Meseta Añil y vive después en Pueblo Primavera.
 - **Duelo con Elm** y tres starters shiny.
 - **Dark Lugia** (Siniestro/Volador, estadísticas ofensivas) al vencer por primera vez a Tito.
-- **Enfermeras Joy** en las rutas lejos de un Centro Pokémon, **piedras evolutivas** en Trigal, **bayas doradas** en vez de bonguri, **Máx. Poción** en lugar de Balls y huevos que eclosionan en 10 pasos en un shiny aleatorio.
+- **Enfermeras Joy** en las rutas lejos de un Centro Pokémon, **piedras evolutivas** (desde la 5.3, en las tiendas), **bayas doradas** en vez de bonguri, **Máx. Poción** en lugar de Balls y huevos que eclosionan en 10 pasos en un shiny aleatorio.
 - El aviso sobre Ulex en lugar del tutorial de captura, objetos de combate infinitos, y los arreglos de la animación de andar y de la barra de experiencia.
 
 ![Duelo con Elm](capturas/duelo-elm.png)
@@ -107,11 +116,11 @@ No es una aplicación React, Electron, Unity ni Godot, y no usa servidor, base d
 
 ## Estado y validación
 
-La versión 5.2 pasó **200 comprobaciones agrupadas**: 124 de los componentes ya existentes (servicios y mapas de Tito 48, orientaciones renderizadas 4, rutas de Ulex y Objetos 17, combates de Ulex y menú sandbox 27, cálculos de combate y almacenamiento 11, interfaz real de combate y captura 4, núcleo del randomizador 9, navegador sin conexión 4), 13 de la 4.3 (Vuelo, anciano del mapa, tiendas, suministros de la Liga, caramelos y bolsa), 4 de la 4.4 (tope en estado, iconos de ataque, barra de experiencia y respiración de Tito) y 59 de la 5.x (objetos infinitos, huevos, selector de la Superliga, aviso de Ulex, Joy, Elm, el otro protagonista, la Superliga y los datos: 36 jugando como chico y 23 más jugando como chica). Es un recuento de comprobaciones, **no un porcentaje de cobertura**; algunas agrupan muchos casos (Poder Oculto se contrasta con 768 combinaciones de DVs). Las comprobaciones de informes de versiones anteriores no se suman.
+La versión 5.3 pasó **217 comprobaciones agrupadas** en 14 grupos (servicios y mapas de Tito, Ulex, combate, randomizador y navegador sin conexión, interfaz de la 4.3 y 4.4, rutinas y recorridos de la 5.x; los recorridos de historia se ejecutan como chico y como chica). Es un recuento de comprobaciones, **no un porcentaje de cobertura**; algunas agrupan muchos casos (Poder Oculto se contrasta con 768 combinaciones de DVs). Las comprobaciones de informes de versiones anteriores no se suman.
 
 La reconstrucción también está comprobada: aplicar el parche a la base española y compilar con RGBDS 1.0.0 produce exactamente los SHA-256 de la ROM normal y de la compilación sandbox de los informes.
 
-Límites reales: los montajes omiten la introducción; algunos combates aumentan el daño para recorrer los equipos; en Ruta 17 se desactiva la gravedad solo en la prueba. No se ha completado una campaña entera ni queda demostrado el equilibrio global. El fallo móvil original de Viento Hielo no se reprodujo con el mismo emulador y guardado del usuario. La integración continua (flujo de GitHub Actions y script en [`pruebas/ci`](pruebas/ci)) solo comprueba herramientas y el randomizador contra la ROM de la Release; la compilación y las pruebas con emulador se ejecutan en local. Informe: [evidencias/Validacion-v5.2.json](evidencias/Validacion-v5.2.json).
+Límites reales: los montajes omiten la introducción; algunos combates aumentan el daño para recorrer los equipos; en Ruta 17 se desactiva la gravedad solo en la prueba. No se ha completado una campaña entera ni queda demostrado el equilibrio global. El fallo móvil original de Viento Hielo no se reprodujo con el mismo emulador y guardado del usuario. La integración continua (flujo de GitHub Actions y script en [`pruebas/ci`](pruebas/ci)) solo comprueba herramientas y el randomizador contra la ROM de la Release; la compilación y las pruebas con emulador se ejecutan en local. Informe: [evidencias/Validacion-v5.3.json](evidencias/Validacion-v5.3.json).
 No implementado: habilidades, megaevolución, generaciones tercera/cuarta, recursos de Prism.
 
 ## Contenido del repositorio
