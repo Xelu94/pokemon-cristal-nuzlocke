@@ -1,5 +1,5 @@
 {
-  "passed": 21,
+  "passed": 22,
   "tests": [
     {
       "name": "no tree gives an apricorn any more",
@@ -43,6 +43,10 @@
     },
     {
       "name": "after the rival leaves New Bark Town the other protagonist battles, heals the party and hands over a Max Potion",
+      "passed": true
+    },
+    {
+      "name": "without a Pokemon the rival shoves you but the other protagonist does not ambush",
       "passed": true
     },
     {

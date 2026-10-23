@@ -2,9 +2,30 @@
 
 Formato por versión. Las versiones anteriores a la 4 no están documentadas en este paquete; solo se sabe que la actualización v3→v4 permite continuar el guardado.
 
+## 5.1 — Correcciones y arte propio de Dark Lugia (23 de octubre de 2026)
+
+Corrige los fallos que aparecían al hablar con el rival al principio de la partida y al volver de un combate, y sustituye la imagen trasera de Dark Lugia. **198 comprobaciones agrupadas** ([evidencias/Validacion-v5.1.json](evidencias/Validacion-v5.1.json)): las 173 de la 5.0 con dos más del recorrido de Pueblo Primavera, y el recorrido de historia repetido jugando como chica (22 + 22).
+
+1. **El otro protagonista ya no embosca a quien no tiene Pokémon.** Al hablar con PLATA junto a la ventana antes de recibir el inicial se activaba la emboscada: el combate no podía empezar, pero quedaban guardados en memoria el entrenador y el tipo de combate, y el primer encuentro salvaje de la ruta se dibujaba como un combate contra ella; después aparecían fallos al abrir el menú. Ahora, sin Pokémon, solo ocurre el empujón de Plata y la emboscada espera a la siguiente conversación con equipo (nueva prueba, que además comprueba que no quedan banderas ni objeto).
+2. **Imagen trasera de Dark Lugia** nueva: arte de [SageDeoxys](https://www.deviantart.com/sagedeoxys) aportado por el autor del proyecto, convertido a 48×48 y 4 colores y con la marca roja de la barriga eliminada. El frontal sigue siendo el de la 5.0.
+3. **Sprites tras un combate.** Con la lista de gráficos ampliada, algunos mapas superaban los 20 sprites de 12 tiles que caben en la VRAM; el sobrante no se descartaba y `GetUsedSprites` leía su tipo como número de tile y escribía encima de los tiles del jugador, que se veía deformado al volver de un combate. Ahora `ArrangeUsedSprites` corta la lista donde ya no cabe nada. Comprobado en los 394 mapas (ningún objeto se queda sin sprite) y con una prueba nueva que compara los tiles del jugador antes y después de la emboscada.
+4. **El otro protagonista aparecía lejos.** `MoveObjectToPlayerFront` usaba la constante del script como índice del objeto sin restarle uno, así que en las emboscadas de Pueblo Primavera, Torre Bellsprout y Guarida Dragón movía otro objeto y ella aparecía en su sitio del mapa (detrás del cartel de Pueblo Primavera). Ahora aparece en la casilla frente al jugador (prueba nueva).
+5. **Pruebas.** El recorrido de historia se ejecuta ahora dos veces: jugando como chico (la emboscada la hace CRISTAL) y como chica (la hace GOLD), y comprueba además que el otro protagonista aparece delante del jugador y que los tiles de su sprite no cambian tras el combate.
+
+**Revisión general de esta versión:** los 394 mapas cargan y ningún objeto se queda sin sprite; humo de 373 mapas con una caminata aleatoria (se omiten los ascensores y las salas de enlace, que esperan hardware); ningún texto nuevo supera las 18 columnas; las Pokédex nueva, vieja y A-Z muestran a Dark Lugia con su sprite; las cuatro emboscadas y el combate final se completan jugando como chico y como chica (la de la Guarida Dragón con un parche de la ROM que fuerza la presencia del rival).
+
+**Límites:** no pude reproducir tal cual el aviso de «CRISTAL en el mundo y GOLD en el combate» eligiendo a CRISTAL: en esta versión, con jugadora, GOLD se ve igual en el mapa y en el combate en las cuatro escenas; lo más probable es que fuera la lista de sprites desbordada de la 5.0 (punto 3). Si vuelve a verse, ayudará una captura con la partida. Dark Lugia sigue teniendo solo tres fotogramas de animación.
+
+ROM de esta versión (reconstruida desde la base española aplicando el parche con RGBDS 1.0.0):
+
+| | SHA-256 |
+|---|---|
+| ROM normal (`Radical Cristal.gbc`) | `339f38f5d51b9bd1a4adcd28e1767fbbf32ef4e0e343f4965acbdc9cb4fa00e5` |
+| Sandbox | `b060483611e9bb5c1fbc88607e2f5a218ac500bbb268962279725a1cb4702183` |
+
 ## 5.0 — Radical Cristal (22 de octubre de 2026)
 
-El juego pasa a llamarse **Radical Cristal** (pantalla de título, Randomizador, README y la Release). Es la versión con más contenido nuevo desde la 4.0: un cambio en la historia (el otro protagonista y el duelo de Elm), una liga extra, un Pokémon nuevo y varios arreglos. Detalle de las partes nuevas en [docs/SUPERLIGA-Y-RIVAL.md](docs/SUPERLIGA-Y-RIVAL.md). **175 comprobaciones agrupadas** ([evidencias/Validacion-v5.0.json](evidencias/Validacion-v5.0.json)): las 140 de la 4.4, 1 nueva de la barra de experiencia y 34 de esta versión.
+El juego pasa a llamarse **Radical Cristal** (pantalla de título, Randomizador, README y la Release). Es la versión con más contenido nuevo desde la 4.0: un cambio en la historia (el otro protagonista y el duelo de Elm), una liga extra, un Pokémon nuevo y varios arreglos. Detalle de las partes nuevas en [docs/SUPERLIGA-Y-RIVAL.md](docs/SUPERLIGA-Y-RIVAL.md). **173 comprobaciones agrupadas** ([evidencias/Validacion-v5.0.json](evidencias/Validacion-v5.0.json)): las 140 de la 4.4, 1 nueva de la barra de experiencia y 32 de esta versión.
 
 **Mundo y objetos**
 
@@ -21,8 +42,6 @@ El juego pasa a llamarse **Radical Cristal** (pantalla de título, Randomizador,
 
 9. **Animación de andar del rival (y de otros PNJ).** En CIUDAD CEREZO (y en 22 mapas más) algunos PNJ que caminan se dibujaban con los fotogramas de pie, porque la lista de gráficos exteriores del grupo tenía más sprites de los que caben con fotogramas de andar. Ahora los sprites de los objetos del propio mapa se cargan primero (`AddOutdoorSprites`). Comprobado en los 394 mapas (`pruebas/simulacion`): ninguno queda con un PNJ andando sin fotogramas.
 10. **Barra de experiencia.** Los iconos de categoría de la 4.4 reutilizaban tiles de la barra; al abrir el panel de ataques, la barra mostraba esos símbolos en su extremo. Ahora se restauran al volver a dibujar la barra (`RestoreExpBarTiles`).
-- **Sprites tras un combate (corregido el 23 de octubre de 2026 en la ROM de la 5.0).** Con la lista de gráficos ampliada, algunos mapas superaban los 20 sprites de 12 tiles que caben en la VRAM; el sobrante no se descartaba y `GetUsedSprites` leía su tipo como número de tile y escribía encima de los tiles del jugador, que se veía deformado al volver de un combate. Ahora `ArrangeUsedSprites` corta la lista donde ya no cabe nada. Comprobado en los 394 mapas (ningún objeto se queda sin sprite) y con una prueba nueva que compara los tiles del jugador antes y después de la emboscada.
-- **El otro protagonista aparecía lejos.** `MoveObjectToPlayerFront` usaba la constante del script como índice del objeto sin restarle uno, así que en las emboscadas de Pueblo Primavera, Torre Bellsprout y Guarida Dragón movía otro objeto y ella aparecía en su sitio del mapa (detrás del cartel de Pueblo Primavera). Ahora aparece en la casilla frente al jugador (prueba nueva).
 
 **Historia**
 

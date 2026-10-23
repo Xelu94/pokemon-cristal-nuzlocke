@@ -3,6 +3,7 @@ the other protagonist (three ambushes, the Indigo Plateau fight, her home and th
 the Super League, Dark Lugia and the data changes (Gold Berries, balls, prices, stones)."""
 import io
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -150,6 +151,18 @@ check('after the rival leaves New Bark Town the other protagonist battles, heals
       done and bag.get(items['MAX_POTION'], 0) == 1)
 g.close()
 
+# --- Other protagonist: talking to the rival before getting a Pokemon must not start the ambush -----
+g = G('NEW_BARK_TOWN', 4, 2)
+g.p.tick(60)
+assert g.read('wPartyCount') == 0
+g.press('left', 20, hold=16)
+for i in range(70):
+    g.press('a', 30, hold=6)
+g.p.tick(60)
+check('without a Pokemon the rival shoves you but the other protagonist does not ambush',
+      not g.event('EVENT_OTHER_AMBUSH_NEW_BARK') and not g.event('EVENT_OTHER_SCENE_ACTIVE') and g.bag().get(items['MAX_POTION'], 0) == 0)
+g.close()
+
 # --- Other protagonist: she stands next to the player and the sprite tiles survive the battle ----------
 g = G('NEW_BARK_TOWN', 4, 2)
 strong_party(g)
@@ -160,7 +173,8 @@ for i in range(200):
     g.press('a', 30, hold=6)
     text = ' '.join(g.screen_text())
     if adjacent is None and 'culito' in text:
-        base = g.a('wMapObjects') + 5 * 16  # NEWBARKTOWN_OTHER_GIRL is script object 6 (map object 5)
+        # NEWBARKTOWN_OTHER_BOY / _GIRL are script objects 5 / 6 (map objects 4 / 5); a girl player meets Gold
+        base = g.a('wMapObjects') + (4 if g.read('wPlayerGender') else 5) * 16
         girl = (g.p.memory[base + 3] - 4, g.p.memory[base + 2] - 4)
         me = g.pos()
         adjacent = abs(girl[0] - me[0]) + abs(girl[1] - me[1]) == 1
@@ -293,4 +307,4 @@ check('the Super League champion hands over a shiny level-100 Charizard holding 
 g.close()
 
 report = {'passed': len(tests), 'tests': tests}
-Path('work/v45-story-tests.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+Path('work/v45-story-girl-tests.json' if os.environ.get('PLAYER_GENDER') == '1' else 'work/v45-story-tests.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')

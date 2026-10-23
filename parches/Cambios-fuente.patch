@@ -83334,23 +83334,28 @@ index 0000000..6d91bec
 +	endanim
 diff --git a/gfx/pokemon/dark_lugia/back.png b/gfx/pokemon/dark_lugia/back.png
 new file mode 100644
-index 0000000000000000000000000000000000000000..d71098ffd51ded0146d3772555c05e1a0f77babb
+index 0000000000000000000000000000000000000000..f448a202d3445bd2403f988cd9bae2fe1c4c7b8e
 GIT binary patch
-literal 709
-zcmV;$0y_PPP)<h;3K|Lk000e1NJLTq001xm001xu0ssI2*kEqZ0007vNkl<Zc%02x
-zyOqK)5M24u2%!ln!R`PuJ478o8PI_pLIxciB@muNO3}UZ!k$haOSabUZX!QhmPRwX
-z(n>-p1^)>dS4W~puvxjP1I-i%0HDaLm=39>uK|NXqMz}-yTnUH>}{kH5<(PtWoUrb
-z1b=kDPYh}yygeY-kI%FIQYU)vF805vgy1(Pxjo@SbKU!B;Ts>J1<V8aW`;xBLSoF7
-ztJ;u|K_T#nWT3qrh+L6ZlmrHWxfHUo+Z<ySDxQT=DMf=(^f)=;1Ic6OBadYe=NjVK
-zJ#<2bYiwJG(nLxD8zCJ7t^vR@UmI_9*El!VU0m4O&>fsbAvqXB^X_H3JUEivo`x-R
-zx<=A+D%4!}%Y5Bj_c5IGa%J|Fy6HIu|7vdsN>8N}ZX*l|m8;rj6I4iFCuy(cvFxtp
-z2(gJ#NC&lN&N4YhA==<@O6VFhp=P{7WE_e;mqHLidplrI8=SH~iRkuC1)rbYgTjcp
-zrj{dfUdL{8Y;Oln%jBf|GLW(R1%n`i?6W1-xJj0YF@9lPM)6A}wgEQF<QO&s$XNV>
-z_X^}|9LXjr%Y@~ZujMN^`T|2KMJ=7KEm-6k0F6qAGWz7~VWL7JTApY3FwUm@F(mvK
-z42f)hEF*&_u#us&^C)CAMv+%62dkJ$KCDo=s*Tg+pU49M8Qs=QU^53^K^-HHje+Ev
-z=GTaINVv?x5~9c}<D50wuh_H~F0*h{yn3PyJRMogJ-4#hpjmWDU^qV6uW!q+*0(=s
-zE7RHer*G60zg`O6y9@P>lAtQSekpn;XG4IHJ}}k^W2d-_D=lIP86pis_VVb5UtYWj
-rVX_o?g>%K2wU-$u8$+Iyhz5W!+I4hp<8F8-00000NkvXXu0mjf&n`RZ
+literal 961
+zcmV;y13vtTP)<h;3K|Lk000e1NJLTq001xm001xu0ssI2*kEqZ000AsNkl<Zc%03d
+z$(7<T5Qe3GB;upzNC=(`;Km#wgCPvaV0>)fh786ba2y{AMg7`^|1MXR7EI4lCooz*
+z{k2FkK7`=P%zN*gD{sHdUdm~jdguPU6#;qg_nT8yum1}m&$Mak9Xalw0r`=Jw7Cse
+z{p()>@}rgXU&fRee`U4~A)rGw4;}K_Gr2|)iHV97I&9B6v#L4Svb+P0b8f#mX`Kv(
+z(7L@G#Y1A+*K5!`Bo)!<Sj;FCLI6q?N%j5a)DK;H?!)%X1u$uJ+NQEB>ya1}^dqN`
+zncDP2Cp3OBBcF>DGlYUL400Q;x8X|75;P*?Ryy(#8U4^Taj!uDzC`NIrEM=qO#^9l
+z#@#cVhQQoho@OeHF>5bJFwq3<<rs4}_p;EK#+hXqt)r^f)ReGDCvJj|XRi?By)PpJ
+z4M#!yd%$spOsmG}g=QLyTtgEOM?#EP=J!JvtwW-7GdZrk9BC#qyg&mET1mS0K)iQ#
+z?x8eko=x>?E*O@MxDkF4hzS(>x&jT4n*`i#Tr20GukaCl08N?$hV1@8F()oGt^v`Y
+zJ58)NB0VW-c?WuE`f@Vys|g{xuS(pMH60~9l4#a`=t`C?Pb9k3X3Z=%2ypR1bQDiy
+zVMMeSV)fJ9zka{cldoUC2^z$Za7FCsV(dgbV_n<;Ax9j`tQkxqH%%;AhtOvkjT=P*
+zftCuC=Ds;AjD;x9I>c}q5LESAR7*1kIN1zHr-|8L6jn{coADI;(14wOL^c>(2X9){
+z>)1Iatq@;2fON15IC^qFF^19bgL!f8$3aU@_5INGLuZ~janPo5!rY83Gb5>=yD5Dy
+z!ytTH<s~P*B;)v@-4u%NI*09<?+-jg3I~}1!Kr*%!7N{vNL=8;E*T&-{i`cBy6l?9
+z7na4!oEUwiKQ4IXM;FqMoRDBjT@?9S2XSjdw2D-syO<t|lBm5Lvu{hHun?dfrxYvG
+zp@!|#Jcm5+CNmbZ+!yU6gDC6fRa);~SvO^X^fpqByAr<g^C&Ml01}}4&FRO_?}bcJ
+zh4_lA>87Dk%mXK{hkSon4kWglX1W>jcoG`ihO5~79;&Dhzo&-rJ&2w(^^RO7Huhx}
+ztwZMG_Ud(qzUXjgEda^~nrAVt@A>ANgT*vOK+a;)#&3pCy`wEH4?c4bd9(mN3*_Qh
+jpM|mnh-1M%_YbQ#w9Zlb>UBi*00000NkvXXu0mjf+@!la
 
 literal 0
 HcmV?d00001
@@ -85766,7 +85771,7 @@ index 467e1aa..636e9c2 100644
  .GotTyrogue:
  	writetext MountMortarB1FKiyoGotTyrogueText
 diff --git a/maps/NewBarkTown.asm b/maps/NewBarkTown.asm
-index ca9d86b..3ea07b7 100644
+index ca9d86b..d5b2219 100644
 --- a/maps/NewBarkTown.asm
 +++ b/maps/NewBarkTown.asm
 @@ -2,6 +2,8 @@
@@ -85794,12 +85799,14 @@ index ca9d86b..3ea07b7 100644
  
  NewBarkTownNoop1Scene:
  	end
-@@ -123,8 +134,148 @@ NewBarkTownRivalScript:
+@@ -123,8 +134,150 @@ NewBarkTownRivalScript:
  	playsound SFX_TACKLE
  	applymovement PLAYER, NewBarkTown_RivalShovesYouOutMovement
  	applymovement NEWBARKTOWN_RIVAL, NewBarkTown_RivalReturnsToTheShadowsMovement
 +	checkevent EVENT_OTHER_AMBUSH_NEW_BARK
 +	iftrue NewBarkTownOtherAmbushDone
++	readmem wPartyCount
++	iffalse NewBarkTownOtherAmbushDone ; no Pokemon yet: there is nothing to fight with
 +	disappear NEWBARKTOWN_RIVAL
 +	sjump NewBarkTownOtherAmbushScript
 +
@@ -85943,7 +85950,7 @@ index ca9d86b..3ea07b7 100644
  NewBarkTownSign:
  	jumptext NewBarkTownSignText
  
-@@ -303,3 +454,5 @@ NewBarkTown_MapEvents:
+@@ -303,3 +456,5 @@ NewBarkTown_MapEvents:
  	object_event  6,  8, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownTeacherScript, -1
  	object_event 12,  9, SPRITE_FISHER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, NewBarkTownFisherScript, -1
  	object_event  3,  2, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NewBarkTownRivalScript, EVENT_RIVAL_NEW_BARK_TOWN
@@ -89478,15 +89485,16 @@ index 0000000..9071693
 +    Randomizer(args.seed).run()
 diff --git a/tools/build_dark_lugia_sprite.py b/tools/build_dark_lugia_sprite.py
 new file mode 100644
-index 0000000..3d99491
+index 0000000..ac55409
 --- /dev/null
 +++ b/tools/build_dark_lugia_sprite.py
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,41 @@
 +"""Builds gfx/pokemon/dark_lugia/front.png and back.png.
 +
 +front.png: the user-supplied animated Dark Lugia sprite (video, 280x280 = 56x56 pixels scaled by 5).
 +Frame 0 is the idle pose, frames 1-3 are the wing-flap poses. Colours are reduced to the four
-+colours of the Dark Lugia palette. back.png: Lugia's back view recoloured with the same palette.
++colours of the Dark Lugia palette. back.png is not generated here: it is the back view supplied by the
++project author (56x56 pixel art reduced to 48x48 with the same four colours, red mark removed).
 +Usage: build_dark_lugia_sprite.py <frames_dir> <idle> <flap> <flap> <flap>   (frame numbers in frames_dir)"""
 +import sys
 +from collections import Counter
@@ -89519,12 +89527,6 @@ index 0000000..3d99491
 +        sheet.paste(shrink(frames_dir / ('f%03d.png' % n)), (0, 56 * i))
 +    out = Path('gfx/pokemon/dark_lugia')
 +    sheet.save(out / 'front.png')
-+    back = Image.open('gfx/pokemon/lugia/back.png')
-+    recolor = Image.new('RGB', back.size)
-+    for y in range(back.height):
-+        for x in range(back.width):
-+            recolor.putpixel((x, y), PALETTE[back.getpixel((x, y))])
-+    recolor.save(out / 'back.png')
 +
 +
 +main()

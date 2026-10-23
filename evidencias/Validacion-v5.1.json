@@ -1,0 +1,80 @@
+{
+  "version": "5.0",
+  "fecha": "2026-10-22",
+  "normal_sha256": "339f38f5d51b9bd1a4adcd28e1767fbbf32ef4e0e343f4965acbdc9cb4fa00e5",
+  "sandbox_sha256": "b060483611e9bb5c1fbc88607e2f5a218ac500bbb268962279725a1cb4702183",
+  "passed": 198,
+  "groups": [
+    {
+      "name": "Tito services and maps",
+      "report": "v4-tito-tests.json",
+      "passed": 48
+    },
+    {
+      "name": "Tito rendered directions",
+      "report": "v42-tito-directions-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "All Ulex routes and sandbox Items",
+      "report": "v42-fixes-tests.json",
+      "passed": 17
+    },
+    {
+      "name": "Ulex battles and sandbox UI",
+      "report": "v41-root-ui-tests.json",
+      "passed": 27
+    },
+    {
+      "name": "Battle calculations and storage",
+      "report": "v4-battle-tests.json",
+      "passed": 11
+    },
+    {
+      "name": "Real battle UI and capture",
+      "report": "v41-battle-ui-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "Randomizer core",
+      "report": "v4-randomizer-tests.json",
+      "passed": 9
+    },
+    {
+      "name": "Offline randomizer UI",
+      "report": "v4-randomizer-ui-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "v4.3 changes (Fly, Map Card, marts, League supplies, candies, bag)",
+      "report": "v43-changes-tests.json",
+      "passed": 13
+    },
+    {
+      "name": "v4.4 interface (level cap, move icons, exp bar, Tito idle)",
+      "report": "v44-changes-tests.json",
+      "passed": 4
+    },
+    {
+      "name": "v5.0 routines (infinite items, hatching, Super League picker, 10-step eggs)",
+      "report": "v45-routines-tests.json",
+      "passed": 13
+    },
+    {
+      "name": "v5.0 story and world (Ulex warning, Joy, Elm, other protagonist, Super League, data)",
+      "report": "v45-story-tests.json",
+      "passed": 22
+    },
+    {
+      "name": "v5.0 story and world played as a girl (Gold ambushes, Cristal does not)",
+      "report": "v45-story-girl-tests.json",
+      "passed": 22
+    }
+  ],
+  "limitaciones": [
+    "No equivale a una campaña completa.",
+    "Se omite la introducción en las pruebas de interfaz; en Ruta 17 se desactiva la gravedad solo en el montaje de prueba.",
+    "Las pruebas de combate de Ulex aumentan el daño para recorrer sus equipos; no evalúan el equilibrio completo.",
+    "Los combates de las pruebas de la v5.0 (Elm, emboscadas, Meseta Añil, sala de Azul) se juegan con un Mewtwo de estadísticas infladas; el combate contra el campeón de la Superliga no se juega entero: se comprueba su recompensa con un atajo."
+  ]
+}

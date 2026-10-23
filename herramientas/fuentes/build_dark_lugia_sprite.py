@@ -2,7 +2,8 @@
 
 front.png: the user-supplied animated Dark Lugia sprite (video, 280x280 = 56x56 pixels scaled by 5).
 Frame 0 is the idle pose, frames 1-3 are the wing-flap poses. Colours are reduced to the four
-colours of the Dark Lugia palette. back.png: Lugia's back view recoloured with the same palette.
+colours of the Dark Lugia palette. back.png is not generated here: it is the back view supplied by the
+project author (56x56 pixel art reduced to 48x48 with the same four colours, red mark removed).
 Usage: build_dark_lugia_sprite.py <frames_dir> <idle> <flap> <flap> <flap>   (frame numbers in frames_dir)"""
 import sys
 from collections import Counter
@@ -35,12 +36,6 @@ def main():
         sheet.paste(shrink(frames_dir / ('f%03d.png' % n)), (0, 56 * i))
     out = Path('gfx/pokemon/dark_lugia')
     sheet.save(out / 'front.png')
-    back = Image.open('gfx/pokemon/lugia/back.png')
-    recolor = Image.new('RGB', back.size)
-    for y in range(back.height):
-        for x in range(back.width):
-            recolor.putpixel((x, y), PALETTE[back.getpixel((x, y))])
-    recolor.save(out / 'back.png')
 
 
 main()

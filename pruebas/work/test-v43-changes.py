@@ -2,6 +2,7 @@
 scene, no healing items in marts, League supplies, infinite 99 Rare Candies and
 the pocket labels / circular navigation of the bag."""
 import io
+import os
 import json
 import re
 from pathlib import Path
@@ -48,6 +49,11 @@ class Game:
         for name in ['PlayerProfileSetup', 'OakSpeech', 'ShrinkPlayer', '_InitializeStartDay']:
             data[self.offset(name)] = 0xc9
         data[self.offset('Route31CheckMomCallCallback')] = 0x90
+        if os.environ.get('PLAYER_GENDER') == '1':
+            # the intro is skipped, so a girl is chosen by patching what it would have stored
+            address = self.a('wPlayerGender')
+            start = self.offset('OakSpeech')
+            data[start:start + 6] = bytes([0x3e, 0x01, 0xea, address & 255, address >> 8, 0xc9])
         spawn = self.offset('SpawnPoints')
         data[spawn:spawn+4] = bytes(maps[mapname] + [x, y])
         self.p = PyBoy(io.BytesIO(data), window='null', sound_emulated=False, log_level='ERROR')
